@@ -10,7 +10,7 @@ import org.gradle.kotlin.dsl.dependencies
 fun Project.configureHilt() {
     with(pluginManager) {
         apply("com.google.dagger.hilt.android")
-        apply("kotlin-kapt")
+        apply("com.google.devtools.ksp")
     }
     dependencies {
         implementation(libs.library("hilt-android"))
