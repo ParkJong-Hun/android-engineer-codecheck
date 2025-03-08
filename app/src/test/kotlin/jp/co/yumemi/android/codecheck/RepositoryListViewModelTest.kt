@@ -1,3 +1,5 @@
+@file:Suppress("ForbiddenComment", "UnusedPrivateProperty")
+
 package jp.co.yumemi.android.codecheck
 
 import kotlinx.coroutines.Dispatchers

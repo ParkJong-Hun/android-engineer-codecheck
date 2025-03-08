@@ -1,3 +1,5 @@
+@file:Suppress("ForbiddenComment")
+
 package jp.co.yumemi.android.codecheck
 
 import androidx.lifecycle.ViewModel
