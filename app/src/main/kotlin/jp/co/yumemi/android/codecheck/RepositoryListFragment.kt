@@ -12,11 +12,13 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import jp.co.yumemi.android.codecheck.databinding.FragmentRepositoryListBinding
 
 /**
  * Githubリポジトリのリスト画面。
  */
+@AndroidEntryPoint
 class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
     private val topViewModel by activityViewModels<TopViewModel>()
     private val viewModel by viewModels<RepositoryListViewModel>()

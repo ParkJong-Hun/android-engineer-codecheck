@@ -4,6 +4,7 @@
 package jp.co.yumemi.android.codecheck
 
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.engine.okhttp.OkHttp
@@ -19,6 +20,7 @@ import org.json.JSONObject
 /**
  * [RepositoryListFragment]のViewModel。
  */
+@HiltViewModel
 class RepositoryListViewModel : ViewModel() {
 
     /**
