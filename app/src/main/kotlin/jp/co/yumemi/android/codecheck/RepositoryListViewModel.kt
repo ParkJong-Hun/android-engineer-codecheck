@@ -4,7 +4,6 @@
 package jp.co.yumemi.android.codecheck
 
 import android.content.Context
-import android.os.Parcelable
 import androidx.lifecycle.ViewModel
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -17,19 +16,18 @@ import jp.co.yumemi.android.codecheck.TopActivity.Companion.lastSearchDate
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
-import kotlinx.parcelize.Parcelize
 import org.json.JSONObject
 import java.util.Date
 
 /**
  * TwoFragment で使う
  */
-class OneViewModel(
-    val context: Context
+class RepositoryListViewModel(
+    private val context: Context,
 ) : ViewModel() {
 
     // 検索結果
-    fun searchResults(inputText: String): List<SearchResult> = runBlocking {
+    fun searchResults(inputText: String): List<SearchedRepositoryItemInfo> = runBlocking {
         val client = HttpClient(OkHttp)
 
         return@runBlocking GlobalScope.async {
@@ -42,7 +40,7 @@ class OneViewModel(
 
             val jsonItems = jsonBody.optJSONArray("items")!!
 
-            val searchResults = mutableListOf<SearchResult>()
+            val searchedRepositories = mutableListOf<SearchedRepositoryItemInfo>()
 
             /**
              * アイテムの個数分ループする
@@ -57,8 +55,8 @@ class OneViewModel(
                 val forksCount = jsonItem.optLong("forks_conut")
                 val openIssuesCount = jsonItem.optLong("open_issues_count")
 
-                searchResults.add(
-                    SearchResult(
+                searchedRepositories.add(
+                    SearchedRepositoryItemInfo(
                         name = name,
                         ownerIconUrl = ownerIconUrl,
                         language = context.getString(R.string.written_language, language),
@@ -72,18 +70,7 @@ class OneViewModel(
 
             lastSearchDate = Date()
 
-            return@async searchResults.toList()
+            return@async searchedRepositories.toList()
         }.await()
     }
 }
-
-@Parcelize
-data class SearchResult(
-    val name: String,
-    val ownerIconUrl: String,
-    val language: String,
-    val stargazersCount: Long,
-    val watchersCount: Long,
-    val forksCount: Long,
-    val openIssuesCount: Long,
-) : Parcelable

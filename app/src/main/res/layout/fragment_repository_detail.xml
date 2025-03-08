@@ -31,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@id/ownerIconView" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/centerGuid"
+        android:id="@+id/centerGuideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -60,7 +60,7 @@
         android:textColor="@color/black"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/centerGuid"
+        app:layout_constraintStart_toStartOf="@id/centerGuideline"
         app:layout_constraintTop_toBottomOf="@id/nameView" />
 
     <TextView
@@ -74,7 +74,7 @@
         android:textColor="@color/black"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/centerGuid"
+        app:layout_constraintStart_toStartOf="@id/centerGuideline"
         app:layout_constraintTop_toBottomOf="@id/starsView" />
 
     <TextView
@@ -88,7 +88,7 @@
         android:textColor="@color/black"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="@id/centerGuid"
+        app:layout_constraintLeft_toLeftOf="@id/centerGuideline"
         app:layout_constraintTop_toBottomOf="@id/watchersView" />
 
     <TextView
@@ -102,7 +102,7 @@
         android:textColor="@color/black"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/centerGuid"
+        app:layout_constraintStart_toStartOf="@id/centerGuideline"
         app:layout_constraintTop_toBottomOf="@id/forksView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
