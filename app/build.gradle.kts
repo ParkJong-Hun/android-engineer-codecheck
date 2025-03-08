@@ -5,6 +5,11 @@ plugins {
 android.namespace = "jp.co.yumemi.android.codecheck"
 
 dependencies {
+    implementation(projects.data)
+    implementation(projects.domain)
+
+    implementation(projects.feature.top)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
 
