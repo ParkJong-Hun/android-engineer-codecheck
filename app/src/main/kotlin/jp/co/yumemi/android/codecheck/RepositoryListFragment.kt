@@ -8,6 +8,7 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,24 +19,20 @@ import jp.co.yumemi.android.codecheck.databinding.FragmentRepositoryListBinding
  */
 class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
     private val topViewModel by activityViewModels<TopViewModel>()
+    private val viewModel by viewModels<RepositoryListViewModel>()
 
     private var binding: FragmentRepositoryListBinding by autoCleared()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding = FragmentRepositoryListBinding.bind(view)
-
-        val viewModel = RepositoryListViewModel(requireContext())
 
         val layoutManager = LinearLayoutManager(requireContext())
         val dividerItemDecoration =
             DividerItemDecoration(requireContext(), layoutManager.orientation)
-        val adapter = RepositoryListAdapter(object : RepositoryListAdapter.OnItemClickListener {
-            override fun itemClick(searchedRepositoryItemInfo: SearchedRepositoryItemInfo) {
-                navigateToRepositoryDetailFragment(searchedRepositoryItemInfo)
-            }
-        })
+        val adapter = RepositoryListAdapter { searchedRepositoryItemInfo ->
+            navigateToRepositoryDetailFragment(searchedRepositoryItemInfo)
+        }
 
         binding.searchInputText
             .setOnEditorActionListener { editText, action, _ ->
@@ -58,7 +55,7 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
         }
     }
 
-    fun navigateToRepositoryDetailFragment(searchedRepositoryItemInfo: SearchedRepositoryItemInfo) {
+    private fun navigateToRepositoryDetailFragment(searchedRepositoryItemInfo: SearchedRepositoryItemInfo) {
         val action = RepositoryListFragmentDirections
             .actionRepositoriesFragmentToRepositoryFragment(searchedRepositoryItemInfo)
         findNavController().navigate(action)
