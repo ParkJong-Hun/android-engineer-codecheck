@@ -12,6 +12,9 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import jp.co.yumemi.android.codecheck.databinding.FragmentRepositoryListBinding
 
+/**
+ * Githubリポジトリのリスト画面。
+ */
 class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -26,7 +29,7 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
             DividerItemDecoration(requireContext(), layoutManager.orientation)
         val adapter = RepositoryListAdapter(object : RepositoryListAdapter.OnItemClickListener {
             override fun itemClick(searchedRepositoryItemInfo: SearchedRepositoryItemInfo) {
-                gotoRepositoryFragment(searchedRepositoryItemInfo)
+                navigateToRepositoryDetailFragment(searchedRepositoryItemInfo)
             }
         })
 
@@ -34,7 +37,7 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
             .setOnEditorActionListener { editText, action, _ ->
                 if (action == EditorInfo.IME_ACTION_SEARCH) {
                     editText.text.toString().let {
-                        viewModel.searchResults(it).apply {
+                        viewModel.getSearchedRepositoryItemInfo(it).apply {
                             adapter.submitList(this)
                         }
                     }
@@ -43,15 +46,15 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
                 return@setOnEditorActionListener false
             }
 
-        binding.recyclerView.also {
-            it.layoutManager = layoutManager
-            it.addItemDecoration(dividerItemDecoration)
-            it.adapter = adapter
+        binding.recyclerView.run {
+            this.layoutManager = layoutManager
+            this.addItemDecoration(dividerItemDecoration)
+            this.adapter = adapter
         }
     }
 
-    fun gotoRepositoryFragment(searchedRepositoryItemInfo: SearchedRepositoryItemInfo) {
-        val action = OneFragmentDirections
+    fun navigateToRepositoryDetailFragment(searchedRepositoryItemInfo: SearchedRepositoryItemInfo) {
+        val action = RepositoryListFragmentDirections
             .actionRepositoriesFragmentToRepositoryFragment(searchedRepositoryItemInfo)
         findNavController().navigate(action)
     }

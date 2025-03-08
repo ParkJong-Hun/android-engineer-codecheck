@@ -20,57 +20,60 @@ import org.json.JSONObject
 import java.util.Date
 
 /**
- * TwoFragment で使う
+ * [RepositoryListFragment]のViewModel。
  */
 class RepositoryListViewModel(
     private val context: Context,
 ) : ViewModel() {
 
-    // 検索結果
-    fun searchResults(inputText: String): List<SearchedRepositoryItemInfo> = runBlocking {
-        val client = HttpClient(OkHttp)
+    /**
+     * 入力した値を使って、Github Repositoriesを取得し、アプリで使う情報に加工して返す。
+     * @param inputText 入力した文字列
+     * @return [List] [SearchedRepositoryItemInfo]のリスト
+     */
+    fun getSearchedRepositoryItemInfo(inputText: String): List<SearchedRepositoryItemInfo> =
+        runBlocking {
+            val client = HttpClient(OkHttp)
 
-        return@runBlocking GlobalScope.async {
-            val response: HttpResponse = client.get("https://api.github.com/search/repositories") {
-                header("Accept", "application/vnd.github.v3+json")
-                parameter("q", inputText)
-            }
+            return@runBlocking GlobalScope.async {
+                val response: HttpResponse =
+                    client.get("https://api.github.com/search/repositories") {
+                        header("Accept", "application/vnd.github.v3+json")
+                        parameter("q", inputText)
+                    }
 
-            val jsonBody = JSONObject(response.body<String>())
+                val jsonBody = JSONObject(response.body<String>())
 
-            val jsonItems = jsonBody.optJSONArray("items")!!
+                val jsonItems = jsonBody.optJSONArray("items")!!
 
-            val searchedRepositories = mutableListOf<SearchedRepositoryItemInfo>()
+                val searchedRepositories = mutableListOf<SearchedRepositoryItemInfo>()
 
-            /**
-             * アイテムの個数分ループする
-             */
-            for (i in 0 until jsonItems.length()) {
-                val jsonItem = jsonItems.optJSONObject(i)!!
-                val name = jsonItem.optString("full_name")
-                val ownerIconUrl = jsonItem.optJSONObject("owner")!!.optString("avatar_url")
-                val language = jsonItem.optString("language")
-                val stargazersCount = jsonItem.optLong("stargazers_count")
-                val watchersCount = jsonItem.optLong("watchers_count")
-                val forksCount = jsonItem.optLong("forks_conut")
-                val openIssuesCount = jsonItem.optLong("open_issues_count")
+                for (i in 0 until jsonItems.length()) {
+                    val jsonItem = jsonItems.optJSONObject(i)!!
+                    val name = jsonItem.optString("full_name")
+                    val ownerIconUrl = jsonItem.optJSONObject("owner")!!.optString("avatar_url")
+                    val language = jsonItem.optString("language")
+                    val stargazersCount = jsonItem.optLong("stargazers_count")
+                    val watchersCount = jsonItem.optLong("watchers_count")
+                    val forksCount = jsonItem.optLong("forks_conut")
+                    val openIssuesCount = jsonItem.optLong("open_issues_count")
 
-                searchedRepositories.add(
-                    SearchedRepositoryItemInfo(
-                        name = name,
-                        ownerIconUrl = ownerIconUrl,
-                        language = context.getString(R.string.written_language, language),
-                        stargazersCount = stargazersCount,
-                        watchersCount = watchersCount,
-                        forksCount = forksCount,
-                        openIssuesCount = openIssuesCount
+                    searchedRepositories.add(
+                        SearchedRepositoryItemInfo(
+                            name = name,
+                            ownerIconUrl = ownerIconUrl,
+                            language = context.getString(R.string.written_language, language),
+                            stargazersCount = stargazersCount,
+                            watchersCount = watchersCount,
+                            forksCount = forksCount,
+                            openIssuesCount = openIssuesCount
+                        )
                     )
-                )
-            }
+                }
 
-            lastSearchDate = Date()
+                lastSearchDate = Date()
 
-            return@async searchedRepositories.toList()
-        }.await()
-    }
+                return@async searchedRepositories.toList()
+            }.await()
+        }
 }

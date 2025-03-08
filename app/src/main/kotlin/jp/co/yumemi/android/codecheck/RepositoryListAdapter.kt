@@ -8,25 +8,28 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
-private val repository_list_diff_util = object : DiffUtil.ItemCallback<SearchedRepositoryItemInfo>() {
-    override fun areItemsTheSame(
-        oldSearchedRepositoryItemInfo: SearchedRepositoryItemInfo,
-        newSearchedRepositoryItemInfo: SearchedRepositoryItemInfo
-    ): Boolean {
-        return oldSearchedRepositoryItemInfo.name == newSearchedRepositoryItemInfo.name
-    }
+private val repository_list_diff_util =
+    object : DiffUtil.ItemCallback<SearchedRepositoryItemInfo>() {
+        override fun areItemsTheSame(
+            oldSearchedRepositoryItemInfo: SearchedRepositoryItemInfo,
+            newSearchedRepositoryItemInfo: SearchedRepositoryItemInfo
+        ): Boolean {
+            return oldSearchedRepositoryItemInfo.name == newSearchedRepositoryItemInfo.name
+        }
 
-    override fun areContentsTheSame(
-        oldSearchedRepositoryItemInfo: SearchedRepositoryItemInfo,
-        newSearchedRepositoryItemInfo: SearchedRepositoryItemInfo
-    ): Boolean {
-        return oldSearchedRepositoryItemInfo == newSearchedRepositoryItemInfo
+        override fun areContentsTheSame(
+            oldSearchedRepositoryItemInfo: SearchedRepositoryItemInfo,
+            newSearchedRepositoryItemInfo: SearchedRepositoryItemInfo
+        ): Boolean {
+            return oldSearchedRepositoryItemInfo == newSearchedRepositoryItemInfo
+        }
     }
-}
 
 class RepositoryListAdapter(
     private val itemClickListener: OnItemClickListener,
-) : ListAdapter<SearchedRepositoryItemInfo, RepositoryListAdapter.ViewHolder>(repository_list_diff_util) {
+) : ListAdapter<SearchedRepositoryItemInfo, RepositoryListAdapter.ViewHolder>(
+    repository_list_diff_util
+) {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
