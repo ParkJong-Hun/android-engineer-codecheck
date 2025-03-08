@@ -10,11 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import coil3.load
+import dagger.hilt.android.AndroidEntryPoint
 import jp.co.yumemi.android.codecheck.databinding.FragmentRepositoryDetailBinding
 
 /**
  * GithubのRepository詳細画面
  */
+@AndroidEntryPoint
 class RepositoryDetailFragment : Fragment(R.layout.fragment_repository_detail) {
     private val topViewModel by activityViewModels<TopViewModel>()
 
