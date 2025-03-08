@@ -80,6 +80,8 @@ dependencies {
     implementation(libs.coil.network.okhttp)
     implementation(libs.androidx.junit.ktx)
     testImplementation(libs.junit)
+    testImplementation(libs.mockk.android)
+    testImplementation(libs.mockk.agent)
     androidTestImplementation(libs.androidx.test)
     androidTestImplementation(libs.androidx.junit.ktx)
     androidTestImplementation(libs.androidx.espresso.core)
