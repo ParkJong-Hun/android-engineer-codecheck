@@ -62,6 +62,7 @@ mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockk" }
 mockk-agent = { module = "io.mockk:mockk-agent", version.ref = "mockk" }
 
 # Hilt
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 
 [plugins]
