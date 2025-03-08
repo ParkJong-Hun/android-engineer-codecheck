@@ -21,6 +21,7 @@ mockk = "1.13.17"
 coroutines = "1.10.1"
 detekt = "1.23.7"
 hilt = "2.51.1"
+ksp = "2.1.10-1.0.31"
 
 [libraries]
 # ConventionPlugin作るときに使う
@@ -28,6 +29,7 @@ gradle_agp = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 gradle_kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 gradle_navigation = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "navigation" }
 gradle_detekt = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
+gradle_ksp = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
 
 # AndroidX
 androidx-core-ktx = { module = "androidx.core:core-ktx", version = "1.15.0" }
@@ -73,7 +75,7 @@ kotlin_parcelize = { id = "kotlin-parcelize" }
 navigation = { id = "androidx.navigation.safeargs", version.ref = "navigation" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
-ksp = { id = "com.google.devtools.ksp", version = "2.1.10-1.0.31" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
 # libsを経由して使うため
 yumemi-application = { id = "jp.co.yumemi.android.codecheck.application" }

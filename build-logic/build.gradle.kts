@@ -13,6 +13,7 @@ dependencies {
     implementation(libs.gradle.agp)
     implementation(libs.gradle.kotlin)
     implementation(libs.gradle.detekt)
+    implementation(libs.gradle.ksp)
 }
 
 enum class ConventionPlugins(val id: String, val implementationClass: String) {
