@@ -44,31 +44,34 @@ class RepositoryListViewModel(
 
                 val jsonBody = JSONObject(response.body<String>())
 
-                val jsonItems = jsonBody.optJSONArray("items")!!
+                val jsonItems = jsonBody.optJSONArray("items")
 
                 val searchedRepositories = mutableListOf<SearchedRepositoryItemInfo>()
 
-                for (i in 0 until jsonItems.length()) {
-                    val jsonItem = jsonItems.optJSONObject(i)!!
-                    val name = jsonItem.optString("full_name")
-                    val ownerIconUrl = jsonItem.optJSONObject("owner")!!.optString("avatar_url")
-                    val language = jsonItem.optString("language")
-                    val stargazersCount = jsonItem.optLong("stargazers_count")
-                    val watchersCount = jsonItem.optLong("watchers_count")
-                    val forksCount = jsonItem.optLong("forks_conut")
-                    val openIssuesCount = jsonItem.optLong("open_issues_count")
+                jsonItems?.let { items ->
+                    for (i in 0 until items.length()) {
+                        val jsonItem = items.optJSONObject(i)
+                        val name = jsonItem.optString("full_name")
+                        val ownerIconUrl =
+                            jsonItem.optJSONObject("owner")?.optString("avatar_url") ?: ""
+                        val language = jsonItem.optString("language")
+                        val stargazersCount = jsonItem.optLong("stargazers_count")
+                        val watchersCount = jsonItem.optLong("watchers_count")
+                        val forksCount = jsonItem.optLong("forks_conut")
+                        val openIssuesCount = jsonItem.optLong("open_issues_count")
 
-                    searchedRepositories.add(
-                        SearchedRepositoryItemInfo(
-                            name = name,
-                            ownerIconUrl = ownerIconUrl,
-                            language = context.getString(R.string.written_language, language),
-                            stargazersCount = stargazersCount,
-                            watchersCount = watchersCount,
-                            forksCount = forksCount,
-                            openIssuesCount = openIssuesCount
+                        searchedRepositories.add(
+                            SearchedRepositoryItemInfo(
+                                name = name,
+                                ownerIconUrl = ownerIconUrl,
+                                language = context.getString(R.string.written_language, language),
+                                stargazersCount = stargazersCount,
+                                watchersCount = watchersCount,
+                                forksCount = forksCount,
+                                openIssuesCount = openIssuesCount
+                            )
                         )
-                    )
+                    }
                 }
 
                 lastSearchDate = Date()

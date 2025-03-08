@@ -17,10 +17,12 @@ import jp.co.yumemi.android.codecheck.databinding.FragmentRepositoryListBinding
  */
 class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
 
+    private var binding: FragmentRepositoryListBinding by autoCleared()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val binding = FragmentRepositoryListBinding.bind(view)
+        binding = FragmentRepositoryListBinding.bind(view)
 
         val viewModel = RepositoryListViewModel(requireContext())
 
