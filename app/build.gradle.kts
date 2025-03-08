@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.agp.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.navigation)
-    id("kotlin-parcelize")
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 android {

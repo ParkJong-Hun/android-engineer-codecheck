@@ -42,4 +42,5 @@ ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "kto
 [plugins]
 agp_application = { id = "com.android.application", version.ref = "agp" }
 kotlin_android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin_parcelize = { id = "kotlin-parcelize" }
 navigation = { id = "androidx.navigation.safeargs", version.ref = "navigation" }
