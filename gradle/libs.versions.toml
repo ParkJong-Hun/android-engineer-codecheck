@@ -8,7 +8,7 @@ versionMajorName = "1"
 versionMinorName = "0"
 versionPatchName = "0"
 
-# Library Version
+# Library, Plugin Version
 agp = "8.8.0"
 coil = "3.1.0"
 espressoCore = "3.6.1"
@@ -20,6 +20,7 @@ test = "1.6.1"
 mockk = "1.13.17"
 coroutines = "1.10.1"
 detekt = "1.23.7"
+hilt = "2.51.1"
 
 [libraries]
 # ConventionPlugin作るときに使う
@@ -60,6 +61,9 @@ ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "kto
 mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockk" }
 mockk-agent = { module = "io.mockk:mockk-agent", version.ref = "mockk" }
 
+# Hilt
+hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
+
 [plugins]
 agp_application = { id = "com.android.application", version.ref = "agp" }
 agp_library = { id = "com.android.library", version.ref = "agp" }
@@ -67,6 +71,7 @@ kotlin_android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin_parcelize = { id = "kotlin-parcelize" }
 navigation = { id = "androidx.navigation.safeargs", version.ref = "navigation" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 
 # libsを経由して使うため
 yumemi-application = { id = "jp.co.yumemi.android.codecheck.application" }
