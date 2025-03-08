@@ -72,6 +72,7 @@ kotlin_parcelize = { id = "kotlin-parcelize" }
 navigation = { id = "androidx.navigation.safeargs", version.ref = "navigation" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+ksp = { id = "com.google.devtools.ksp", version = "2.1.10-1.0.31" }
 
 # libsを経由して使うため
 yumemi-application = { id = "jp.co.yumemi.android.codecheck.application" }

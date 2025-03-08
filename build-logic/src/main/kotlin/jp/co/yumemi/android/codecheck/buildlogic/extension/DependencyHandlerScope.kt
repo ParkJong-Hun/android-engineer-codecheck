@@ -32,3 +32,9 @@ fun DependencyHandlerScope.api(
 ) {
     add("api", artifact)
 }
+
+fun DependencyHandlerScope.ksp(
+    artifact: MinimalExternalModuleDependency,
+) {
+    add("ksp", artifact)
+}
