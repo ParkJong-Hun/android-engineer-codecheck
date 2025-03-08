@@ -3,7 +3,6 @@
  */
 package jp.co.yumemi.android.codecheck
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -20,9 +19,7 @@ import org.json.JSONObject
 /**
  * [RepositoryListFragment]のViewModel。
  */
-class RepositoryListViewModel(
-    private val context: Context,
-) : ViewModel() {
+class RepositoryListViewModel : ViewModel() {
 
     /**
      * 入力した値を使って、Github Repositoriesを取得し、アプリで使う情報に加工して返す。
@@ -62,7 +59,7 @@ class RepositoryListViewModel(
                             SearchedRepositoryItemInfo(
                                 name = name,
                                 ownerIconUrl = ownerIconUrl,
-                                language = context.getString(R.string.written_language, language),
+                                language = language,
                                 stargazersCount = stargazersCount,
                                 watchersCount = watchersCount,
                                 forksCount = forksCount,
