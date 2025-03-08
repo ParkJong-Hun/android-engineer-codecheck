@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google {
             mavenContent {
@@ -16,8 +17,25 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        jcenter() // Warning: this repository is going to shut down soon
     }
 }
-rootProject.name = "Android Engineer CodeCheck"
-include(":app")
+rootProject.name = "android-engineer-codecheck"
+include("app")
+include("data")
+includeChildModules("feature")
+
+fun includeChildModules(parentName: String) {
+    val buildGradleName = "build.gradle.kts"
+    with(File(rootProject.projectDir, parentName)) {
+        listFiles()
+            ?.asSequence()
+            ?.filter { it.isDirectory }
+            ?.filter { File(it, buildGradleName).exists() }
+            ?.forEach {
+                include("$parentName:${it.name}")
+            }
+    }
+}
+
+// project("hoge") -> projects.hoge
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")

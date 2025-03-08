@@ -1,4 +1,14 @@
 [versions]
+# Android Version
+targetSdk = "35"
+compileSdk = "35"
+minSdk = "26"
+versionCode = "1"
+versionMajorName = "1"
+versionMinorName = "0"
+versionPatchName = "0"
+
+# Library Version
 agp = "8.8.0"
 coil = "3.1.0"
 espressoCore = "3.6.1"
@@ -9,12 +19,14 @@ navigation = "2.8.8"
 test = "1.6.1"
 mockk = "1.13.17"
 coroutines = "1.10.1"
+detekt = "1.23.7"
 
 [libraries]
 # ConventionPlugin作るときに使う
 gradle_agp = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 gradle_kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 gradle_navigation = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "navigation" }
+gradle_detekt = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
 
 # AndroidX
 androidx-core-ktx = { module = "androidx.core:core-ktx", version = "1.15.0" }
@@ -50,7 +62,12 @@ mockk-agent = { module = "io.mockk:mockk-agent", version.ref = "mockk" }
 
 [plugins]
 agp_application = { id = "com.android.application", version.ref = "agp" }
+agp_library = { id = "com.android.library", version.ref = "agp" }
 kotlin_android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin_parcelize = { id = "kotlin-parcelize" }
 navigation = { id = "androidx.navigation.safeargs", version.ref = "navigation" }
-detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.7" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+
+# libsを経由して使うため
+yumemi-application = { id = "jp.co.yumemi.android.codecheck.application" }
+yumemi-library = { id = "jp.co.yumemi.android.codecheck.library" }
