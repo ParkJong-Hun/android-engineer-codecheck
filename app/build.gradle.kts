@@ -1,10 +1,10 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
+    alias(libs.plugins.agp.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.navigation)
     id("kotlin-parcelize")
-    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
