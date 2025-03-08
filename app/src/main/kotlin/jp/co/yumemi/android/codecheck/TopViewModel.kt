@@ -7,11 +7,11 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import java.time.LocalDate
+import javax.inject.Inject
 
 @HiltViewModel
-class TopViewModel(
-    // TODO: DI.
-    private val nowProvider: NowProvider = NowProviderImpl(),
+class TopViewModel @Inject constructor(
+    private val nowProvider: NowProvider,
 ) : ViewModel() {
     private val _lastSearchDate = MutableStateFlow<LocalDate?>(null)
     val lastSearchDate = _lastSearchDate.asStateFlow()

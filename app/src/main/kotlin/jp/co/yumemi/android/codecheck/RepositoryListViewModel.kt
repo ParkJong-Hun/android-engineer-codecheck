@@ -16,12 +16,13 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
 import org.json.JSONObject
+import javax.inject.Inject
 
 /**
  * [RepositoryListFragment]のViewModel。
  */
 @HiltViewModel
-class RepositoryListViewModel : ViewModel() {
+class RepositoryListViewModel @Inject constructor() : ViewModel() {
 
     /**
      * 入力した値を使って、Github Repositoriesを取得し、アプリで使う情報に加工して返す。
