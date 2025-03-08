@@ -1,10 +1,10 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
-    id("kotlin-parcelize")
-    id("androidx.navigation.safeargs.kotlin")
+    alias(libs.plugins.agp.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.navigation)
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 android {
@@ -45,29 +45,25 @@ android {
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:1.15.0")
-    implementation("androidx.appcompat:appcompat:1.7.0")
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
 
     // TODO: Jetpack Composeに移行完了したら削除する。
     implementation("com.google.android.material:material:1.4.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.1")
     implementation("androidx.recyclerview:recyclerview:1.2.1")
 
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.7")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
-
-    implementation("androidx.navigation:navigation-fragment-ktx:2.8.8")
-    implementation("androidx.navigation:navigation-ui-ktx:2.8.8")
-
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.1")
-    implementation("io.ktor:ktor-client-core:3.1.1")
-    implementation("io.ktor:ktor-client-okhttp:3.1.1")
-    implementation("io.coil-kt.coil3:coil:3.1.0")
-//    implementation("io.coil-kt.coil3:coil-compose:3.1.0")
-    implementation("io.coil-kt.coil3:coil-network-okhttp:3.1.0")
-
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.2.1")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.okhttp)
+    implementation(libs.coil)
+    implementation(libs.coil.network.okhttp)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }

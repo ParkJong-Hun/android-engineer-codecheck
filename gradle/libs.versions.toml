@@ -1,0 +1,46 @@
+[versions]
+agp = "8.8.0"
+coil = "3.1.0"
+espressoCore = "3.6.1"
+kotlin = "2.1.10"
+ktor = "3.1.1"
+lifecycle = "2.8.7"
+navigation = "2.8.8"
+
+[libraries]
+# ConventionPlugin作るときに使う
+gradle_agp = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+gradle_kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+gradle_navigation = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "navigation" }
+
+# AndroidX
+androidx-core-ktx = { module = "androidx.core:core-ktx", version = "1.15.0" }
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version = "1.7.0" }
+androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCore" }
+androidx-junit = { module = "androidx.test.ext:junit", version = "1.2.1" }
+androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation" }
+androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation" }
+
+# Coil
+coil = { module = "io.coil-kt.coil3:coil", version.ref = "coil" }
+coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
+coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
+
+# JUnit
+junit = { module = "junit:junit", version = "4.13.2" }
+
+# Kotlinx
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version = "1.10.1" }
+
+# Ktor
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+
+[plugins]
+agp_application = { id = "com.android.application", version.ref = "agp" }
+kotlin_android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin_parcelize = { id = "kotlin-parcelize" }
+navigation = { id = "androidx.navigation.safeargs", version.ref = "navigation" }
