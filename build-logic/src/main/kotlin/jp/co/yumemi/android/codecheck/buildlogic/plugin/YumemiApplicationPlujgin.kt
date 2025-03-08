@@ -7,8 +7,12 @@ import jp.co.yumemi.android.codecheck.buildlogic.configure.agp.configureAgpDefau
 import jp.co.yumemi.android.codecheck.buildlogic.configure.agp.configureAgpJvmCompatibility
 import jp.co.yumemi.android.codecheck.buildlogic.configure.detekt.configureDetekt
 import jp.co.yumemi.android.codecheck.buildlogic.configure.hilt.configureHilt
+import jp.co.yumemi.android.codecheck.buildlogic.extension.implementation
+import jp.co.yumemi.android.codecheck.buildlogic.extension.library
+import jp.co.yumemi.android.codecheck.buildlogic.extension.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.dependencies
 
 @Suppress("unused")
 @ConventionPlugin("jp.co.yumemi.android.codecheck.application")
@@ -27,6 +31,9 @@ class YumemiApplicationPlujgin : Plugin<Project> {
             configureAgpJvmCompatibility()
             configureDetekt()
             configureHilt()
+            dependencies {
+                implementation(libs.library("hilt-android-testing"))
+            }
         }
     }
 }
