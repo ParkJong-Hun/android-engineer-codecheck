@@ -1,7 +1,7 @@
 /*
  * Copyright © 2021 YUMEMI Inc. All rights reserved.
  */
-package jp.co.yumemi.android.code_check
+package jp.co.yumemi.android.codecheck
 
 import android.content.Context
 import android.os.Parcelable
@@ -13,7 +13,7 @@ import io.ktor.client.request.get
 import io.ktor.client.request.header
 import io.ktor.client.request.parameter
 import io.ktor.client.statement.HttpResponse
-import jp.co.yumemi.android.code_check.TopActivity.Companion.lastSearchDate
+import jp.co.yumemi.android.codecheck.TopActivity.Companion.lastSearchDate
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
@@ -29,7 +29,7 @@ class OneViewModel(
 ) : ViewModel() {
 
     // 検索結果
-    fun searchResults(inputText: String): List<item> = runBlocking {
+    fun searchResults(inputText: String): List<SearchResult> = runBlocking {
         val client = HttpClient(OkHttp)
 
         return@runBlocking GlobalScope.async {
@@ -42,7 +42,7 @@ class OneViewModel(
 
             val jsonItems = jsonBody.optJSONArray("items")!!
 
-            val items = mutableListOf<item>()
+            val searchResults = mutableListOf<SearchResult>()
 
             /**
              * アイテムの個数分ループする
@@ -57,8 +57,8 @@ class OneViewModel(
                 val forksCount = jsonItem.optLong("forks_conut")
                 val openIssuesCount = jsonItem.optLong("open_issues_count")
 
-                items.add(
-                    item(
+                searchResults.add(
+                    SearchResult(
                         name = name,
                         ownerIconUrl = ownerIconUrl,
                         language = context.getString(R.string.written_language, language),
@@ -72,13 +72,13 @@ class OneViewModel(
 
             lastSearchDate = Date()
 
-            return@async items.toList()
+            return@async searchResults.toList()
         }.await()
     }
 }
 
 @Parcelize
-data class item(
+data class SearchResult(
     val name: String,
     val ownerIconUrl: String,
     val language: String,
