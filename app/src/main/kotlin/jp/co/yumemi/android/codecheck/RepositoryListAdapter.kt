@@ -32,7 +32,7 @@ class RepositoryListAdapter(
 ) {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
-    interface OnItemClickListener {
+    fun interface OnItemClickListener {
         fun itemClick(searchedRepositoryItemInfo: SearchedRepositoryItemInfo)
     }
 
