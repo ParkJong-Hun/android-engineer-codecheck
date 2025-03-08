@@ -30,7 +30,6 @@ class RepositoryListAdapter(
 ) : ListAdapter<SearchedRepositoryItemInfo, RepositoryListAdapter.ViewHolder>(
     repository_list_diff_util
 ) {
-
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
     interface OnItemClickListener {
@@ -45,7 +44,7 @@ class RepositoryListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-        (holder.itemView.findViewById<View>(R.id.repositoryNameView) as TextView).text =
+        (holder.itemView.findViewById<View>(R.id.repositoryNameView) as? TextView)?.text =
             item.name
 
         holder.itemView.setOnClickListener {
