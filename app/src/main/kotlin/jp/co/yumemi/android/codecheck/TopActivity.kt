@@ -3,12 +3,10 @@
  */
 package jp.co.yumemi.android.codecheck
 
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import java.util.Date
 
 class TopActivity : AppCompatActivity(R.layout.activity_top) {
-
-    companion object {
-        lateinit var lastSearchDate: Date
-    }
+    @Suppress("unused")
+    private val viewModel by viewModels<TopViewModel>()
 }

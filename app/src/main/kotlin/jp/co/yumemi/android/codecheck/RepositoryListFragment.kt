@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +17,7 @@ import jp.co.yumemi.android.codecheck.databinding.FragmentRepositoryListBinding
  * Githubリポジトリのリスト画面。
  */
 class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
+    private val topViewModel by activityViewModels<TopViewModel>()
 
     private var binding: FragmentRepositoryListBinding by autoCleared()
 
@@ -41,6 +43,7 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
                     editText.text.toString().let {
                         viewModel.getSearchedRepositoryItemInfo(it).apply {
                             adapter.submitList(this)
+                            topViewModel.onSearched()
                         }
                     }
                     return@setOnEditorActionListener true
