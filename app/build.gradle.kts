@@ -1,65 +1,8 @@
-import io.gitlab.arturbosch.detekt.Detekt
-import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
-    alias(libs.plugins.agp.application)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.navigation)
-    alias(libs.plugins.kotlin.parcelize)
-    alias(libs.plugins.detekt)
+    alias(libs.plugins.yumemi.application)
 }
 
-android {
-    namespace = "jp.co.yumemi.android.codecheck"
-    compileSdk = 35
-
-    defaultConfig {
-        applicationId = "jp.co.yumemi.android.codecheck"
-        minSdk = 26
-        targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro",
-            )
-        }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-    testOptions.unitTests {
-        isIncludeAndroidResources = true
-    }
-    kotlin {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
-        }
-    }
-    buildFeatures {
-        viewBinding = true
-    }
-}
-
-detekt {
-    buildUponDefaultConfig = true
-}
-
-tasks.withType<Detekt>().configureEach {
-    jvmTarget = "17"
-}
-tasks.withType<DetektCreateBaselineTask>().configureEach {
-    jvmTarget = "17"
-}
+android.namespace = "jp.co.yumemi.android.codecheck"
 
 dependencies {
     implementation(libs.androidx.core.ktx)
