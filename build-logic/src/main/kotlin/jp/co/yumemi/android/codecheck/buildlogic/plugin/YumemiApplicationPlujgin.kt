@@ -26,6 +26,7 @@ class YumemiApplicationPlujgin : Plugin<Project> {
             configureAgpBuildType()
             configureAgpJvmCompatibility()
             configureDetekt()
+            configureHilt()
         }
     }
 }
