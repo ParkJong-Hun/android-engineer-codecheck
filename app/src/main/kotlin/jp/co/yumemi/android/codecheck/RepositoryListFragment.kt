@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import jp.co.yumemi.android.codecheck.databinding.FragmentRepositoryListBinding
 
-class OneFragment : Fragment(R.layout.fragment_repository_list) {
+class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
