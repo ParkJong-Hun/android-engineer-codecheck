@@ -22,6 +22,7 @@ dependencyResolutionManagement {
 rootProject.name = "android-engineer-codecheck"
 include("app")
 include("data")
+include("domain")
 includeChildModules("feature")
 
 fun includeChildModules(parentName: String) {
