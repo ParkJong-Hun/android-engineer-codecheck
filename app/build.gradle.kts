@@ -11,7 +11,7 @@ plugins {
 }
 
 android {
-    namespace = "jp.co.yumemi.android.code_check"
+    namespace = "jp.co.yumemi.android.codecheck"
     compileSdk = 35
 
     defaultConfig {
