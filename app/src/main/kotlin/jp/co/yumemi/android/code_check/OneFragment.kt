@@ -56,7 +56,7 @@ class OneFragment: Fragment(R.layout.fragment_one){
     fun gotoRepositoryFragment(item: item)
     {
         val _action= OneFragmentDirections
-            .actionRepositoriesFragmentToRepositoryFragment(item= item)
+            .actionRepositoriesFragmentToRepositoryFragment(item)
         findNavController().navigate(_action)
     }
 }
