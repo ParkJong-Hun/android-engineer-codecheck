@@ -44,3 +44,4 @@ agp_application = { id = "com.android.application", version.ref = "agp" }
 kotlin_android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin_parcelize = { id = "kotlin-parcelize" }
 navigation = { id = "androidx.navigation.safeargs", version.ref = "navigation" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.7" }

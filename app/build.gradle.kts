@@ -1,3 +1,5 @@
+import io.gitlab.arturbosch.detekt.Detekt
+import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -5,6 +7,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.navigation)
     alias(libs.plugins.kotlin.parcelize)
+    alias(libs.plugins.detekt)
 }
 
 android {
@@ -42,6 +45,17 @@ android {
     buildFeatures {
         viewBinding = true
     }
+}
+
+detekt {
+    buildUponDefaultConfig = true
+}
+
+tasks.withType<Detekt>().configureEach {
+    jvmTarget = "17"
+}
+tasks.withType<DetektCreateBaselineTask>().configureEach {
+    jvmTarget = "17"
 }
 
 dependencies {
