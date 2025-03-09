@@ -10,8 +10,6 @@ import jp.co.yumemi.android.codecheck.domain.middleware.SearchRepositoryState
 import jp.co.yumemi.android.codecheck.testing.domain.middlewaare.MockMiddleware
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
