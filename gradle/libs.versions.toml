@@ -71,6 +71,9 @@ hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt"
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hilt" }
 
+# Turbine
+turbine = { module = "app.cash.turbine:turbine", version = "1.2.0" }
+
 [plugins]
 agp_application = { id = "com.android.application", version.ref = "agp" }
 agp_library = { id = "com.android.library", version.ref = "agp" }
