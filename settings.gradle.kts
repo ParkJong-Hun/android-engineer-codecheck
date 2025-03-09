@@ -24,6 +24,7 @@ include("app")
 include("data")
 include("domain")
 include("presentation")
+include("testing")
 includeChildModules("feature")
 
 fun includeChildModules(parentName: String) {
