@@ -1,9 +1,12 @@
 package jp.co.yumemi.android.codecheck.feature.top
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepositoryItemInfo
 import jp.co.yumemi.android.codecheck.domain.repository.GithubRepository
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -14,6 +17,27 @@ class RepositoryListViewModel @Inject constructor(
     private val githubRepository: GithubRepository,
 ) : ViewModel() {
 
-    fun getSearchedRepositoryItemInfo(inputText: String): List<SearchedRepositoryItemInfo> =
-        githubRepository.getSearchedRepositoryItemInfo(inputText)
+    private val _uiState = MutableStateFlow<RepositoryListUiState>(RepositoryListUiState.Empty)
+    val uiState: StateFlow<RepositoryListUiState> = _uiState
+
+    fun searchRepositories(query: String) {
+        if (query.isEmpty()) return
+
+        viewModelScope.launch {
+            _uiState.value = RepositoryListUiState.Loading
+
+            runCatching {
+                githubRepository.getSearchedRepositoryItemInfo(query)
+            }.onSuccess { results ->
+                if (results.isEmpty()) {
+                    _uiState.value = RepositoryListUiState.Empty
+                } else {
+                    _uiState.value = RepositoryListUiState.Success(results)
+                }
+            }.onFailure { error ->
+                _uiState.value =
+                    RepositoryListUiState.Error(error.message ?: "Unknown error occurred")
+            }
+        }
+    }
 }

@@ -11,7 +11,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepositoryItemInfo
 import jp.co.yumemi.android.codecheck.feature.top.databinding.FragmentRepositoryDetailBinding
 import jp.co.yumemi.android.codecheck.presentation.autoCleared
-import jp.co.yumemi.android.codecheck.presentation.extension.collect
+import jp.co.yumemi.android.codecheck.presentation.extension.collectWithLifecycle
 
 /**
  * GithubのRepository詳細画面
@@ -30,7 +30,7 @@ class RepositoryDetailFragment : Fragment(R.layout.fragment_repository_detail) {
             it.bind(args.item)
         }
 
-        topViewModel.lastSearchDate.collect(this) {
+        topViewModel.lastSearchDate.collectWithLifecycle(this) {
             Log.d("検索した日時", it.toString())
         }
     }
