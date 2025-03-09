@@ -23,6 +23,7 @@ rootProject.name = "android-engineer-codecheck"
 include("app")
 include("data")
 include("domain")
+include("presentation")
 includeChildModules("feature")
 
 fun includeChildModules(parentName: String) {

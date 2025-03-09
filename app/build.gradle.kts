@@ -7,6 +7,7 @@ android.namespace = "jp.co.yumemi.android.codecheck"
 dependencies {
     implementation(projects.data)
     implementation(projects.domain)
+    implementation(projects.presentation)
 
     implementation(projects.feature.top)
 
