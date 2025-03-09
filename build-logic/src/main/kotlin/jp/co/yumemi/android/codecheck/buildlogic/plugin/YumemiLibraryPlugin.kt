@@ -2,6 +2,7 @@ package jp.co.yumemi.android.codecheck.buildlogic.plugin
 
 import jp.co.yumemi.android.codecheck.buildlogic.ConventionPlugin
 import jp.co.yumemi.android.codecheck.buildlogic.configure.agp.configureAgpDefault
+import jp.co.yumemi.android.codecheck.buildlogic.configure.agp.configureAgpJvmCompatibility
 import jp.co.yumemi.android.codecheck.buildlogic.configure.detekt.configureDetekt
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -18,6 +19,7 @@ class YumemiLibraryPlugin : Plugin<Project> {
                 apply("androidx.navigation.safeargs.kotlin")
             }
             configureAgpDefault()
+            configureAgpJvmCompatibility()
             configureDetekt()
         }
     }
