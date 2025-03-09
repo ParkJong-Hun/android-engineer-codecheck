@@ -1,6 +1,6 @@
-package jp.co.yumemi.android.codecheck.presentation
+package jp.co.yumemi.android.codecheck.presentation.presentation.time
 
-import jp.co.yumemi.android.codecheck.NowProvider
+import jp.co.yumemi.android.codecheck.presentation.time.NowProvider
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime

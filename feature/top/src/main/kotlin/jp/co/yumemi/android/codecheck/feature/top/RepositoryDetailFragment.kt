@@ -9,9 +9,9 @@ import androidx.navigation.fragment.navArgs
 import coil3.load
 import dagger.hilt.android.AndroidEntryPoint
 import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepositoryItemInfo
-import jp.co.yumemi.android.codecheck.extension.collect
 import jp.co.yumemi.android.codecheck.feature.top.databinding.FragmentRepositoryDetailBinding
 import jp.co.yumemi.android.codecheck.presentation.autoCleared
+import jp.co.yumemi.android.codecheck.presentation.extension.collect
 
 /**
  * GithubのRepository詳細画面

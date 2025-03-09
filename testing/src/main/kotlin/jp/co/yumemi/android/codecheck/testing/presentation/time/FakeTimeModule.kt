@@ -1,9 +1,11 @@
-package jp.co.yumemi.android.codecheck.presentation
+package jp.co.yumemi.android.codecheck.presentation.presentation.time
 
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
+import jp.co.yumemi.android.codecheck.presentation.time.NowProvider
+import jp.co.yumemi.android.codecheck.presentation.time.TimeModule
 import javax.inject.Singleton
 
 @TestInstallIn(

@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.codecheck
+package jp.co.yumemi.android.codecheck.presentation.time
 
 import dagger.Module
 import dagger.Provides

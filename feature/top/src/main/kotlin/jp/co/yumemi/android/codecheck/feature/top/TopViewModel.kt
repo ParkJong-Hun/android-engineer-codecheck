@@ -2,7 +2,7 @@ package jp.co.yumemi.android.codecheck.feature.top
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import jp.co.yumemi.android.codecheck.NowProvider
+import jp.co.yumemi.android.codecheck.presentation.time.NowProvider
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import java.time.LocalDate

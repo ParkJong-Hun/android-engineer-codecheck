@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.codecheck.data
+package jp.co.yumemi.android.codecheck.presentation.data.repository
 
 import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepositoryItemInfo
 import jp.co.yumemi.android.codecheck.domain.repository.GithubRepository

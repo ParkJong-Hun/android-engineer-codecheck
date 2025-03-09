@@ -13,6 +13,7 @@ android {
 
 dependencies {
     implementation(projects.presentation)
+    testImplementation(projects.testing)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
