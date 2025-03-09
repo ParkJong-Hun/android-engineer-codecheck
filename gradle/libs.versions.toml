@@ -54,10 +54,13 @@ junit = { module = "junit:junit", version = "4.13.2" }
 # Kotlinx
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version = "1.8.0" }
 
 # Ktor
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+ktor-client-content-negotation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-serialization-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 
 # Mockk
 mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockk" }
@@ -73,6 +76,7 @@ agp_application = { id = "com.android.application", version.ref = "agp" }
 agp_library = { id = "com.android.library", version.ref = "agp" }
 kotlin_android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin_parcelize = { id = "kotlin-parcelize" }
+kotlinx_serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version = "2.1.0" }
 navigation = { id = "androidx.navigation.safeargs", version.ref = "navigation" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
