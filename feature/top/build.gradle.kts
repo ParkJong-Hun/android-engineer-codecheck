@@ -4,8 +4,8 @@ plugins {
     alias(libs.plugins.ksp)
 }
 
-android.namespace = "jp.co.yumemi.android.codecheck.feature.top"
 android {
+    namespace = "jp.co.yumemi.android.codecheck.feature.top"
     buildFeatures {
         viewBinding = true
     }
