@@ -57,8 +57,7 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
             if (action == EditorInfo.IME_ACTION_SEARCH) {
                 val query = editText.text.toString().trim()
                 if (query.isNotEmpty()) {
-                    viewModel.searchRepositories(query)
-                    topViewModel.onSearched()
+                    viewModel.onSearchClick(query)
                 }
                 return@setOnEditorActionListener true
             }
@@ -82,6 +81,7 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
                 is RepositoryListUiState.Success -> {
                     binding.progressBar.isVisible = false
                     binding.errorView.isVisible = false
+                    topViewModel.onSearched()
                     repositoryListAdapter.submitList(state.repositories)
                 }
 
