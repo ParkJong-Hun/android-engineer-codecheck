@@ -1,8 +1,8 @@
-package jp.co.yumemi.android.codecheck.domain.middleware.redux
+package jp.co.yumemi.android.codecheck.domain.middleware.core.redux
 
-import jp.co.yumemi.android.codecheck.domain.middleware.BusinessIntent
-import jp.co.yumemi.android.codecheck.domain.middleware.BusinessState
-import jp.co.yumemi.android.codecheck.domain.middleware.Middleware
+import jp.co.yumemi.android.codecheck.domain.middleware.core.BusinessIntent
+import jp.co.yumemi.android.codecheck.domain.middleware.core.BusinessState
+import jp.co.yumemi.android.codecheck.domain.middleware.core.Middleware
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-internal class Store<S : BusinessState, I : BusinessIntent>(
+internal open class Store<S : BusinessState, I : BusinessIntent>(
     initialState: S,
     private val reducer: Reducer<S, I>,
     private val sideEffectHandlers: List<SideEffectHandler<S, I>> = emptyList()

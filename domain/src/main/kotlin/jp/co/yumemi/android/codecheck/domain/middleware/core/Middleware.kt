@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.codecheck.domain.middleware
+package jp.co.yumemi.android.codecheck.domain.middleware.core
 
 import kotlinx.coroutines.flow.StateFlow
 

@@ -1,7 +1,9 @@
-package jp.co.yumemi.android.codecheck.domain.middleware.redux
+package jp.co.yumemi.android.codecheck.domain.middleware.redux.core
 
-import jp.co.yumemi.android.codecheck.domain.middleware.BusinessIntent
-import jp.co.yumemi.android.codecheck.domain.middleware.BusinessState
+import jp.co.yumemi.android.codecheck.domain.middleware.core.BusinessIntent
+import jp.co.yumemi.android.codecheck.domain.middleware.core.BusinessState
+import jp.co.yumemi.android.codecheck.domain.middleware.core.redux.Reducer
+import jp.co.yumemi.android.codecheck.domain.middleware.core.redux.SideEffectHandler
 
 internal data class SampleState(val count: Int = 0) : BusinessState
 

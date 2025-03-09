@@ -1,5 +1,6 @@
-package jp.co.yumemi.android.codecheck.domain.middleware.redux
+package jp.co.yumemi.android.codecheck.domain.middleware.redux.core
 
+import jp.co.yumemi.android.codecheck.domain.middleware.core.redux.Store
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.advanceUntilIdle
