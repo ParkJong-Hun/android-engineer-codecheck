@@ -1,9 +1,8 @@
 package jp.co.yumemi.android.codecheck.domain.middleware.core.redux
 
-import jp.co.yumemi.android.codecheck.domain.middleware.core.redux.Store
+import app.cash.turbine.test
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
-import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -53,9 +52,12 @@ class ReduxTest {
     @Test
     fun `side effect handler should dispatch new intent when count is 5`() =
         runTest(testDispatcher) {
-            sampleStore.conveyIntention(SampleIntent.AddValue(5))
-            advanceUntilIdle()
-            // it should dispatch AddValue(10) because of side effect.
-            assertEquals(15, sampleStore.businessState.value.count)
+            sampleStore.businessState.test {
+                sampleStore.conveyIntention(SampleIntent.AddValue(5))
+                assertEquals(0, awaitItem().count)
+                // it should dispatch AddValue(10) because of side effect.
+                assertEquals(15, awaitItem().count)
+                cancel()
+            }
         }
 }
