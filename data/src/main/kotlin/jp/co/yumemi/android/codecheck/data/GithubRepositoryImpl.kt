@@ -1,3 +1,5 @@
+@file:Suppress("ForbiddenComment")
+
 package jp.co.yumemi.android.codecheck.data
 
 import io.ktor.client.HttpClient
