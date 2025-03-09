@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.codecheck.domain.middleware.redux.core
+package jp.co.yumemi.android.codecheck.domain.middleware.core.redux
 
 import jp.co.yumemi.android.codecheck.domain.middleware.core.redux.Store
 import kotlinx.coroutines.ExperimentalCoroutinesApi
