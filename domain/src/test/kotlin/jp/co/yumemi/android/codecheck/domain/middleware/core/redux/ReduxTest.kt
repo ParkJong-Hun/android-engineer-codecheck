@@ -55,6 +55,7 @@ class ReduxTest {
             sampleStore.businessState.test {
                 sampleStore.conveyIntention(SampleIntent.AddValue(5))
                 assertEquals(0, awaitItem().count)
+                assertEquals(5, awaitItem().count)
                 // it should dispatch AddValue(10) because of side effect.
                 assertEquals(15, awaitItem().count)
                 cancel()

@@ -23,8 +23,8 @@ internal open class Store<S : BusinessState, I : BusinessIntent>(
 
     override fun conveyIntention(intent: I) {
         val newState = reducer.reduce(_businessState.value, intent)
-        handleSideEffects(intent)
         _businessState.value = newState
+        handleSideEffects(intent)
     }
 
     private fun handleSideEffects(intent: I) {
