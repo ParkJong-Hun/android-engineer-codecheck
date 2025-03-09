@@ -1,3 +1,5 @@
+@file:Suppress("LongParameterList", "MaxLineLength")
+
 package jp.co.yumemi.android.codecheck.domain.middleware
 
 import io.mockk.coEvery
