@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.codecheck.presentation.presentation.time
+package jp.co.yumemi.android.codecheck.testing.presentation.time
 
 import jp.co.yumemi.android.codecheck.presentation.time.NowProvider
 import java.time.LocalDate

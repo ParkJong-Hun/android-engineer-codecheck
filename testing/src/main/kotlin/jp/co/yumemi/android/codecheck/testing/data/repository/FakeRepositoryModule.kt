@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.codecheck.presentation.data.repository
+package jp.co.yumemi.android.codecheck.testing.data.repository
 
 import dagger.Module
 import dagger.Provides
