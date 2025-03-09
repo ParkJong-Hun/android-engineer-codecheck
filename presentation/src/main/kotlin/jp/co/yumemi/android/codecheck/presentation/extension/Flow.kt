@@ -7,7 +7,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
-inline fun <T> Flow<T>.collect(
+inline fun <T> Flow<T>.collectWithLifecycle(
     lifecycleOwner: LifecycleOwner,
     state: Lifecycle.State = Lifecycle.State.STARTED,
     crossinline action: suspend (value: T) -> Unit
