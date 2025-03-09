@@ -1,6 +1,6 @@
 package jp.co.yumemi.android.codecheck.feature.top
 
-import jp.co.yumemi.android.codecheck.presentation.presentation.time.FakeNowProvider
+import jp.co.yumemi.android.codecheck.testing.presentation.time.FakeNowProvider
 import jp.co.yumemi.android.codecheck.presentation.time.NowProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
