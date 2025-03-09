@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.test.ext.junit.rules.activityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import jp.co.yumemi.android.codecheck.testing.SingleFragmentActivity
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.`is`
 import org.junit.Assert
