@@ -25,7 +25,7 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
     private val viewModel by viewModels<RepositoryListViewModel>()
 
     private var binding: FragmentRepositoryListBinding by autoCleared()
-    private lateinit var adapter: RepositoryListAdapter
+    private lateinit var repositoryListAdapter: RepositoryListAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,18 +37,18 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
     }
 
     private fun setupRecyclerView() {
-        val layoutManager = LinearLayoutManager(requireContext())
+        val linearLayoutManager = LinearLayoutManager(requireContext())
         val dividerItemDecoration =
-            DividerItemDecoration(requireContext(), layoutManager.orientation)
+            DividerItemDecoration(requireContext(), linearLayoutManager.orientation)
 
-        adapter = RepositoryListAdapter { searchedRepositoryItemInfo ->
+        repositoryListAdapter = RepositoryListAdapter { searchedRepositoryItemInfo ->
             navigateToRepositoryDetailFragment(searchedRepositoryItemInfo)
         }
 
         binding.recyclerView.run {
-            this.layoutManager = layoutManager
-            this.addItemDecoration(dividerItemDecoration)
-            this.adapter = adapter
+            layoutManager = linearLayoutManager
+            addItemDecoration(dividerItemDecoration)
+            adapter = repositoryListAdapter
         }
     }
 
@@ -69,6 +69,11 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
     private fun observeViewModelState() {
         viewModel.uiState.collectWithLifecycle(this) { state ->
             when (state) {
+                is RepositoryListUiState.None -> {
+                    binding.progressBar.isVisible = false
+                    binding.errorView.isVisible = false
+                }
+
                 is RepositoryListUiState.Loading -> {
                     binding.progressBar.isVisible = true
                     binding.errorView.isVisible = false
@@ -77,7 +82,7 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
                 is RepositoryListUiState.Success -> {
                     binding.progressBar.isVisible = false
                     binding.errorView.isVisible = false
-                    adapter.submitList(state.repositories)
+                    repositoryListAdapter.submitList(state.repositories)
                 }
 
                 is RepositoryListUiState.Error -> {
