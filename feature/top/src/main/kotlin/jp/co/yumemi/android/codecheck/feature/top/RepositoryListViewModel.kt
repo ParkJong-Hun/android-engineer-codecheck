@@ -17,7 +17,7 @@ class RepositoryListViewModel @Inject constructor(
     private val githubRepository: GithubRepository,
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<RepositoryListUiState>(RepositoryListUiState.Empty)
+    private val _uiState = MutableStateFlow<RepositoryListUiState>(RepositoryListUiState.None)
     val uiState: StateFlow<RepositoryListUiState> = _uiState
 
     fun searchRepositories(query: String) {
