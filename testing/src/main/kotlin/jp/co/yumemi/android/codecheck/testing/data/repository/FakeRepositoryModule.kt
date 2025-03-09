@@ -1,9 +1,11 @@
-package jp.co.yumemi.android.codecheck.data
+package jp.co.yumemi.android.codecheck.presentation.data.repository
 
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
+import jp.co.yumemi.android.codecheck.data.GithubRepositoryImpl
+import jp.co.yumemi.android.codecheck.data.RepositoryModule
 import jp.co.yumemi.android.codecheck.domain.repository.GithubRepository
 import javax.inject.Singleton
 

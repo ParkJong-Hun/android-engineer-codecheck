@@ -5,7 +5,7 @@
 
     <application tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name="jp.co.yumemi.android.codecheck.SingleFragmentActivity"
+            android:name=".SingleFragmentActivity"
             android:exported="true" />
     </application>
 

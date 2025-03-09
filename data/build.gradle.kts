@@ -11,6 +11,5 @@ dependencies {
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.okhttp)
     implementation(libs.hilt.android)
-    testImplementation(libs.hilt.android.testing)
     ksp(libs.hilt.compiler)
 }

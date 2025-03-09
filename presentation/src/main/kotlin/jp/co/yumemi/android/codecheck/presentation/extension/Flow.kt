@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.codecheck.extension
+package jp.co.yumemi.android.codecheck.presentation.extension
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner

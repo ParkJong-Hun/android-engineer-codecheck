@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.codecheck
+package jp.co.yumemi.android.codecheck.presentation
 
 import android.os.Bundle
 import android.view.ViewGroup
