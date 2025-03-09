@@ -3,7 +3,7 @@
 
     <application>
         <activity
-            android:name="jp.co.yumemi.android.codecheck.feature.top.TopActivity"
+            android:name=".TopActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
