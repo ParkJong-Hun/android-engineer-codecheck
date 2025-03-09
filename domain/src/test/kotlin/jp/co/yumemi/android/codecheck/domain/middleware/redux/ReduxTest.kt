@@ -9,7 +9,7 @@ import org.junit.Before
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
-class ReduxStoreTest {
+class ReduxTest {
     private val testDispatcher = StandardTestDispatcher()
 
     private lateinit var sampleStore: Store<SampleState, SampleIntent>
