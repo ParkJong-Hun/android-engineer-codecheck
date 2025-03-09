@@ -103,6 +103,7 @@ class RepositoryListViewModelTest {
 
         // Then
         assertEquals(initialState, viewModel.uiState.value)
+        assert(initialState is RepositoryListUiState.None)
     }
 
     @Test
@@ -124,12 +125,12 @@ class RepositoryListViewModelTest {
 
         // When - 検索
         viewModel.searchRepositories(query)
-        testDispatcher.scheduler.advanceTimeBy(2000)
+        testDispatcher.scheduler.advanceUntilIdle()
 
         collectJob.cancel()
 
         assert(collectStates.size >= 2)
-        assert(collectStates[0] is RepositoryListUiState.Empty)
+        assert(collectStates[0] is RepositoryListUiState.None)
         assert(collectStates[1] is RepositoryListUiState.Loading)
     }
 
