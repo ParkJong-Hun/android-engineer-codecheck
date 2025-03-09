@@ -3,9 +3,11 @@
 package jp.co.yumemi.android.codecheck.feature.top
 
 import io.mockk.coEvery
-import io.mockk.mockk
+import io.mockk.spyk
 import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepositoryItemInfo
-import jp.co.yumemi.android.codecheck.domain.repository.GithubRepository
+import jp.co.yumemi.android.codecheck.domain.middleware.SearchRepositoryIntent
+import jp.co.yumemi.android.codecheck.domain.middleware.SearchRepositoryState
+import jp.co.yumemi.android.codecheck.testing.domain.middlewaare.MockMiddleware
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
@@ -18,19 +20,18 @@ import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
-import java.io.IOException
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class RepositoryListViewModelTest {
     private val testDispatcher = StandardTestDispatcher()
     private lateinit var viewModel: RepositoryListViewModel
-    private lateinit var githubRepository: GithubRepository
+    private lateinit var searchRepositoryMiddleware: MockMiddleware<SearchRepositoryState, SearchRepositoryIntent>
 
     @Before
     fun setup() {
         Dispatchers.setMain(testDispatcher)
-        githubRepository = mockk()
-        viewModel = RepositoryListViewModel(githubRepository)
+        searchRepositoryMiddleware = spyk(MockMiddleware(SearchRepositoryState.None))
+        viewModel = RepositoryListViewModel(searchRepositoryMiddleware)
     }
 
     @After
@@ -43,11 +44,14 @@ class RepositoryListViewModelTest {
         // Given
         val query = "kotlin"
         val mockRepositories = listOf(MOCK_REPOSITORY)
+        val mockBusinessState = SearchRepositoryState.Stable(mockRepositories)
 
-        coEvery { githubRepository.getSearchedRepositoryItemInfo(query) } returns mockRepositories
+        coEvery { searchRepositoryMiddleware.conveyIntention(SearchRepositoryIntent.Search(query)) } answers {
+            searchRepositoryMiddleware.updatableBusinessState.value = mockBusinessState
+        }
 
         // When
-        viewModel.searchRepositories(query)
+        viewModel.onSearchClick(query)
         testDispatcher.scheduler.advanceUntilIdle()
 
         // Then
@@ -61,10 +65,13 @@ class RepositoryListViewModelTest {
         // Given
         val query = "nonexistentrepository12345"
 
-        coEvery { githubRepository.getSearchedRepositoryItemInfo(query) } returns emptyList()
+        coEvery { searchRepositoryMiddleware.conveyIntention(SearchRepositoryIntent.Search(query)) } answers {
+            searchRepositoryMiddleware.updatableBusinessState.value =
+                SearchRepositoryState.Stable(emptyList())
+        }
 
         // When
-        viewModel.searchRepositories(query)
+        viewModel.onSearchClick(query)
         testDispatcher.scheduler.advanceUntilIdle()
 
         // Then
@@ -79,11 +86,14 @@ class RepositoryListViewModelTest {
         val errorMessage = "Network error"
 
         coEvery {
-            githubRepository.getSearchedRepositoryItemInfo(query)
-        } throws IOException(errorMessage)
+            searchRepositoryMiddleware.conveyIntention(SearchRepositoryIntent.Search(query))
+        } answers {
+            searchRepositoryMiddleware.updatableBusinessState.value =
+                SearchRepositoryState.Error(errorMessage)
+        }
 
         // When
-        viewModel.searchRepositories(query)
+        viewModel.onSearchClick(query)
         testDispatcher.scheduler.advanceUntilIdle()
 
         // Then
@@ -98,40 +108,12 @@ class RepositoryListViewModelTest {
         val initialState = viewModel.uiState.value
 
         // When
-        viewModel.searchRepositories("")
+        viewModel.onSearchClick("")
         testDispatcher.scheduler.advanceUntilIdle()
 
         // Then
         assertEquals(initialState, viewModel.uiState.value)
         assert(initialState is RepositoryListUiState.None)
-    }
-
-    @Test
-    fun `searchRepositories sets state to Loading before making repository call`() = runTest {
-        // Given
-        val query = "kotlin"
-        val collectStates = mutableListOf<RepositoryListUiState>()
-
-        val collectJob = launch {
-            viewModel.uiState.collect {
-                collectStates.add(it)
-            }
-        }
-
-        coEvery { githubRepository.getSearchedRepositoryItemInfo(query) } coAnswers {
-            delay(1000)
-            emptyList()
-        }
-
-        // When - 検索
-        viewModel.searchRepositories(query)
-        testDispatcher.scheduler.advanceUntilIdle()
-
-        collectJob.cancel()
-
-        assert(collectStates.size >= 2)
-        assert(collectStates[0] is RepositoryListUiState.None)
-        assert(collectStates[1] is RepositoryListUiState.Loading)
     }
 
     companion object {
