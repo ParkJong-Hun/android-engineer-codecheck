@@ -1,6 +1,6 @@
 package jp.co.yumemi.android.codecheck.domain.middleware
 
-import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepositoryItemInfo
+import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepository
 import jp.co.yumemi.android.codecheck.domain.middleware.core.BusinessIntent
 import jp.co.yumemi.android.codecheck.domain.middleware.core.BusinessState
 import jp.co.yumemi.android.codecheck.domain.middleware.core.Middleware
@@ -12,13 +12,13 @@ import jp.co.yumemi.android.codecheck.domain.repository.GithubRepository
 sealed class SearchRepositoryState : BusinessState {
     data object None : SearchRepositoryState()
     data object Loading : SearchRepositoryState()
-    data class Stable(val items: List<SearchedRepositoryItemInfo>) : SearchRepositoryState()
+    data class Stable(val items: List<SearchedRepository>) : SearchRepositoryState()
     data class Error(val message: String) : SearchRepositoryState()
 }
 
 sealed class SearchRepositoryIntent : BusinessIntent {
     data class Search(val query: String) : SearchRepositoryIntent()
-    internal data class SearchComplete(val searchedItems: List<SearchedRepositoryItemInfo>) :
+    internal data class SearchComplete(val searchedItems: List<SearchedRepository>) :
         SearchRepositoryIntent()
 
     internal data class Failure(val throwable: Throwable) : SearchRepositoryIntent()
