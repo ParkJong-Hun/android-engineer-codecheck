@@ -8,7 +8,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import coil3.load
 import dagger.hilt.android.AndroidEntryPoint
-import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepositoryItemInfo
+import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepository
 import jp.co.yumemi.android.codecheck.feature.top.databinding.FragmentRepositoryDetailBinding
 import jp.co.yumemi.android.codecheck.presentation.autoCleared
 import jp.co.yumemi.android.codecheck.presentation.extension.collectWithLifecycle
@@ -35,7 +35,7 @@ class RepositoryDetailFragment : Fragment(R.layout.fragment_repository_detail) {
         }
     }
 
-    private fun FragmentRepositoryDetailBinding.bind(item: SearchedRepositoryItemInfo) {
+    private fun FragmentRepositoryDetailBinding.bind(item: SearchedRepository) {
         ownerIconView.load(item.ownerIconUrl)
         nameView.text = item.name
         languageView.text = getString(R.string.written_language, item.language)
