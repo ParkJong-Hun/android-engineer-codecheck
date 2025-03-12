@@ -13,6 +13,10 @@
         <action
             android:id="@+id/action_repositoriesFragment_to_repositoryFragment"
             app:destination="@id/repositoryDetailFragment" />
+
+        <action
+            android:id="@+id/action_repositoriesFragment_to_historyFragment"
+            app:destination="@id/nav_graph_top" />
     </fragment>
 
     <fragment
