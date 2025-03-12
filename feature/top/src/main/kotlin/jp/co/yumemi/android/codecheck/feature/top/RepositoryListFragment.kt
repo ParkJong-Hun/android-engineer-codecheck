@@ -5,7 +5,6 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -21,7 +20,6 @@ import jp.co.yumemi.android.codecheck.presentation.extension.collectWithLifecycl
  */
 @AndroidEntryPoint
 class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
-    private val topViewModel by activityViewModels<TopViewModel>()
     private val viewModel by viewModels<RepositoryListViewModel>()
 
     private var binding: FragmentRepositoryListBinding by autoCleared()
@@ -81,7 +79,6 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
                 is RepositoryListUiState.Success -> {
                     binding.progressBar.isVisible = false
                     binding.errorView.isVisible = false
-                    topViewModel.onSearched()
                     repositoryListAdapter.submitList(state.repositories)
                 }
 

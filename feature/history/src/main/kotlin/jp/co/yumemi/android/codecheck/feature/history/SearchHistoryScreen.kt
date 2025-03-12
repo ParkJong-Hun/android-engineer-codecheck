@@ -1,3 +1,6 @@
+// TODO: detektにComposeのための設定を入れる。
+@file:Suppress("FunctionNaming", "ForbiddenComment")
+
 package jp.co.yumemi.android.codecheck.feature.history
 
 import androidx.compose.foundation.layout.Arrangement

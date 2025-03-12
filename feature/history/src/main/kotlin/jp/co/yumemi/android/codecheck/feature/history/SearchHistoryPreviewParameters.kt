@@ -6,6 +6,7 @@ import jp.co.yumemi.android.codecheck.domain.entity.History
 import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepository
 import java.time.LocalDateTime
 
+@Suppress("MagicNumber")
 private val mockOpenedDateTime = LocalDateTime.of(2025, 3, 11, 22, 8, 32, 0)
 
 private val mockHistories = listOf(
