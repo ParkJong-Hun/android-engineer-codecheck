@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class SearchedRepositoryItemInfo(
+data class SearchedRepository(
     val name: String,
     val ownerIconUrl: String,
     val language: String,
