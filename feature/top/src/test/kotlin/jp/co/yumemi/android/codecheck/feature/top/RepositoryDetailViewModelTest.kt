@@ -29,7 +29,7 @@ import org.junit.Test
 import java.time.LocalDateTime
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class SimpleRepositoryDetailViewModelTest {
+class RepositoryDetailViewModelTest {
     private val testDispatcher = StandardTestDispatcher()
     private lateinit var viewModel: RepositoryDetailViewModel
     private lateinit var appMiddleware: Middleware<AppState, AppIntent>

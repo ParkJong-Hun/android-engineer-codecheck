@@ -64,6 +64,7 @@ class RepositoryListViewModel @Inject constructor(
         }
     }
 
+    @Suppress("LongMethod")
     private fun collectUiEvent() {
         viewModelScope.launch {
             uiEvent.collect { uiEvent ->
