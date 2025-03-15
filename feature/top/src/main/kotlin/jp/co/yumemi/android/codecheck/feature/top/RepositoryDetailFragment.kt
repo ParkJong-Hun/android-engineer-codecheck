@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.navArgs
 import coil3.load
 import dagger.hilt.android.AndroidEntryPoint
 import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepository
 import jp.co.yumemi.android.codecheck.feature.top.databinding.FragmentRepositoryDetailBinding
 import jp.co.yumemi.android.codecheck.presentation.autoCleared
+import javax.inject.Inject
 
 /**
  * GithubのRepository詳細画面
@@ -17,18 +17,20 @@ import jp.co.yumemi.android.codecheck.presentation.autoCleared
 @AndroidEntryPoint
 class RepositoryDetailFragment : Fragment(R.layout.fragment_repository_detail) {
     private val viewModel: RepositoryDetailViewModel by viewModels()
-    private val args: RepositoryDetailFragmentArgs by navArgs()
     private var binding: FragmentRepositoryDetailBinding by autoCleared()
+
+    @Inject
+    lateinit var topRouter: TopRouter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.onRepositoryDetailCreate(args.item)
+        viewModel.onRepositoryDetailCreate(topRouter.getItemFromArgs(this))
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentRepositoryDetailBinding.bind(view).also {
-            it.bind(args.item)
+            it.bind(topRouter.getItemFromArgs(this))
         }
     }
 
