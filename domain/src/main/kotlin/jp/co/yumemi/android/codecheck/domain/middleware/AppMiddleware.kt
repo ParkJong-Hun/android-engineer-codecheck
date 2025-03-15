@@ -23,7 +23,9 @@ internal class AppReducer : Reducer<AppState, AppIntent> {
         return when (intent) {
             is AppIntent.RecordHistory -> {
                 val existHistoryOrNull =
-                    currentState.histories.find { it.openedSearchedRepository == intent.history.openedSearchedRepository }
+                    currentState.histories.find {
+                        it.openedSearchedRepository == intent.history.openedSearchedRepository
+                    }
                 currentState.copy(
                     histories = if (existHistoryOrNull == null) {
                         currentState.histories + intent.history
