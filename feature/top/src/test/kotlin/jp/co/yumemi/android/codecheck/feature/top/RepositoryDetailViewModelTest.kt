@@ -6,7 +6,6 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.slot
 import io.mockk.spyk
-import jp.co.yumemi.android.codecheck.domain.entity.Histories
 import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepository
 import jp.co.yumemi.android.codecheck.domain.middleware.AppIntent
 import jp.co.yumemi.android.codecheck.domain.middleware.AppState
@@ -33,8 +32,7 @@ class RepositoryDetailViewModelTest {
     @Before
     fun setup() {
         Dispatchers.setMain(testDispatcher)
-        val emptyHistories = Histories(emptyList())
-        appMiddleware = spyk(MockMiddleware(AppState(histories = emptyHistories)))
+        appMiddleware = spyk(MockMiddleware(AppState(histories = emptySet())))
         viewModel = RepositoryDetailViewModel(appMiddleware, nowProvider)
     }
 
