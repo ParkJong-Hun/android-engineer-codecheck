@@ -12,11 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import jp.co.yumemi.android.codecheck.feature.top.R
 import jp.co.yumemi.android.codecheck.feature.top.databinding.FragmentRepositoryListBinding
+import jp.co.yumemi.android.codecheck.feature.top.repositorylist.viewmodel.RepositoryListUiEvent
 import jp.co.yumemi.android.codecheck.feature.top.repositorylist.viewmodel.RepositoryListUiState
 import jp.co.yumemi.android.codecheck.feature.top.repositorylist.viewmodel.RepositoryListViewModel
 import jp.co.yumemi.android.codecheck.feature.top.router.TopRouter
 import jp.co.yumemi.android.codecheck.presentation.autoCleared
 import jp.co.yumemi.android.codecheck.presentation.extension.collectWithLifecycle
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.filter
 import javax.inject.Inject
 
 /**
@@ -47,7 +50,9 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
             DividerItemDecoration(requireContext(), linearLayoutManager.orientation)
 
         repositoryListAdapter = RepositoryListAdapter { searchedRepositoryItemInfo ->
-            topRouter.navigateToRepositoryDetail(findNavController(), searchedRepositoryItemInfo)
+            viewModel.uiEvent.tryEmit(
+                RepositoryListUiEvent.OnClickSearchedRepository(searchedRepositoryItemInfo)
+            )
         }
 
         binding.recyclerView.run {
@@ -60,10 +65,7 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
     private fun setupSearchInput() {
         binding.searchInputText.setOnEditorActionListener { editText, action, _ ->
             if (action == EditorInfo.IME_ACTION_SEARCH) {
-                val query = editText.text.toString().trim()
-                if (query.isNotEmpty()) {
-                    viewModel.onSearchClick(query)
-                }
+                viewModel.uiEvent.tryEmit(RepositoryListUiEvent.OnSearchClick(editText.text))
                 return@setOnEditorActionListener true
             }
             return@setOnEditorActionListener false
@@ -72,41 +74,67 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
 
     private fun setupGoHistoryButton() {
         binding.goHistoryButton.setOnClickListener {
-            topRouter.navigateToSearchHistory(findNavController())
+            viewModel.uiEvent.tryEmit(RepositoryListUiEvent.OnClickGoHistory)
         }
     }
 
     private fun observeViewModelState() {
         viewModel.uiState.collectWithLifecycle(this) { state ->
-            when (state) {
-                is RepositoryListUiState.None -> {
-                    binding.progressBar.isVisible = false
-                    binding.errorView.isVisible = false
-                }
+            with(binding) {
+                when (state) {
+                    is RepositoryListUiState.None -> {
+                        progressBar.isVisible = false
+                        errorView.isVisible = false
+                    }
 
-                is RepositoryListUiState.Loading -> {
-                    binding.progressBar.isVisible = true
-                    binding.errorView.isVisible = false
-                }
+                    is RepositoryListUiState.Loading -> {
+                        progressBar.isVisible = true
+                        errorView.isVisible = false
+                    }
 
-                is RepositoryListUiState.Success -> {
-                    binding.progressBar.isVisible = false
-                    binding.errorView.isVisible = false
-                    repositoryListAdapter.submitList(state.repositories)
-                }
+                    is RepositoryListUiState.Stable.Success -> {
+                        progressBar.isVisible = false
+                        errorView.isVisible = false
+                        repositoryListAdapter.submitList(state.repositories)
+                    }
 
-                is RepositoryListUiState.Error -> {
-                    binding.progressBar.isVisible = false
-                    binding.errorView.isVisible = true
-                    binding.errorMessage.text = state.message
-                }
+                    is RepositoryListUiState.Stable.Empty -> {
+                        progressBar.isVisible = false
+                        errorView.isVisible = true
+                        errorMessage.text = getString(R.string.no_results_found)
+                    }
 
-                is RepositoryListUiState.Empty -> {
-                    binding.progressBar.isVisible = false
-                    binding.errorView.isVisible = true
-                    binding.errorMessage.text = getString(R.string.no_results_found)
+                    is RepositoryListUiState.Error -> {
+                        progressBar.isVisible = false
+                        errorView.isVisible = true
+                        errorMessage.text = state.message
+                    }
                 }
             }
         }
+
+        viewModel.uiState
+            .filter { it is RepositoryListUiState.Stable }
+            .distinctUntilChanged()
+            .collectWithLifecycle(this) { state ->
+                val stableState = state as RepositoryListUiState.Stable
+                if (stableState.onClickedGoHistory) {
+                    topRouter.navigateToSearchHistory(findNavController())
+                }
+            }
+
+        viewModel.uiState
+            .filter { it is RepositoryListUiState.Stable.Success }
+            .distinctUntilChanged()
+            .collectWithLifecycle(this) { state ->
+                val stableState = state as RepositoryListUiState.Stable.Success
+                val (searchedRepository, hasClickedSearchedRepository) = stableState.onClickedSearchedRepository
+                if (hasClickedSearchedRepository) {
+                    topRouter.navigateToRepositoryDetail(
+                        findNavController(),
+                        requireNotNull(searchedRepository),
+                    )
+                }
+            }
     }
 }
