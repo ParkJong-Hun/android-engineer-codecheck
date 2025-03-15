@@ -7,5 +7,6 @@ import jp.co.yumemi.android.codecheck.feature.top.repositorydetail.RepositoryDet
 interface TopRouter {
     fun navigateToSearchHistory(navController: NavController)
     fun navigateToRepositoryDetail(navController: NavController, item: SearchedRepository)
+
     fun getItemFromArgs(repositoryDetailFragment: RepositoryDetailFragment): SearchedRepository
 }

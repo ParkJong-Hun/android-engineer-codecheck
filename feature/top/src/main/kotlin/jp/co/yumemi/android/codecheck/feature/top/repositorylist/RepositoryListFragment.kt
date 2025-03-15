@@ -37,7 +37,6 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentRepositoryListBinding.bind(view)
-
         setupRecyclerView()
         setupSearchInput()
         observeViewModelState()
@@ -85,6 +84,7 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
                     is RepositoryListUiState.None -> {
                         progressBar.isVisible = false
                         errorView.isVisible = false
+                        goHistoryButton.isVisible = false
                     }
 
                     is RepositoryListUiState.Loading -> {
@@ -119,6 +119,7 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
             .collectWithLifecycle(this) { state ->
                 val stableState = state as RepositoryListUiState.Stable
                 if (stableState.onClickedGoHistory) {
+                    viewModel.uiEvent.tryEmit(RepositoryListUiEvent.FinishNavigateToSearchHistory)
                     topRouter.navigateToSearchHistory(findNavController())
                 }
             }
@@ -130,9 +131,10 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
                 val stableState = state as RepositoryListUiState.Stable.Success
                 val (searchedRepository, hasClickedSearchedRepository) = stableState.onClickedSearchedRepository
                 if (hasClickedSearchedRepository) {
+                    viewModel.uiEvent.tryEmit(RepositoryListUiEvent.FinishNavigateToRepositoryDetail)
                     topRouter.navigateToRepositoryDetail(
-                        findNavController(),
-                        requireNotNull(searchedRepository),
+                        navController = findNavController(),
+                        item = requireNotNull(searchedRepository),
                     )
                 }
             }
