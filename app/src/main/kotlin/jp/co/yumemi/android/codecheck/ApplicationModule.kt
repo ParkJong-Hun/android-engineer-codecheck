@@ -4,7 +4,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import jp.co.yumemi.android.codecheck.domain.entity.Histories
 import jp.co.yumemi.android.codecheck.domain.middleware.AppIntent
 import jp.co.yumemi.android.codecheck.domain.middleware.AppState
 import jp.co.yumemi.android.codecheck.domain.middleware.appMiddleware
@@ -17,6 +16,6 @@ object ApplicationModule {
     @Singleton
     @Provides
     fun provideAppMiddleware(): Middleware<AppState, AppIntent> {
-        return appMiddleware(AppState(histories = Histories(emptyList())))
+        return appMiddleware(AppState(histories = emptySet()))
     }
 }
