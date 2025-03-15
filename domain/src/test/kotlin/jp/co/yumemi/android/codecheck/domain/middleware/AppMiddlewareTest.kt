@@ -9,6 +9,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Before
 import org.junit.Test
 import java.time.LocalDateTime
@@ -103,22 +104,56 @@ class AppMiddlewareTest {
     }
 
     @Test
-    fun `RecordHistory intent with duplicate history should not modify state`() = runTest(testDispatcher) {
-        // Given
-        val history = createMockHistory(id = "duplicate-id", name = "duplicate-repo")
+    fun `RecordHistory intent with duplicate history should not modify state`() =
+        runTest(testDispatcher) {
+            // Given
+            val history = createMockHistory(id = "duplicate-id", name = "duplicate-repo")
 
-        // When - Add the same history twice
-        middleware.conveyIntention(AppIntent.RecordHistory(history))
-        val stateAfterFirstAdd = middleware.businessState.value
+            // When - Add the same history twice
+            middleware.conveyIntention(AppIntent.RecordHistory(history))
+            val stateAfterFirstAdd = middleware.businessState.value
 
-        middleware.conveyIntention(AppIntent.RecordHistory(history))
-        val stateAfterSecondAdd = middleware.businessState.value
+            middleware.conveyIntention(AppIntent.RecordHistory(history))
+            val stateAfterSecondAdd = middleware.businessState.value
 
-        // Then
-        assertEquals(1, stateAfterFirstAdd.histories.size)
-        assertEquals(1, stateAfterSecondAdd.histories.size)
-        assertEquals(stateAfterFirstAdd.histories, stateAfterSecondAdd.histories)
-    }
+            // Then
+            assertEquals(1, stateAfterFirstAdd.histories.size)
+            assertEquals(1, stateAfterSecondAdd.histories.size)
+            assertEquals(stateAfterFirstAdd.histories, stateAfterSecondAdd.histories)
+        }
+
+    @Test
+    fun `RecordHistory intent with duplicate history without datetime should not modify state`() =
+        runTest(testDispatcher) {
+            // Given
+            val targetName = "duplicate-repo"
+            val firstHistory = createMockHistory(
+                id = "duplicate-id",
+                targetName,
+                dateTime = LocalDateTime.of(2025, 3, 15, 13, 49, 45)
+            )
+            val secondHistory = createMockHistory(
+                id = "duplicate-id2",
+                targetName,
+                dateTime = LocalDateTime.of(2025, 3, 15, 13, 49, 50)
+            )
+
+            // When
+            middleware.conveyIntention(AppIntent.RecordHistory(firstHistory))
+            val stateAfterFirstAdd = middleware.businessState.value
+
+            middleware.conveyIntention(AppIntent.RecordHistory(secondHistory))
+            val stateAfterSecondAdd = middleware.businessState.value
+
+            // Then
+            assertEquals(1, stateAfterFirstAdd.histories.size)
+            assertEquals(1, stateAfterSecondAdd.histories.size)
+            assertFalse(stateAfterFirstAdd.histories == stateAfterSecondAdd.histories)
+
+            val stateAfterSecondAddTargetHistory =
+                stateAfterSecondAdd.histories.find { it.openedSearchedRepository.name == targetName }
+            assertEquals(stateAfterSecondAddTargetHistory, secondHistory)
+        }
 
     companion object {
         private fun createMockHistory(

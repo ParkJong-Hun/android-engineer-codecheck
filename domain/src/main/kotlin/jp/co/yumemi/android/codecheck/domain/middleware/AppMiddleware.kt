@@ -1,4 +1,5 @@
 @file:Suppress("ForbiddenComment")
+
 package jp.co.yumemi.android.codecheck.domain.middleware
 
 import jp.co.yumemi.android.codecheck.domain.entity.History
@@ -21,7 +22,15 @@ internal class AppReducer : Reducer<AppState, AppIntent> {
     override fun reduce(currentState: AppState, intent: AppIntent): AppState {
         return when (intent) {
             is AppIntent.RecordHistory -> {
-                currentState.copy(histories = currentState.histories + intent.history)
+                val existHistoryOrNull =
+                    currentState.histories.find { it.openedSearchedRepository == intent.history.openedSearchedRepository }
+                currentState.copy(
+                    histories = if (existHistoryOrNull == null) {
+                        currentState.histories + intent.history
+                    } else {
+                        currentState.histories.minus(existHistoryOrNull) + intent.history
+                    }
+                )
             }
         }
     }
