@@ -46,7 +46,7 @@ class SearchHistoryViewModelTest {
     }
 
     @Test
-    fun `when histories is empty then uiState should be Empty`() = runTest {
+    fun `when histories is empty then uiState should be Empty`() = runTest(testDispatcher) {
         val appState = AppState(histories = emptySet())
 
         appStateFlow.value = appState
@@ -59,7 +59,7 @@ class SearchHistoryViewModelTest {
 
     @Test
     fun `when appState changes from empty to non-empty, uiState should change accordingly`() =
-        runTest {
+        runTest(testDispatcher) {
             val emptyAppState = AppState(histories = emptySet())
             appStateFlow.value = emptyAppState
 
@@ -80,29 +80,27 @@ class SearchHistoryViewModelTest {
 
     @Test
     fun `when OnClickHistory event is emitted, uiState should update with clicked history`() =
-        runTest {
+        runTest(testDispatcher) {
             viewModel.uiState.test {
                 // Given
                 val history = mockHistories.first()
                 appStateFlow.value = AppState(histories = mockHistories)
 
-                // Initial state should be Idle with histories
-                val initialState = awaitItem()
-                assert(initialState is SearchHistoryUiState.Idle)
-
                 // When
                 viewModel.uiEvent.emit(SearchHistoryUiEvent.OnClickHistory(history))
 
                 // Then
-                val updatedState = awaitItem()
-                assert(updatedState is SearchHistoryUiState.Idle)
-                val idleState = updatedState as SearchHistoryUiState.Idle
+                assert(awaitItem() is SearchHistoryUiState.Empty)
+                assert(awaitItem() is SearchHistoryUiState.Idle)
+                val updatedStateAfterWhenCondition = awaitItem()
+                assert(updatedStateAfterWhenCondition is SearchHistoryUiState.Idle)
+                val idleState = updatedStateAfterWhenCondition as SearchHistoryUiState.Idle
                 assertEquals(history to true, idleState.onClickedHistory)
             }
         }
 
     @Test
-    fun `collectAppStateMiddleware should update uiState`() = runTest {
+    fun `collectAppStateMiddleware should update uiState`() = runTest(testDispatcher) {
         viewModel.uiState.test {
             // Initial state
             val initialState = awaitItem()
