@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import jp.co.yumemi.android.codecheck.feature.history.HistoryRouter
 import jp.co.yumemi.android.codecheck.feature.top.TopRouter
 import javax.inject.Singleton
 
@@ -14,5 +15,11 @@ object RouterModule {
     @Provides
     fun provideTopRouter(): TopRouter {
         return TopRouterImpl()
+    }
+
+    @Singleton
+    @Provides
+    fun provideHistoryRouter(): HistoryRouter {
+        return HistoryRouterImpl()
     }
 }

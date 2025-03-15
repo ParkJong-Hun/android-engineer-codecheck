@@ -15,4 +15,12 @@
         android:id="@+id/action_to_historyFragment"
         app:destination="@id/searchHistoryFragment" />
 
+    <action
+        android:id="@+id/action_to_repositoryDetailFragment"
+        app:destination="@id/repositoryDetailFragment">
+        <argument
+            android:name="item"
+            app:argType="jp.co.yumemi.android.codecheck.domain.entity.SearchedRepository" />
+    </action>
+
 </navigation>
