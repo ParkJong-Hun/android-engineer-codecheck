@@ -11,7 +11,7 @@ import jp.co.yumemi.android.codecheck.databinding.ActivityMainBinding
 import jp.co.yumemi.android.codecheck.presentation.extension.setStatusBarPadding
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(R.layout.activity_main) {
+class MainActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
     private lateinit var navController: NavController
