@@ -15,7 +15,6 @@ import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepositoryItemInfo
 import jp.co.yumemi.android.codecheck.feature.top.databinding.FragmentRepositoryListBinding
 import jp.co.yumemi.android.codecheck.presentation.autoCleared
 import jp.co.yumemi.android.codecheck.presentation.extension.collectWithLifecycle
-import jp.co.yumemi.android.codecheck.presentation.extension.setStatusBarPadding
 
 /**
  * Githubリポジトリのリスト画面。
@@ -32,14 +31,9 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentRepositoryListBinding.bind(view)
 
-        setupForEdgeToEdge()
         setupRecyclerView()
         setupSearchInput()
         observeViewModelState()
-    }
-
-    private fun setupForEdgeToEdge() {
-        binding.repositoryListLayout.setStatusBarPadding()
     }
 
     private fun setupRecyclerView() {
