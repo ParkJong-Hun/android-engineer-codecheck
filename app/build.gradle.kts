@@ -10,6 +10,7 @@ dependencies {
     implementation(projects.presentation)
 
     implementation(projects.feature.top)
+    implementation(projects.feature.history)
     testImplementation(projects.testing)
 
     implementation(libs.androidx.core.ktx)

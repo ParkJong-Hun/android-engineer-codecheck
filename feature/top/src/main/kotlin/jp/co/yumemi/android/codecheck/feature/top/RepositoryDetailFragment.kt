@@ -3,6 +3,7 @@ package jp.co.yumemi.android.codecheck.feature.top
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import coil3.load
 import dagger.hilt.android.AndroidEntryPoint
@@ -15,9 +16,14 @@ import jp.co.yumemi.android.codecheck.presentation.autoCleared
  */
 @AndroidEntryPoint
 class RepositoryDetailFragment : Fragment(R.layout.fragment_repository_detail) {
+    private val viewModel: RepositoryDetailViewModel by viewModels()
     private val args: RepositoryDetailFragmentArgs by navArgs()
-
     private var binding: FragmentRepositoryDetailBinding by autoCleared()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.onRepositoryDetailCreate(args.item)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

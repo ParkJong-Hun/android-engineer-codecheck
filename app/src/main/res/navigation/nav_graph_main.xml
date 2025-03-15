@@ -6,4 +6,13 @@
 
     <include app:graph="@navigation/nav_graph_top" />
 
+    <fragment
+        android:id="@+id/searchHistoryFragment"
+        android:name="jp.co.yumemi.android.codecheck.feature.history.SearchHistoryFragment"
+        android:label="@string/app_name" />
+
+    <action
+        android:id="@+id/action_to_historyFragment"
+        app:destination="@id/searchHistoryFragment" />
+
 </navigation>
