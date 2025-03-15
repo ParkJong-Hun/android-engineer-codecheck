@@ -14,6 +14,7 @@ import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepository
 import jp.co.yumemi.android.codecheck.feature.top.databinding.FragmentRepositoryListBinding
 import jp.co.yumemi.android.codecheck.presentation.autoCleared
 import jp.co.yumemi.android.codecheck.presentation.extension.collectWithLifecycle
+import javax.inject.Inject
 
 /**
  * Githubリポジトリのリスト画面。
@@ -21,9 +22,11 @@ import jp.co.yumemi.android.codecheck.presentation.extension.collectWithLifecycl
 @AndroidEntryPoint
 class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
     private val viewModel by viewModels<RepositoryListViewModel>()
-
     private var binding: FragmentRepositoryListBinding by autoCleared()
     private lateinit var repositoryListAdapter: RepositoryListAdapter
+
+    @Inject
+    lateinit var topRouter: TopRouter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -32,6 +35,7 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
         setupRecyclerView()
         setupSearchInput()
         observeViewModelState()
+        setupGoHistoryButton()
     }
 
     private fun setupRecyclerView() {
@@ -60,6 +64,12 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
                 return@setOnEditorActionListener true
             }
             return@setOnEditorActionListener false
+        }
+    }
+
+    private fun setupGoHistoryButton() {
+        binding.goHistoryButton.setOnClickListener {
+            topRouter.navigateToHistory(findNavController())
         }
     }
 
@@ -99,7 +109,7 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
 
     private fun navigateToRepositoryDetailFragment(searchedRepositoryItemInfo: SearchedRepository) {
         val action = RepositoryListFragmentDirections
-            .actionRepositoriesFragmentToRepositoryFragment(searchedRepositoryItemInfo)
+            .actionRepositoryListFragmentToRepositoryDetailFragment(searchedRepositoryItemInfo)
         findNavController().navigate(action)
     }
 }
