@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.codecheck.feature.top
+package jp.co.yumemi.android.codecheck.feature.top.repositorylist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -1,18 +1,20 @@
-package jp.co.yumemi.android.codecheck
+package jp.co.yumemi.android.codecheck.router
 
 import androidx.navigation.NavController
 import androidx.navigation.fragment.navArgs
+import jp.co.yumemi.android.codecheck.R
 import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepository
-import jp.co.yumemi.android.codecheck.feature.top.RepositoryDetailFragment
-import jp.co.yumemi.android.codecheck.feature.top.RepositoryDetailFragmentArgs
-import jp.co.yumemi.android.codecheck.feature.top.RepositoryListFragmentDirections
-import jp.co.yumemi.android.codecheck.feature.top.TopRouter
+import jp.co.yumemi.android.codecheck.feature.top.repositorydetail.RepositoryDetailFragment
+import jp.co.yumemi.android.codecheck.feature.top.repositorydetail.RepositoryDetailFragmentArgs
+import jp.co.yumemi.android.codecheck.feature.top.repositorylist.RepositoryListFragmentDirections
+import jp.co.yumemi.android.codecheck.feature.top.router.TopRouter
+import jp.co.yumemi.android.codecheck.presentation.extension.navigateSafely
 
 class TopRouterImpl : TopRouter {
     override fun navigateToSearchHistory(navController: NavController) {
         val action = RepositoryListFragmentDirections
             .actionRepositoryListFragmentToHistoryFragment()
-        navController.navigate(action)
+        navController.navigateSafely(R.id.repositoryListFragment, action)
     }
 
     override fun navigateToRepositoryDetail(
@@ -21,7 +23,7 @@ class TopRouterImpl : TopRouter {
     ) {
         val action = RepositoryListFragmentDirections
             .actionRepositoryListFragmentToRepositoryDetailFragment(item)
-        navController.navigate(action)
+        navController.navigateSafely(R.id.repositoryListFragment, action)
     }
 
     override fun getItemFromArgs(repositoryDetailFragment: RepositoryDetailFragment): SearchedRepository {

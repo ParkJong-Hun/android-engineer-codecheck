@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.codecheck.feature.history
+package jp.co.yumemi.android.codecheck.feature.history.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,6 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import jp.co.yumemi.android.codecheck.domain.middleware.AppIntent
 import jp.co.yumemi.android.codecheck.domain.middleware.AppState
 import jp.co.yumemi.android.codecheck.domain.middleware.core.Middleware
+import jp.co.yumemi.android.codecheck.presentation.uiarchitecture.UdfViewModelInterface
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -16,11 +17,11 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchHistoryViewModel @Inject constructor(
     private val appStateMiddleware: Middleware<AppState, AppIntent>,
-) : ViewModel() {
+) : ViewModel(), UdfViewModelInterface<SearchHistoryUiState, SearchHistoryUiEvent> {
     private val _uiState = MutableStateFlow<SearchHistoryUiState>(SearchHistoryUiState.Empty)
-    val uiState = _uiState.asStateFlow()
+    override val uiState = _uiState.asStateFlow()
 
-    val uiEvent = MutableSharedFlow<SearchHistoryUiEvent>(
+    override val uiEvent = MutableSharedFlow<SearchHistoryUiEvent>(
         replay = 1,
         extraBufferCapacity = 10,
     )

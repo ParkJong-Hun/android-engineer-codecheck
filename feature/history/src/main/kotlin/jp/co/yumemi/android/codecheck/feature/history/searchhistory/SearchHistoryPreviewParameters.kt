@@ -1,8 +1,9 @@
-package jp.co.yumemi.android.codecheck.feature.history
+package jp.co.yumemi.android.codecheck.feature.history.searchhistory
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import jp.co.yumemi.android.codecheck.domain.entity.History
 import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepository
+import jp.co.yumemi.android.codecheck.feature.history.viewmodel.SearchHistoryUiState
 import java.time.LocalDateTime
 
 @Suppress("MagicNumber")

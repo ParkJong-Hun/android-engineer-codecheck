@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.codecheck.feature.history
+package jp.co.yumemi.android.codecheck.feature.history.searchhistory
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,6 +14,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import jp.co.yumemi.android.codecheck.feature.history.router.HistoryRouter
+import jp.co.yumemi.android.codecheck.feature.history.viewmodel.SearchHistoryUiEvent
+import jp.co.yumemi.android.codecheck.feature.history.viewmodel.SearchHistoryUiState
+import jp.co.yumemi.android.codecheck.feature.history.viewmodel.SearchHistoryViewModel
 import javax.inject.Inject
 
 @AndroidEntryPoint
