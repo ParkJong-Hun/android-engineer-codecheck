@@ -102,6 +102,24 @@ class AppMiddlewareTest {
         assertEquals(2, finalState.histories.size)
     }
 
+    @Test
+    fun `RecordHistory intent with duplicate history should not modify state`() = runTest(testDispatcher) {
+        // Given
+        val history = createMockHistory(id = "duplicate-id", name = "duplicate-repo")
+
+        // When - Add the same history twice
+        middleware.conveyIntention(AppIntent.RecordHistory(history))
+        val stateAfterFirstAdd = middleware.businessState.value
+
+        middleware.conveyIntention(AppIntent.RecordHistory(history))
+        val stateAfterSecondAdd = middleware.businessState.value
+
+        // Then
+        assertEquals(1, stateAfterFirstAdd.histories.size)
+        assertEquals(1, stateAfterSecondAdd.histories.size)
+        assertEquals(stateAfterFirstAdd.histories, stateAfterSecondAdd.histories)
+    }
+
     companion object {
         private fun createMockHistory(
             id: String = "history-id",
