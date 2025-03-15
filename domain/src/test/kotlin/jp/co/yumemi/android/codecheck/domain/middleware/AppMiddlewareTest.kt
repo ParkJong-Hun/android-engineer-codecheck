@@ -2,7 +2,6 @@
 
 package jp.co.yumemi.android.codecheck.domain.middleware
 
-import jp.co.yumemi.android.codecheck.domain.entity.Histories
 import jp.co.yumemi.android.codecheck.domain.entity.History
 import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepository
 import jp.co.yumemi.android.codecheck.domain.middleware.core.Middleware
@@ -22,13 +21,13 @@ class AppMiddlewareTest {
 
     @Before
     fun setup() {
-        middleware = appMiddleware(AppState(Histories(emptyList())))
+        middleware = appMiddleware(AppState(emptyList()))
     }
 
     @Test
     fun `initial state should have empty histories`() = runTest(testDispatcher) {
         val initialState = middleware.businessState.value
-        assertEquals(0, initialState.histories.histories.size)
+        assertEquals(0, initialState.histories.size)
     }
 
     @Test
@@ -41,8 +40,8 @@ class AppMiddlewareTest {
 
         // Then
         val updatedState = middleware.businessState.value
-        assertEquals(1, updatedState.histories.histories.size)
-        assertEquals(mockHistory, updatedState.histories.histories[0])
+        assertEquals(1, updatedState.histories.size)
+        assertEquals(mockHistory, updatedState.histories[0])
     }
 
     @Test
@@ -59,11 +58,11 @@ class AppMiddlewareTest {
 
         // Then
         val updatedState = middleware.businessState.value
-        assertEquals(3, updatedState.histories.histories.size)
+        assertEquals(3, updatedState.histories.size)
 
-        assertEquals("1", updatedState.histories.histories[0].id)
-        assertEquals("2", updatedState.histories.histories[1].id)
-        assertEquals("3", updatedState.histories.histories[2].id)
+        assertEquals("1", updatedState.histories[0].id)
+        assertEquals("2", updatedState.histories[1].id)
+        assertEquals("3", updatedState.histories[2].id)
     }
 
     @Test
@@ -73,7 +72,7 @@ class AppMiddlewareTest {
         middleware.conveyIntention(AppIntent.RecordHistory(initialHistory))
 
         val stateAfterFirstAdd = middleware.businessState.value
-        assertEquals(1, stateAfterFirstAdd.histories.histories.size)
+        assertEquals(1, stateAfterFirstAdd.histories.size)
 
         // When
         val newHistory = createMockHistory(id = "2", name = "new-repo")
@@ -81,13 +80,13 @@ class AppMiddlewareTest {
 
         // Then
         val finalState = middleware.businessState.value
-        assertEquals(2, finalState.histories.histories.size)
+        assertEquals(2, finalState.histories.size)
 
         assertEquals(
             "initial-repo",
-            finalState.histories.histories[0].openedSearchedRepository.name
+            finalState.histories[0].openedSearchedRepository.name
         )
-        assertEquals("new-repo", finalState.histories.histories[1].openedSearchedRepository.name)
+        assertEquals("new-repo", finalState.histories[1].openedSearchedRepository.name)
     }
 
     @Test
@@ -97,7 +96,7 @@ class AppMiddlewareTest {
         middleware.conveyIntention(AppIntent.RecordHistory(initialHistory))
 
         val stateBeforeSecondAdd = middleware.businessState.value
-        val historiesSizeBeforeAdd = stateBeforeSecondAdd.histories.histories.size
+        val historiesSizeBeforeAdd = stateBeforeSecondAdd.histories.size
 
         // When
         val newHistory = createMockHistory(id = "2", name = "new-repo")
@@ -107,7 +106,7 @@ class AppMiddlewareTest {
         assertEquals(1, historiesSizeBeforeAdd)
 
         val finalState = middleware.businessState.value
-        assertEquals(2, finalState.histories.histories.size)
+        assertEquals(2, finalState.histories.size)
     }
 
     companion object {

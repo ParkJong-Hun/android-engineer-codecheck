@@ -21,7 +21,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import jp.co.yumemi.android.codecheck.domain.entity.Histories
 import jp.co.yumemi.android.codecheck.domain.entity.History
 
 @Composable
@@ -65,7 +64,7 @@ private fun SearchHistoryScreen(
 
 @Composable
 fun HistoryList(
-    histories: Histories,
+    histories: List<History>,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
@@ -74,7 +73,7 @@ fun HistoryList(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items(
-            items = histories.histories,
+            items = histories,
             key = { history -> history.id }
         ) { history ->
             HistoryItem(history = history)

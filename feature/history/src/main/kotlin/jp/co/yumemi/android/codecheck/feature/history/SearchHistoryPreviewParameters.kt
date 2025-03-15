@@ -1,7 +1,6 @@
 package jp.co.yumemi.android.codecheck.feature.history
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import jp.co.yumemi.android.codecheck.domain.entity.Histories
 import jp.co.yumemi.android.codecheck.domain.entity.History
 import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepository
 import java.time.LocalDateTime
@@ -57,8 +56,8 @@ internal class SearchHistoryUiStateProvider : PreviewParameterProvider<SearchHis
         get() {
             return sequenceOf(
                 SearchHistoryUiState.Empty,
-                SearchHistoryUiState.Idle(Histories(histories = listOf(mockHistories.first()))),
-                SearchHistoryUiState.Idle(Histories(histories = mockHistories))
+                SearchHistoryUiState.Idle(histories = listOf(mockHistories.first())),
+                SearchHistoryUiState.Idle(histories = mockHistories)
             )
         }
 }
