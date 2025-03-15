@@ -29,7 +29,7 @@ import org.junit.Before
 import org.junit.Test
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class AdditionalRepositoryListViewModelTest {
+class RepositoryListViewModelTest {
     private val testDispatcher = StandardTestDispatcher()
     private lateinit var viewModel: RepositoryListViewModel
     private lateinit var searchRepositoryMiddleware: MockMiddleware<SearchRepositoryState, SearchRepositoryIntent>

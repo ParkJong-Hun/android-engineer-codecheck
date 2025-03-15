@@ -9,9 +9,12 @@ import dagger.hilt.android.AndroidEntryPoint
 import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepository
 import jp.co.yumemi.android.codecheck.feature.top.R
 import jp.co.yumemi.android.codecheck.feature.top.databinding.FragmentRepositoryDetailBinding
+import jp.co.yumemi.android.codecheck.feature.top.repositorydetail.viewmodel.RepositoryDetailUiEvent
+import jp.co.yumemi.android.codecheck.feature.top.repositorydetail.viewmodel.RepositoryDetailUiState
 import jp.co.yumemi.android.codecheck.feature.top.repositorydetail.viewmodel.RepositoryDetailViewModel
 import jp.co.yumemi.android.codecheck.feature.top.router.TopRouter
 import jp.co.yumemi.android.codecheck.presentation.autoCleared
+import jp.co.yumemi.android.codecheck.presentation.extension.collectWithLifecycle
 import javax.inject.Inject
 
 /**
@@ -27,23 +30,39 @@ class RepositoryDetailFragment : Fragment(R.layout.fragment_repository_detail) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.onRepositoryDetailCreate(topRouter.getItemFromArgs(this))
+        val repository = topRouter.getItemFromArgs(this)
+        viewModel.uiEvent.tryEmit(RepositoryDetailUiEvent.OnRepositoryDetailCreate(repository))
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentRepositoryDetailBinding.bind(view).also {
-            it.bind(topRouter.getItemFromArgs(this))
+        binding = FragmentRepositoryDetailBinding.bind(view)
+        observeUiState()
+    }
+
+    private fun observeUiState() {
+        viewModel.uiState.collectWithLifecycle(this) { state ->
+            when (state) {
+                is RepositoryDetailUiState.None -> {
+                    // no-op
+                }
+
+                is RepositoryDetailUiState.Success -> {
+                    bindRepositoryData(state.repository)
+                }
+            }
         }
     }
 
-    private fun FragmentRepositoryDetailBinding.bind(item: SearchedRepository) {
-        ownerIconView.load(item.ownerIconUrl)
-        nameView.text = item.name
-        languageView.text = getString(R.string.written_language, item.language)
-        starsView.text = getString(R.string.stars, item.stargazersCount)
-        watchersView.text = getString(R.string.watchers, item.watchersCount)
-        forksView.text = getString(R.string.forks, item.forksCount)
-        openIssuesView.text = getString(R.string.open_issues, item.openIssuesCount)
+    private fun bindRepositoryData(repository: SearchedRepository) {
+        with(binding) {
+            ownerIconView.load(repository.ownerIconUrl)
+            nameView.text = repository.name
+            languageView.text = getString(R.string.written_language, repository.language)
+            starsView.text = getString(R.string.stars, repository.stargazersCount)
+            watchersView.text = getString(R.string.watchers, repository.watchersCount)
+            forksView.text = getString(R.string.forks, repository.forksCount)
+            openIssuesView.text = getString(R.string.open_issues, repository.openIssuesCount)
+        }
     }
 }
