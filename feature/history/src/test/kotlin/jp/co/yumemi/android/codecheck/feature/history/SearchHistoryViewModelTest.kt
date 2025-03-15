@@ -46,7 +46,7 @@ class SearchHistoryViewModelTest {
     }
 
     @Test
-    fun `when histories is empty then uiState should be Empty`() = runTest {
+    fun `when histories is empty then uiState should be Empty`() = runTest(testDispatcher) {
         val appState = AppState(histories = emptySet())
 
         appStateFlow.value = appState
@@ -59,7 +59,7 @@ class SearchHistoryViewModelTest {
 
     @Test
     fun `when appState changes from empty to non-empty, uiState should change accordingly`() =
-        runTest {
+        runTest(testDispatcher) {
             val emptyAppState = AppState(histories = emptySet())
             appStateFlow.value = emptyAppState
 
@@ -77,6 +77,44 @@ class SearchHistoryViewModelTest {
                 assertEquals(idleState.histories.toSet(), nonEmptyHistories)
             }
         }
+
+    @Test
+    fun `when OnClickHistory event is emitted, uiState should update with clicked history`() =
+        runTest(testDispatcher) {
+            viewModel.uiState.test {
+                // Given
+                val history = mockHistories.first()
+                appStateFlow.value = AppState(histories = mockHistories)
+
+                // When
+                viewModel.uiEvent.emit(SearchHistoryUiEvent.OnClickHistory(history))
+
+                // Then
+                assert(awaitItem() is SearchHistoryUiState.Empty)
+                assert(awaitItem() is SearchHistoryUiState.Idle)
+                val updatedStateAfterWhenCondition = awaitItem()
+                assert(updatedStateAfterWhenCondition is SearchHistoryUiState.Idle)
+                val idleState = updatedStateAfterWhenCondition as SearchHistoryUiState.Idle
+                assertEquals(history to true, idleState.onClickedHistory)
+            }
+        }
+
+    @Test
+    fun `collectAppStateMiddleware should update uiState`() = runTest(testDispatcher) {
+        viewModel.uiState.test {
+            // Initial state
+            val initialState = awaitItem()
+            assert(initialState is SearchHistoryUiState.Empty)
+
+            // Update AppState with non-empty histories
+            appStateFlow.value = AppState(histories = mockHistories)
+
+            // Bug: collectAppStateMiddleware is not updating _uiState
+            // This test will fail with the current implementation
+            val updatedState = awaitItem()
+            assert(updatedState is SearchHistoryUiState.Idle)
+        }
+    }
 
     companion object {
         private val mockHistories = setOf(
