@@ -1,5 +1,5 @@
 <resources>
-    <string name="searchInputText_hint">GitHub のリポジトリを検索できるよー</string>
+    <string name="searchInputText_hint">リポジトリを検索</string>
     <string name="written_language">Written in %s</string>
     <string name="stars">%d stars</string>">
     <string name="watchers">%d watchers</string>
@@ -7,5 +7,5 @@
     <string name="open_issues">%d open issues</string>
     <string name="error_icon_description">情報アイコン</string>
     <string name="no_results_found">検索結果がありません。他のキーワードをお試しください。</string>
-    <string name="go_history">過去の閲覧履歴を見る</string>
+    <string name="go_history">履歴</string>
 </resources>
