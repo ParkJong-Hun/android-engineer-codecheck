@@ -12,6 +12,7 @@ import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepositoryItemInfo
 import jp.co.yumemi.android.codecheck.feature.top.databinding.FragmentRepositoryDetailBinding
 import jp.co.yumemi.android.codecheck.presentation.autoCleared
 import jp.co.yumemi.android.codecheck.presentation.extension.collectWithLifecycle
+import jp.co.yumemi.android.codecheck.presentation.extension.setStatusBarPadding
 
 /**
  * GithubのRepository詳細画面
@@ -30,9 +31,15 @@ class RepositoryDetailFragment : Fragment(R.layout.fragment_repository_detail) {
             it.bind(args.item)
         }
 
+        setupForEdgeToEdge()
+
         topViewModel.lastSearchDate.collectWithLifecycle(this) {
             Log.d("検索した日時", it.toString())
         }
+    }
+
+    private fun setupForEdgeToEdge() {
+        binding.repositoryDetailLayout.setStatusBarPadding()
     }
 
     private fun FragmentRepositoryDetailBinding.bind(item: SearchedRepositoryItemInfo) {
