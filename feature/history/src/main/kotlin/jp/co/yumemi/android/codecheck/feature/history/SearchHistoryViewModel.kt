@@ -48,7 +48,7 @@ class SearchHistoryViewModel @Inject constructor(
     private fun collectAppStateMiddleware() {
         viewModelScope.launch {
             appStateMiddleware.businessState.collect {
-                if (it.histories.isNotEmpty()) {
+                _uiState.value = if (it.histories.isNotEmpty()) {
                     SearchHistoryUiState.Idle(it.histories.toList())
                 } else {
                     SearchHistoryUiState.Empty
