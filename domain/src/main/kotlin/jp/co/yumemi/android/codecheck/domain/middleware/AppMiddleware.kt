@@ -1,3 +1,4 @@
+@file:Suppress("ForbiddenComment")
 package jp.co.yumemi.android.codecheck.domain.middleware
 
 import jp.co.yumemi.android.codecheck.domain.entity.History
