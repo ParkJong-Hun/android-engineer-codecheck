@@ -1,6 +1,5 @@
 package jp.co.yumemi.android.codecheck.feature.history
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -33,12 +32,9 @@ class SearchHistoryViewModel @Inject constructor(
 
     private fun collectUiEvent() {
         viewModelScope.launch {
-            Log.d("", "onClickHistory: launched")
             uiEvent.collect { uiEvent ->
-                Log.d("", "onClickHistory: ${uiEvent.toString()}")
                 when (uiEvent) {
                     is SearchHistoryUiEvent.OnClickHistory -> {
-                        Log.d("", "onClickHistory: ${uiEvent.history}")
                         if (uiState.value is SearchHistoryUiState.Idle) {
                             _uiState.update {
                                 (it as SearchHistoryUiState.Idle).copy(
