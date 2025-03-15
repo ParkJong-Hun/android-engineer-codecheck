@@ -33,7 +33,7 @@ class SearchHistoryViewModelTest {
     @Before
     fun setup() {
         Dispatchers.setMain(testDispatcher)
-        appStateFlow = MutableStateFlow(AppState(histories = emptyList()))
+        appStateFlow = MutableStateFlow(AppState(histories = emptySet()))
         appStateMiddleware = mockk {
             every { businessState } returns appStateFlow as StateFlow<AppState>
         }
@@ -47,7 +47,7 @@ class SearchHistoryViewModelTest {
 
     @Test
     fun `when histories is empty then uiState should be Empty`() = runTest {
-        val appState = AppState(histories = emptyList())
+        val appState = AppState(histories = emptySet())
 
         appStateFlow.value = appState
 
@@ -60,7 +60,7 @@ class SearchHistoryViewModelTest {
     @Test
     fun `when appState changes from empty to non-empty, uiState should change accordingly`() =
         runTest {
-            val emptyAppState = AppState(histories = emptyList())
+            val emptyAppState = AppState(histories = emptySet())
             appStateFlow.value = emptyAppState
 
             val nonEmptyHistories = mockHistories
@@ -74,12 +74,12 @@ class SearchHistoryViewModelTest {
                 val updatedState = awaitItem()
                 assert(updatedState is SearchHistoryUiState.Idle)
                 val idleState = updatedState as SearchHistoryUiState.Idle
-                assertEquals(idleState.histories, nonEmptyHistories)
+                assertEquals(idleState.histories.toSet(), nonEmptyHistories)
             }
         }
 
     companion object {
-        private val mockHistories = listOf(
+        private val mockHistories = setOf(
             History(
                 id = "1",
                 openedDateTime = LocalDateTime.of(2025, 3, 11, 22, 8, 32, 0),

@@ -21,7 +21,7 @@ class AppMiddlewareTest {
 
     @Before
     fun setup() {
-        middleware = appMiddleware(AppState(emptyList()))
+        middleware = appMiddleware(AppState(emptySet()))
     }
 
     @Test
@@ -41,11 +41,11 @@ class AppMiddlewareTest {
         // Then
         val updatedState = middleware.businessState.value
         assertEquals(1, updatedState.histories.size)
-        assertEquals(mockHistory, updatedState.histories[0])
+        assert(updatedState.histories.find { it == mockHistory } != null)
     }
 
     @Test
-    fun `RecordHistory intent should add multiple histories in order`() = runTest(testDispatcher) {
+    fun `RecordHistory intent should add multiple histories`() = runTest(testDispatcher) {
         // Given
         val mockHistory1 = createMockHistory(id = "1", name = "repo1")
         val mockHistory2 = createMockHistory(id = "2", name = "repo2")
@@ -59,10 +59,6 @@ class AppMiddlewareTest {
         // Then
         val updatedState = middleware.businessState.value
         assertEquals(3, updatedState.histories.size)
-
-        assertEquals("1", updatedState.histories[0].id)
-        assertEquals("2", updatedState.histories[1].id)
-        assertEquals("3", updatedState.histories[2].id)
     }
 
     @Test
@@ -82,11 +78,8 @@ class AppMiddlewareTest {
         val finalState = middleware.businessState.value
         assertEquals(2, finalState.histories.size)
 
-        assertEquals(
-            "initial-repo",
-            finalState.histories[0].openedSearchedRepository.name
-        )
-        assertEquals("new-repo", finalState.histories[1].openedSearchedRepository.name)
+        assert(finalState.histories.find { it.openedSearchedRepository.name == "initial-repo" } != null)
+        assert(finalState.histories.find { it.openedSearchedRepository.name == "new-repo" } != null)
     }
 
     @Test

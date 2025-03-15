@@ -16,6 +16,6 @@ object ApplicationModule {
     @Singleton
     @Provides
     fun provideAppMiddleware(): Middleware<AppState, AppIntent> {
-        return appMiddleware(AppState(histories = emptyList()))
+        return appMiddleware(AppState(histories = emptySet()))
     }
 }

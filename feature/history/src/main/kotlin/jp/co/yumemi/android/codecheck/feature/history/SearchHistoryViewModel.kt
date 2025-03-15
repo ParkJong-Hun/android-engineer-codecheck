@@ -18,7 +18,7 @@ class SearchHistoryViewModel @Inject constructor(
     val uiState = appStateMiddleware.businessState
         .map {
             if (it.histories.isNotEmpty()) {
-                SearchHistoryUiState.Idle(it.histories)
+                SearchHistoryUiState.Idle(it.histories.toList())
             } else {
                 SearchHistoryUiState.Empty
             }
