@@ -9,6 +9,7 @@ import io.mockk.spyk
 import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepository
 import jp.co.yumemi.android.codecheck.domain.middleware.AppIntent
 import jp.co.yumemi.android.codecheck.domain.middleware.AppState
+import jp.co.yumemi.android.codecheck.feature.top.repositorydetail.viewmodel.RepositoryDetailViewModel
 import jp.co.yumemi.android.codecheck.presentation.time.NowProvider
 import jp.co.yumemi.android.codecheck.testing.domain.middlewaare.MockMiddleware
 import jp.co.yumemi.android.codecheck.testing.presentation.time.FakeNowProvider

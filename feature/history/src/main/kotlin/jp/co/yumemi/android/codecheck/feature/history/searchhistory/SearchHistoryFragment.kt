@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.codecheck.feature.history
+package jp.co.yumemi.android.codecheck.feature.history.searchhistory
 
 import android.os.Bundle
 import android.view.LayoutInflater

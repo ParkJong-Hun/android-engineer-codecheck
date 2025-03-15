@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.codecheck.feature.top
+package jp.co.yumemi.android.codecheck.feature.top.repositorydetail
 
 import android.os.Bundle
 import android.view.View
@@ -7,7 +7,10 @@ import androidx.fragment.app.viewModels
 import coil3.load
 import dagger.hilt.android.AndroidEntryPoint
 import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepository
+import jp.co.yumemi.android.codecheck.feature.top.R
 import jp.co.yumemi.android.codecheck.feature.top.databinding.FragmentRepositoryDetailBinding
+import jp.co.yumemi.android.codecheck.feature.top.repositorydetail.viewmodel.RepositoryDetailViewModel
+import jp.co.yumemi.android.codecheck.feature.top.router.TopRouter
 import jp.co.yumemi.android.codecheck.presentation.autoCleared
 import javax.inject.Inject
 

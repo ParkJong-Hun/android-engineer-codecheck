@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.codecheck.feature.top
+package jp.co.yumemi.android.codecheck.feature.top.repositorylist
 
 import android.os.Bundle
 import android.view.View
@@ -10,7 +10,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import jp.co.yumemi.android.codecheck.feature.top.R
 import jp.co.yumemi.android.codecheck.feature.top.databinding.FragmentRepositoryListBinding
+import jp.co.yumemi.android.codecheck.feature.top.repositorylist.viewmodel.RepositoryListUiState
+import jp.co.yumemi.android.codecheck.feature.top.repositorylist.viewmodel.RepositoryListViewModel
+import jp.co.yumemi.android.codecheck.feature.top.router.TopRouter
 import jp.co.yumemi.android.codecheck.presentation.autoCleared
 import jp.co.yumemi.android.codecheck.presentation.extension.collectWithLifecycle
 import javax.inject.Inject

@@ -7,6 +7,8 @@ import io.mockk.spyk
 import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepository
 import jp.co.yumemi.android.codecheck.domain.middleware.SearchRepositoryIntent
 import jp.co.yumemi.android.codecheck.domain.middleware.SearchRepositoryState
+import jp.co.yumemi.android.codecheck.feature.top.repositorylist.viewmodel.RepositoryListUiState
+import jp.co.yumemi.android.codecheck.feature.top.repositorylist.viewmodel.RepositoryListViewModel
 import jp.co.yumemi.android.codecheck.testing.domain.middlewaare.MockMiddleware
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

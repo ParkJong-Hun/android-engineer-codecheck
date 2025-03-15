@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.codecheck.feature.top
+package jp.co.yumemi.android.codecheck.feature.top.repositorylist.viewmodel
 
 import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepository
 

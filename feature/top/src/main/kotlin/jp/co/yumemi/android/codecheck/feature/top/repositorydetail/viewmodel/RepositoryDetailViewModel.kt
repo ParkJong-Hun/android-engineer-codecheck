@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.codecheck.feature.top
+package jp.co.yumemi.android.codecheck.feature.top.repositorydetail.viewmodel
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

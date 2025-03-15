@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.codecheck.feature.top
+package jp.co.yumemi.android.codecheck.feature.top.repositorylist.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

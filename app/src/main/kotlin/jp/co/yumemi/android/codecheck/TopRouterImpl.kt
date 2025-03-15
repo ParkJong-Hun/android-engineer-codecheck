@@ -3,10 +3,10 @@ package jp.co.yumemi.android.codecheck
 import androidx.navigation.NavController
 import androidx.navigation.fragment.navArgs
 import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepository
-import jp.co.yumemi.android.codecheck.feature.top.RepositoryDetailFragment
+import jp.co.yumemi.android.codecheck.feature.top.repositorydetail.RepositoryDetailFragment
 import jp.co.yumemi.android.codecheck.feature.top.RepositoryDetailFragmentArgs
 import jp.co.yumemi.android.codecheck.feature.top.RepositoryListFragmentDirections
-import jp.co.yumemi.android.codecheck.feature.top.TopRouter
+import jp.co.yumemi.android.codecheck.feature.top.router.TopRouter
 
 class TopRouterImpl : TopRouter {
     override fun navigateToSearchHistory(navController: NavController) {
