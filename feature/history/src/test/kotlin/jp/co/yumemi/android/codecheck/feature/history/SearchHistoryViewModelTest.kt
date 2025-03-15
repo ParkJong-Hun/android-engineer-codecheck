@@ -81,11 +81,11 @@ class SearchHistoryViewModelTest {
     @Test
     fun `when OnClickHistory event is emitted, uiState should update with clicked history`() =
         runTest {
-            // Given
-            val history = mockHistories.first()
-            appStateFlow.value = AppState(histories = mockHistories)
-
             viewModel.uiState.test {
+                // Given
+                val history = mockHistories.first()
+                appStateFlow.value = AppState(histories = mockHistories)
+
                 // Initial state should be Idle with histories
                 val initialState = awaitItem()
                 assert(initialState is SearchHistoryUiState.Idle)
@@ -106,6 +106,7 @@ class SearchHistoryViewModelTest {
         viewModel.uiState.test {
             // Initial state
             val initialState = awaitItem()
+            assert(initialState is SearchHistoryUiState.Empty)
 
             // Update AppState with non-empty histories
             appStateFlow.value = AppState(histories = mockHistories)

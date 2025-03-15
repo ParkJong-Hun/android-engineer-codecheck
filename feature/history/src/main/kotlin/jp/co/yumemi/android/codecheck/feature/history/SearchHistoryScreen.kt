@@ -17,8 +17,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
@@ -26,59 +24,37 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import jp.co.yumemi.android.codecheck.domain.entity.History
 
 @Composable
 fun SearchHistoryScreen(
-    viewModel: SearchHistoryViewModel,
-    onClickSearchHistoryItem: (History) -> Unit,
+    uiState: SearchHistoryUiState,
+    onClickHistory: (History) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    LaunchedEffect(uiState) {
-        (uiState as? SearchHistoryUiState.Idle)?.let { idleState ->
-            val (clickedHistory, hasClickedHistory) = idleState.onClickedHistory
-            if (hasClickedHistory) onClickSearchHistoryItem(requireNotNull(clickedHistory))
-        }
-    }
     MaterialTheme {
         Surface(
             modifier = modifier,
             color = MaterialTheme.colorScheme.background
         ) {
-            SearchHistoryScreen(
-                uiState,
-                onClickHistory = {
-                    viewModel.uiEvent.tryEmit(SearchHistoryUiEvent.OnClickHistory(it))
+            Box(
+                modifier = modifier
+                    .fillMaxSize()
+                    .padding(16.dp),
+                contentAlignment = Alignment.Center,
+            ) {
+                when (uiState) {
+                    is SearchHistoryUiState.Idle -> {
+                        HistoryList(
+                            histories = uiState.histories,
+                            onClickHistory = onClickHistory,
+                        )
+                    }
+
+                    is SearchHistoryUiState.Empty -> {
+                        Text("it's empty")
+                    }
                 }
-            )
-        }
-    }
-}
-
-@Composable
-private fun SearchHistoryScreen(
-    uiState: SearchHistoryUiState,
-    onClickHistory: (History) -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    Box(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        contentAlignment = Alignment.Center,
-    ) {
-        when (uiState) {
-            is SearchHistoryUiState.Idle -> {
-                HistoryList(
-                    histories = uiState.histories,
-                    onClickHistory = onClickHistory,
-                )
-            }
-
-            is SearchHistoryUiState.Empty -> {
-                Text("it's empty")
             }
         }
     }
