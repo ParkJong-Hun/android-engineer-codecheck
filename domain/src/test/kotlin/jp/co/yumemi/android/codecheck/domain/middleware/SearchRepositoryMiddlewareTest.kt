@@ -4,7 +4,7 @@ package jp.co.yumemi.android.codecheck.domain.middleware
 
 import io.mockk.coEvery
 import io.mockk.mockk
-import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepositoryItemInfo
+import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepository
 import jp.co.yumemi.android.codecheck.domain.repository.GithubRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
@@ -74,8 +74,8 @@ class SearchRepositoryMiddlewareTest {
             watchersCount: Long = 100L,
             forksCount: Long = 200L,
             openIssuesCount: Long = 50L
-        ): SearchedRepositoryItemInfo {
-            return SearchedRepositoryItemInfo(
+        ): SearchedRepository {
+            return SearchedRepository(
                 name = name,
                 ownerIconUrl = ownerIconUrl,
                 language = language,

@@ -5,18 +5,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepositoryItemInfo
+import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepository
 import jp.co.yumemi.android.codecheck.feature.top.databinding.LayoutSearchedRepositoryBinding
 
 class RepositoryListAdapter(
     private val itemClickListener: OnItemClickListener,
-) : ListAdapter<SearchedRepositoryItemInfo, RepositoryListAdapter.ViewHolder>(
+) : ListAdapter<SearchedRepository, RepositoryListAdapter.ViewHolder>(
     RepositoryDiffCallback()
 ) {
     class ViewHolder(
         private val binding: LayoutSearchedRepositoryBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: SearchedRepositoryItemInfo, clickListener: OnItemClickListener) {
+        fun bind(item: SearchedRepository, clickListener: OnItemClickListener) {
             binding.repositoryNameView.text = item.name
             binding.root.setOnClickListener {
                 clickListener.itemClick(item)
@@ -35,7 +35,7 @@ class RepositoryListAdapter(
     }
 
     fun interface OnItemClickListener {
-        fun itemClick(searchedRepositoryItemInfo: SearchedRepositoryItemInfo)
+        fun itemClick(searchedRepositoryItemInfo: SearchedRepository)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -47,17 +47,17 @@ class RepositoryListAdapter(
         holder.bind(item, itemClickListener)
     }
 
-    private class RepositoryDiffCallback : DiffUtil.ItemCallback<SearchedRepositoryItemInfo>() {
+    private class RepositoryDiffCallback : DiffUtil.ItemCallback<SearchedRepository>() {
         override fun areItemsTheSame(
-            oldItem: SearchedRepositoryItemInfo,
-            newItem: SearchedRepositoryItemInfo
+            oldItem: SearchedRepository,
+            newItem: SearchedRepository
         ): Boolean {
             return oldItem.name == newItem.name
         }
 
         override fun areContentsTheSame(
-            oldItem: SearchedRepositoryItemInfo,
-            newItem: SearchedRepositoryItemInfo
+            oldItem: SearchedRepository,
+            newItem: SearchedRepository
         ): Boolean {
             return oldItem == newItem
         }

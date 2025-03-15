@@ -4,7 +4,7 @@ package jp.co.yumemi.android.codecheck.feature.top
 
 import io.mockk.coEvery
 import io.mockk.spyk
-import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepositoryItemInfo
+import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepository
 import jp.co.yumemi.android.codecheck.domain.middleware.SearchRepositoryIntent
 import jp.co.yumemi.android.codecheck.domain.middleware.SearchRepositoryState
 import jp.co.yumemi.android.codecheck.testing.domain.middlewaare.MockMiddleware
@@ -115,7 +115,7 @@ class RepositoryListViewModelTest {
     }
 
     companion object {
-        private val MOCK_REPOSITORY = SearchedRepositoryItemInfo(
+        private val MOCK_REPOSITORY = SearchedRepository(
             name = "kotlin/kotlin",
             ownerIconUrl = "https://avatar.url",
             language = "Kotlin",
