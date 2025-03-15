@@ -25,6 +25,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import jp.co.yumemi.android.codecheck.domain.entity.History
+import jp.co.yumemi.android.codecheck.feature.history.viewmodel.SearchHistoryUiState
 
 @Composable
 fun SearchHistoryScreen(

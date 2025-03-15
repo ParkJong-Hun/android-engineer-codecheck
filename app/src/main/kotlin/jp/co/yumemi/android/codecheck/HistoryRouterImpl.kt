@@ -2,7 +2,7 @@ package jp.co.yumemi.android.codecheck
 
 import androidx.navigation.NavController
 import jp.co.yumemi.android.codecheck.domain.entity.History
-import jp.co.yumemi.android.codecheck.feature.history.HistoryRouter
+import jp.co.yumemi.android.codecheck.feature.history.router.HistoryRouter
 import jp.co.yumemi.android.codecheck.feature.history.SearchHistoryFragmentDirections
 
 class HistoryRouterImpl : HistoryRouter {

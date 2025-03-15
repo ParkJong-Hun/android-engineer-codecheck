@@ -8,6 +8,9 @@ import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepository
 import jp.co.yumemi.android.codecheck.domain.middleware.AppIntent
 import jp.co.yumemi.android.codecheck.domain.middleware.AppState
 import jp.co.yumemi.android.codecheck.domain.middleware.core.Middleware
+import jp.co.yumemi.android.codecheck.feature.history.viewmodel.SearchHistoryUiEvent
+import jp.co.yumemi.android.codecheck.feature.history.viewmodel.SearchHistoryUiState
+import jp.co.yumemi.android.codecheck.feature.history.viewmodel.SearchHistoryViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow

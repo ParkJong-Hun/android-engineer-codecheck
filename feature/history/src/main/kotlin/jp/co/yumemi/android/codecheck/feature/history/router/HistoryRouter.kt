@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.codecheck.feature.history
+package jp.co.yumemi.android.codecheck.feature.history.router
 
 import androidx.navigation.NavController
 import jp.co.yumemi.android.codecheck.domain.entity.History

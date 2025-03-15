@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.codecheck.feature.history
+package jp.co.yumemi.android.codecheck.feature.history.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
