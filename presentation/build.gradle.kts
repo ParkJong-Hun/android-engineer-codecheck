@@ -12,10 +12,7 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-
-    // TODO: Jetpack Composeに移行完了したら削除する。
-    implementation("com.google.android.material:material:1.4.0")
-
+    implementation(libs.material)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)

@@ -5,27 +5,27 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepositoryItemInfo
 import jp.co.yumemi.android.codecheck.feature.top.databinding.FragmentRepositoryListBinding
 import jp.co.yumemi.android.codecheck.presentation.autoCleared
 import jp.co.yumemi.android.codecheck.presentation.extension.collectWithLifecycle
+import javax.inject.Inject
 
 /**
  * Githubリポジトリのリスト画面。
  */
 @AndroidEntryPoint
 class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
-    private val topViewModel by activityViewModels<TopViewModel>()
     private val viewModel by viewModels<RepositoryListViewModel>()
-
     private var binding: FragmentRepositoryListBinding by autoCleared()
     private lateinit var repositoryListAdapter: RepositoryListAdapter
+
+    @Inject
+    lateinit var topRouter: TopRouter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -34,6 +34,7 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
         setupRecyclerView()
         setupSearchInput()
         observeViewModelState()
+        setupGoHistoryButton()
     }
 
     private fun setupRecyclerView() {
@@ -42,7 +43,7 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
             DividerItemDecoration(requireContext(), linearLayoutManager.orientation)
 
         repositoryListAdapter = RepositoryListAdapter { searchedRepositoryItemInfo ->
-            navigateToRepositoryDetailFragment(searchedRepositoryItemInfo)
+            topRouter.navigateToRepositoryDetail(findNavController(), searchedRepositoryItemInfo)
         }
 
         binding.recyclerView.run {
@@ -65,6 +66,12 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
         }
     }
 
+    private fun setupGoHistoryButton() {
+        binding.goHistoryButton.setOnClickListener {
+            topRouter.navigateToSearchHistory(findNavController())
+        }
+    }
+
     private fun observeViewModelState() {
         viewModel.uiState.collectWithLifecycle(this) { state ->
             when (state) {
@@ -81,7 +88,6 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
                 is RepositoryListUiState.Success -> {
                     binding.progressBar.isVisible = false
                     binding.errorView.isVisible = false
-                    topViewModel.onSearched()
                     repositoryListAdapter.submitList(state.repositories)
                 }
 
@@ -98,11 +104,5 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
                 }
             }
         }
-    }
-
-    private fun navigateToRepositoryDetailFragment(searchedRepositoryItemInfo: SearchedRepositoryItemInfo) {
-        val action = RepositoryListFragmentDirections
-            .actionRepositoriesFragmentToRepositoryFragment(searchedRepositoryItemInfo)
-        findNavController().navigate(action)
     }
 }
