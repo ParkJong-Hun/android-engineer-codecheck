@@ -22,6 +22,15 @@ fun Project.configureAgpDefault() {
             testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         }
 
+        packagingOptions {
+            resources {
+                excludes.add("META-INF/LICENSE.md")
+                excludes.add("META-INF/LICENSE-notice.md")
+                excludes.add("META-INF/AL2.0")
+                excludes.add("META-INF/LGPL2.1")
+            }
+        }
+
         testOptions {
             unitTests {
                 isIncludeAndroidResources = true
@@ -42,6 +51,7 @@ fun Project.configureAgpApplicationCertainSetting() {
                     version("versionPatchName"),
                 ).joinToString(".")
             }
+            testInstrumentationRunner = "jp.co.yumemi.android.codecheck.SearchRepositoryTestRunner"
         }
         lint {
             checkDependencies = true

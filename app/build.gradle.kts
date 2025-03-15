@@ -44,6 +44,13 @@ dependencies {
     testImplementation(libs.mockk.agent)
     testImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.androidx.test)
+    androidTestImplementation(libs.androidx.test.runner)
+    androidTestImplementation(libs.androidx.test.rules)
     androidTestImplementation(libs.androidx.junit.ktx)
     androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.espresso.contrib)
+    androidTestImplementation(libs.androidx.navigation.testing)
+    androidTestImplementation(libs.hilt.android.testing)
+    androidTestImplementation(libs.hamcrest)
+    kspAndroidTest(libs.hilt.compiler)
 }
