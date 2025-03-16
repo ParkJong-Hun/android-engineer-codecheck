@@ -1,11 +1,19 @@
 <resources>
     <string name="searchInputText_hint">リポジトリを検索</string>
     <string name="written_language">Written in %s</string>
-    <string name="stars">%d stars</string>">
+    <string name="stars">%d stars</string>
     <string name="watchers">%d watchers</string>
     <string name="forks">%d forks</string>
     <string name="open_issues">%d open issues</string>
     <string name="error_icon_description">情報アイコン</string>
     <string name="no_results_found">検索結果がありません。他のキーワードをお試しください。</string>
     <string name="go_history">履歴</string>
+    <string name="repository_stats">リポジトリ統計</string>
+    <string name="stars_label">スター:</string>
+    <string name="watchers_label">ウォッチャー:</string>
+    <string name="forks_label">フォーク:</string>
+    <string name="open_issues_label">オープンイシュー:</string>
+    <string name="updated">%s に更新</string>
+    <string name="stars_count">★ %s</string>
+    <string name="repository_description">説明がありません</string>
 </resources>

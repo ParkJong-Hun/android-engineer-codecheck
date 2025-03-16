@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepository
+import jp.co.yumemi.android.codecheck.feature.top.R
 import jp.co.yumemi.android.codecheck.feature.top.databinding.LayoutSearchedRepositoryBinding
+import java.text.DecimalFormat
 
 class RepositoryListAdapter(
     private val itemClickListener: OnItemClickListener,
@@ -18,8 +20,38 @@ class RepositoryListAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: SearchedRepository, clickListener: OnItemClickListener) {
             binding.repositoryNameView.text = item.name
+
+            binding.repositoryDescriptionView.text =
+                binding.root.context.getString(R.string.repository_description)
+
+            if (item.language.isNotEmpty()) {
+                binding.languageIndicator.text = item.language
+                binding.languageIndicator.visibility = android.view.View.VISIBLE
+            } else {
+                binding.languageIndicator.visibility = android.view.View.GONE
+            }
+
+            val formattedStarsCount = formatStarCount(item.stargazersCount)
+            binding.starsIndicator.text =
+                binding.root.context.getString(R.string.stars_count, formattedStarsCount)
+
             binding.root.setOnClickListener {
                 clickListener.itemClick(item)
+            }
+        }
+
+        private fun formatStarCount(count: Long): String {
+            return when {
+                count < 1000 -> count.toString()
+                count < 10000 -> {
+                    val formatted = DecimalFormat("0.0").format(count / 1000.0)
+                    "${formatted}k"
+                }
+
+                else -> {
+                    val formatted = DecimalFormat("0.0").format(count / 1000.0)
+                    "${formatted}k"
+                }
             }
         }
 
