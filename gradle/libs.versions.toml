@@ -3,9 +3,9 @@
 targetSdk = "35"
 compileSdk = "35"
 minSdk = "26"
-versionCode = "2"
+versionCode = "3"
 versionMajorName = "0"
-versionMinorName = "1"
+versionMinorName = "2"
 versionPatchName = "0"
 
 # Library, Plugin Version
