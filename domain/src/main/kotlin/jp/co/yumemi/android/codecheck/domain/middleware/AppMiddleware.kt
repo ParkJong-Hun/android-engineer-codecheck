@@ -10,7 +10,6 @@ import jp.co.yumemi.android.codecheck.domain.middleware.core.redux.Reducer
 import jp.co.yumemi.android.codecheck.domain.middleware.core.redux.Store
 
 data class AppState(
-    // TODO: ImmutableListにする
     val histories: Set<History>
 ) : BusinessState
 
