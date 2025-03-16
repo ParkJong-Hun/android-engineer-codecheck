@@ -14,11 +14,11 @@ sealed interface RepositoryListUiState : UiState {
         data class Success(
             val onClickedSearchedRepository: Pair<SearchedRepository?, Boolean> = null to false,
             override val onClickedGoHistory: Boolean = false,
-            val repositories: List<SearchedRepository>
+            val repositories: List<SearchedRepository>,
         ) : Stable
 
         data class Empty(
-            override val onClickedGoHistory: Boolean = false
+            override val onClickedGoHistory: Boolean = false,
         ) : Stable
     }
 }

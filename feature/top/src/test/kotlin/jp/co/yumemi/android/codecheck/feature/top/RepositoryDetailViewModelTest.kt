@@ -1,5 +1,3 @@
-@file:Suppress("ForbiddenComment", "UnusedPrivateProperty")
-
 package jp.co.yumemi.android.codecheck.feature.top
 
 import io.mockk.every
@@ -113,7 +111,7 @@ class RepositoryDetailViewModelTest {
             stargazersCount = 1000,
             watchersCount = 100,
             forksCount = 200,
-            openIssuesCount = 50
+            openIssuesCount = 50,
         )
     }
 }

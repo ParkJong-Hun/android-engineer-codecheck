@@ -47,7 +47,7 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
 
         repositoryListAdapter = RepositoryListAdapter { searchedRepositoryItemInfo ->
             viewModel.uiEvent.tryEmit(
-                RepositoryListUiEvent.OnClickSearchedRepository(searchedRepositoryItemInfo)
+                RepositoryListUiEvent.OnClickSearchedRepository(searchedRepositoryItemInfo),
             )
         }
 

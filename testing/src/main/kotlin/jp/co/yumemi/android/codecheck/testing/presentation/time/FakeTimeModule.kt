@@ -6,7 +6,6 @@ import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
 import jp.co.yumemi.android.codecheck.presentation.time.NowProvider
 import jp.co.yumemi.android.codecheck.presentation.time.TimeModule
-import jp.co.yumemi.android.codecheck.testing.presentation.time.FakeNowProvider
 import javax.inject.Singleton
 
 @TestInstallIn(

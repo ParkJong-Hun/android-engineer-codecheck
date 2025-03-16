@@ -1,4 +1,3 @@
-@file:Suppress("UnusedPrivateMember", "FunctionNaming")
 package jp.co.yumemi.android.codecheck.presentation.component.organism
 
 import android.view.SoundEffectConstants
@@ -17,24 +16,25 @@ import androidx.compose.ui.unit.dp
 import jp.co.yumemi.android.codecheck.presentation.AppTheme
 
 @OptIn(ExperimentalMaterialApi::class)
+@Suppress("ComposableParamOrder")
 @Composable
 fun AppListItemCard(
-    modifier: Modifier = Modifier,
     onClick: () -> Unit,
-    content: @Composable () -> Unit
+    modifier: Modifier = Modifier,
+    content: @Composable () -> Unit,
 ) {
     val view = LocalView.current
     Card(
         modifier = modifier.padding(
             horizontal = AppTheme.dimens.spacingS,
-            vertical = AppTheme.dimens.spacingXS
+            vertical = AppTheme.dimens.spacingXS,
         ),
         elevation = AppTheme.dimens.elevationSmall,
         shape = RoundedCornerShape(AppTheme.dimens.cornerRadiusMedium),
         onClick = {
             view.playSoundEffect(SoundEffectConstants.CLICK)
             onClick()
-        }
+        },
     ) {
         content()
     }
@@ -43,7 +43,7 @@ fun AppListItemCard(
 @Composable
 fun AppSearchCard(
     modifier: Modifier = Modifier,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     Card(
         modifier = modifier,

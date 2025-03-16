@@ -131,9 +131,9 @@ class SearchHistoryViewModelTest {
                     stargazersCount = 12500,
                     watchersCount = 450,
                     forksCount = 1800,
-                    openIssuesCount = 120
-                )
-            )
+                    openIssuesCount = 120,
+                ),
+            ),
         )
     }
 }

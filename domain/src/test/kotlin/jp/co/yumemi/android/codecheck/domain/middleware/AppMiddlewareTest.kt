@@ -1,5 +1,3 @@
-@file:Suppress("LongParameterList", "MaxLineLength")
-
 package jp.co.yumemi.android.codecheck.domain.middleware
 
 import jp.co.yumemi.android.codecheck.domain.entity.History
@@ -130,12 +128,12 @@ class AppMiddlewareTest {
             val firstHistory = createMockHistory(
                 id = "duplicate-id",
                 targetName,
-                dateTime = LocalDateTime.of(2025, 3, 15, 13, 49, 45)
+                dateTime = LocalDateTime.of(2025, 3, 15, 13, 49, 45),
             )
             val secondHistory = createMockHistory(
                 id = "duplicate-id2",
                 targetName,
-                dateTime = LocalDateTime.of(2025, 3, 15, 13, 49, 50)
+                dateTime = LocalDateTime.of(2025, 3, 15, 13, 49, 50),
             )
 
             // When
@@ -159,7 +157,7 @@ class AppMiddlewareTest {
         private fun createMockHistory(
             id: String = "history-id",
             name: String = "repository-name",
-            dateTime: LocalDateTime = LocalDateTime.now()
+            dateTime: LocalDateTime = LocalDateTime.now(),
         ): History {
             return History(
                 id = id,
@@ -171,8 +169,8 @@ class AppMiddlewareTest {
                     stargazersCount = 1000L,
                     watchersCount = 100L,
                     forksCount = 200L,
-                    openIssuesCount = 50L
-                )
+                    openIssuesCount = 50L,
+                ),
             )
         }
     }

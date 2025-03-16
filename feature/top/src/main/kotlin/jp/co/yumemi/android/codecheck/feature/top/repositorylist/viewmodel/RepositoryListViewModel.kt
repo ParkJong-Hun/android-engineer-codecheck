@@ -19,7 +19,7 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class RepositoryListViewModel @Inject constructor(
-    private val searchRepositoryMiddleware: Middleware<SearchRepositoryState, SearchRepositoryIntent>
+    private val searchRepositoryMiddleware: Middleware<SearchRepositoryState, SearchRepositoryIntent>,
 ) : ViewModel(), UdfViewModelInterface<RepositoryListUiState, RepositoryListUiEvent> {
 
     private val _uiState = MutableStateFlow<RepositoryListUiState>(RepositoryListUiState.None)
@@ -64,7 +64,6 @@ class RepositoryListViewModel @Inject constructor(
         }
     }
 
-    @Suppress("LongMethod")
     private fun collectUiEvent() {
         viewModelScope.launch {
             uiEvent.collect { uiEvent ->
@@ -73,7 +72,7 @@ class RepositoryListViewModel @Inject constructor(
                         val query = uiEvent.inputString.toString().trim()
                         if (query.isNotEmpty()) {
                             searchRepositoryMiddleware.conveyIntention(
-                                SearchRepositoryIntent.Search(query)
+                                SearchRepositoryIntent.Search(query),
                             )
                         }
                     }
@@ -82,7 +81,7 @@ class RepositoryListViewModel @Inject constructor(
                         if (uiState.value is RepositoryListUiState.Stable.Success) {
                             _uiState.update {
                                 (it as RepositoryListUiState.Stable.Success).copy(
-                                    onClickedSearchedRepository = uiEvent.searchedRepository to true
+                                    onClickedSearchedRepository = uiEvent.searchedRepository to true,
                                 )
                             }
                         }
@@ -92,7 +91,7 @@ class RepositoryListViewModel @Inject constructor(
                         if (uiState.value is RepositoryListUiState.Stable.Success) {
                             _uiState.update {
                                 (it as RepositoryListUiState.Stable.Success).copy(
-                                    onClickedSearchedRepository = null to false
+                                    onClickedSearchedRepository = null to false,
                                 )
                             }
                         }
@@ -103,7 +102,7 @@ class RepositoryListViewModel @Inject constructor(
                             is RepositoryListUiState.Stable.Success -> {
                                 _uiState.update {
                                     (it as RepositoryListUiState.Stable.Success).copy(
-                                        onClickedGoHistory = true
+                                        onClickedGoHistory = true,
                                     )
                                 }
                             }
@@ -111,7 +110,7 @@ class RepositoryListViewModel @Inject constructor(
                             is RepositoryListUiState.Stable.Empty -> {
                                 _uiState.update {
                                     (it as RepositoryListUiState.Stable.Empty).copy(
-                                        onClickedGoHistory = true
+                                        onClickedGoHistory = true,
                                     )
                                 }
                             }
@@ -125,7 +124,7 @@ class RepositoryListViewModel @Inject constructor(
                     is RepositoryListUiEvent.FinishNavigateToSearchHistory -> {
                         _uiState.update {
                             (it as RepositoryListUiState.Stable.Success).copy(
-                                onClickedGoHistory = false
+                                onClickedGoHistory = false,
                             )
                         }
                     }

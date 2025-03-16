@@ -6,14 +6,14 @@ import androidx.navigation.NavDirections
 
 fun NavController.navigateSafely(
     navDirectionsMasterFragmentId: Int,
-    navDirections: NavDirections
+    navDirections: NavDirections,
 ) {
     if (currentDestination?.id == navDirectionsMasterFragmentId) {
         navigate(navDirections)
     } else {
         Log.w(
             "NavController",
-            "cannot navigate to $navDirections from current destination $currentDestination"
+            "cannot navigate to $navDirections from current destination $currentDestination",
         )
     }
 }

@@ -19,7 +19,7 @@ class TopRouterImpl : TopRouter {
 
     override fun navigateToRepositoryDetail(
         navController: NavController,
-        item: SearchedRepository
+        item: SearchedRepository,
     ) {
         val action = RepositoryListFragmentDirections
             .actionRepositoryListFragmentToRepositoryDetailFragment(item)

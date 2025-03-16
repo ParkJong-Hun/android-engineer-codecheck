@@ -1,5 +1,3 @@
-@file:Suppress("ForbiddenComment")
-
 package jp.co.yumemi.android.codecheck.domain.middleware
 
 import jp.co.yumemi.android.codecheck.domain.entity.History
@@ -10,7 +8,7 @@ import jp.co.yumemi.android.codecheck.domain.middleware.core.redux.Reducer
 import jp.co.yumemi.android.codecheck.domain.middleware.core.redux.Store
 
 data class AppState(
-    val histories: Set<History>
+    val histories: Set<History>,
 ) : BusinessState
 
 sealed interface AppIntent : BusinessIntent {
@@ -30,7 +28,7 @@ internal class AppReducer : Reducer<AppState, AppIntent> {
                         currentState.histories + intent.history
                     } else {
                         currentState.histories.minus(existHistoryOrNull) + intent.history
-                    }
+                    },
                 )
             }
         }

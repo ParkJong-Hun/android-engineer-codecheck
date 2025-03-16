@@ -19,10 +19,12 @@ object NetworkModule {
     fun provideHttpClient(): HttpClient {
         return HttpClient(OkHttp) {
             install(ContentNegotiation) {
-                json(Json {
-                    ignoreUnknownKeys = true
-                    coerceInputValues = true
-                })
+                json(
+                    Json {
+                        ignoreUnknownKeys = true
+                        coerceInputValues = true
+                    },
+                )
             }
         }
     }

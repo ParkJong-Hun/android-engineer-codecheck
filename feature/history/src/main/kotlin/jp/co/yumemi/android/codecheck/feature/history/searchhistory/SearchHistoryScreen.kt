@@ -1,6 +1,3 @@
-// TODO: detektにComposeのための設定を入れる。
-@file:Suppress("FunctionNaming", "ForbiddenComment")
-
 package jp.co.yumemi.android.codecheck.feature.history.searchhistory
 
 import android.content.res.Configuration
@@ -38,7 +35,7 @@ fun SearchHistoryScreen(
     AppTheme {
         Surface(
             modifier = modifier,
-            color = AppTheme.colors.background
+            color = AppTheme.colors.background,
         ) {
             Box(
                 modifier = Modifier
@@ -66,15 +63,15 @@ fun SearchHistoryScreen(
 fun HistoryList(
     histories: List<History>,
     onClickHistory: (History) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     LazyColumn(
         modifier = modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.spacedBy(AppTheme.dimens.spacingS)
+        verticalArrangement = Arrangement.spacedBy(AppTheme.dimens.spacingS),
     ) {
         items(
             items = histories,
-            key = { history -> history.id }
+            key = { history -> history.id },
         ) { history ->
             HistoryItem(
                 history = history,
@@ -92,15 +89,15 @@ fun HistoryItem(
 ) {
     AppListItemCard(
         modifier = modifier,
-        onClick = { onClickHistory(history) }
+        onClick = { onClickHistory(history) },
     ) {
         Column(
-            modifier = Modifier.padding(AppTheme.dimens.paddingCard)
+            modifier = Modifier.padding(AppTheme.dimens.paddingCard),
         ) {
             Subtitle2(
                 text = history.openedSearchedRepository.name,
                 color = colorResource(id = jp.co.yumemi.android.codecheck.presentation.R.color.black_light),
-                modifier = Modifier.padding(bottom = AppTheme.dimens.spacingXS)
+                modifier = Modifier.padding(bottom = AppTheme.dimens.spacingXS),
             )
 
             if (history.openedSearchedRepository.language.isNotEmpty() ||
@@ -115,13 +112,13 @@ fun HistoryItem(
 
 @Preview
 @Composable
-fun SearchHistoryScreenPreview(
-    @PreviewParameter(SearchHistoryUiStateProvider::class) uiState: SearchHistoryUiState
+private fun SearchHistoryScreenPreview(
+    @PreviewParameter(SearchHistoryUiStateProvider::class) uiState: SearchHistoryUiState,
 ) {
     AppTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
-            color = AppTheme.colors.background
+            color = AppTheme.colors.background,
         ) {
             SearchHistoryScreen(
                 uiState = uiState,
@@ -135,8 +132,8 @@ fun SearchHistoryScreenPreview(
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Composable
-fun HistoryItemPreview(
-    @PreviewParameter(HistoryProvider::class) history: History
+private fun HistoryItemPreview(
+    @PreviewParameter(HistoryProvider::class) history: History,
 ) {
     AppTheme {
         Surface {
