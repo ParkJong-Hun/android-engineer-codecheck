@@ -4,7 +4,7 @@
 
 本アプリは GitHub のリポジトリを検索するアプリです。
 
-<video src="https://github.com/user-attachments/assets/71cd5a49-9f63-4d4b-8e6f-ac7f961ffeaf" width="320" />
+<video src="https://github.com/user-attachments/assets/71cd5a49-9f63-4d4b-8e6f-ac7f961ffeaf" width="320"></video>
 
 ### 環境
 
