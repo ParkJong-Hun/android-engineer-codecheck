@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import jp.co.yumemi.android.codecheck.domain.entity.History
 import jp.co.yumemi.android.codecheck.feature.history.R
 import jp.co.yumemi.android.codecheck.feature.history.viewmodel.SearchHistoryUiState
+import jp.co.yumemi.android.codecheck.feature.history.viewmodel.getFormattedDetails
 import jp.co.yumemi.android.codecheck.presentation.AppTheme
 import jp.co.yumemi.android.codecheck.presentation.component.atom.Body1
 import jp.co.yumemi.android.codecheck.presentation.component.atom.Caption
@@ -102,28 +103,11 @@ fun HistoryItem(
                 modifier = Modifier.padding(bottom = AppTheme.dimens.spacingXS)
             )
 
-            if (!history.openedSearchedRepository.language.isNullOrEmpty() ||
+            if (history.openedSearchedRepository.language.isNotEmpty() ||
                 history.openedSearchedRepository.stargazersCount > 0
             ) {
-                Caption(
-                    text = buildString {
-                        if (!history.openedSearchedRepository.language.isNullOrEmpty()) {
-                            append(history.openedSearchedRepository.language)
-                        }
-
-                        if (history.openedSearchedRepository.stargazersCount > 0) {
-                            if (this.isNotEmpty()) append(" • ")
-                            append("★ ")
-                            if (history.openedSearchedRepository.stargazersCount < 1000) {
-                                append(history.openedSearchedRepository.stargazersCount)
-                            } else {
-                                val formatted =
-                                    "%.1f".format(history.openedSearchedRepository.stargazersCount / 1000.0)
-                                append("${formatted}k")
-                            }
-                        }
-                    }
-                )
+                // FIXME: パーフォマンスのためにUI側でやらなくても良い設計に修正する必要がある。
+                Caption(text = history.getFormattedDetails())
             }
         }
     }

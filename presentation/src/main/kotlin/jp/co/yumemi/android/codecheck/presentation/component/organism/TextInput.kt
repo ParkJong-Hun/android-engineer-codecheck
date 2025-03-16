@@ -1,3 +1,4 @@
+@file:Suppress("LongParameterList", "FunctionNaming")
 package jp.co.yumemi.android.codecheck.presentation.component.organism
 
 import androidx.compose.foundation.layout.defaultMinSize

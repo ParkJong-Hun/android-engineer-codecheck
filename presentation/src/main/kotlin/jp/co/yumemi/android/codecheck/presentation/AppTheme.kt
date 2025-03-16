@@ -1,3 +1,5 @@
+@file:Suppress("FunctionNaming", "MaxLineLength")
+
 package jp.co.yumemi.android.codecheck.presentation
 
 import androidx.compose.foundation.isSystemInDarkTheme

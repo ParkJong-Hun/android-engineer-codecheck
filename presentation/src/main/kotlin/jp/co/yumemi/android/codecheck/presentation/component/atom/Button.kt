@@ -1,3 +1,4 @@
+@file:Suppress("FunctionNaming", "UnusedPrivateMember")
 package jp.co.yumemi.android.codecheck.presentation.component.atom
 
 import androidx.compose.foundation.layout.PaddingValues

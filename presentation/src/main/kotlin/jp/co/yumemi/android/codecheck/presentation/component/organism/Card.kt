@@ -1,3 +1,4 @@
+@file:Suppress("UnusedPrivateMember", "FunctionNaming")
 package jp.co.yumemi.android.codecheck.presentation.component.organism
 
 import android.view.SoundEffectConstants

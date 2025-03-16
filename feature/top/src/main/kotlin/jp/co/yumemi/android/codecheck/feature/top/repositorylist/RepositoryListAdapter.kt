@@ -1,3 +1,4 @@
+@file:Suppress("MagicNumber")
 package jp.co.yumemi.android.codecheck.feature.top.repositorylist
 
 import android.view.LayoutInflater
