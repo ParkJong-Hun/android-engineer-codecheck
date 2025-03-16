@@ -59,10 +59,10 @@ class RepositoryDetailFragment : Fragment(R.layout.fragment_repository_detail) {
             ownerIconView.load(repository.ownerIconUrl)
             nameView.text = repository.name
             languageView.text = getString(R.string.written_language, repository.language)
-            starsView.text = getString(R.string.stars, repository.stargazersCount)
             watchersView.text = getString(R.string.watchers, repository.watchersCount)
             forksView.text = getString(R.string.forks, repository.forksCount)
             openIssuesView.text = getString(R.string.open_issues, repository.openIssuesCount)
+            starsView.text = getString(R.string.stars, repository.stargazersCount)
         }
     }
 }
