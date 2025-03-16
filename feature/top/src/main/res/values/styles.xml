@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Widget.AndroidEngineerCodeCheck.Toolbar" parent="Widget.MaterialComponents.Toolbar">
-        <item name="android:theme">?attr/actionBarTheme</item>
-        <item name="android:background">@color/white_dark</item>
-        <item name="titleTextAppearance">
-            @style/TextAppearance.AndroidEngineerCodeCheck.Toolbar.Title
-        </item>
-    </style>
-
-    <style name="TextAppearance.AndroidEngineerCodeCheck.Toolbar.Title" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textSize">18sp</item>
+    <style name="RoundedImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
     </style>
 </resources>
