@@ -26,7 +26,7 @@ class FakeNowProvider : NowProvider {
             16,
             36,
             22,
-            0
+            0,
         )
         val fakeLocalDateNow = fakeLocalDateTimeNow.toLocalDate()
         val fakeLocalTimeNow = fakeLocalDateTimeNow.toLocalTime()

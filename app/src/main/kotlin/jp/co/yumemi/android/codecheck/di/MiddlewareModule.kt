@@ -19,7 +19,7 @@ object MiddlewareModule {
     ): Middleware<SearchRepositoryState, SearchRepositoryIntent> {
         return searchRepositoryMiddleware(
             initialState = SearchRepositoryState.None,
-            githubRepository = githubRepository
+            githubRepository = githubRepository,
         )
     }
 }

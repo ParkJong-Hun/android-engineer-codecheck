@@ -38,3 +38,9 @@ fun DependencyHandlerScope.ksp(
 ) {
     add("ksp", artifact)
 }
+
+fun DependencyHandlerScope.detektPlugins(
+    artifact: MinimalExternalModuleDependency,
+) {
+    add("detektPlugins", artifact)
+}

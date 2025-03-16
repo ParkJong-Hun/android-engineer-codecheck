@@ -1,4 +1,3 @@
-@file:Suppress("LongParameterList", "FunctionNaming")
 package jp.co.yumemi.android.codecheck.presentation.component.organism
 
 import androidx.compose.foundation.layout.defaultMinSize
@@ -22,7 +21,7 @@ fun AppSearchField(
     modifier: Modifier = Modifier,
     placeholder: String = "",
     leadingIcon: @Composable (() -> Unit)? = null,
-    trailingIcon: @Composable (() -> Unit)? = null
+    trailingIcon: @Composable (() -> Unit)? = null,
 ) {
     TextField(
         value = value,
@@ -33,7 +32,7 @@ fun AppSearchField(
         placeholder = {
             Text(
                 text = placeholder,
-                style = AppTheme.typography.body2.copy(color = colorResource(id = R.color.gray_light))
+                style = AppTheme.typography.body2.copy(color = colorResource(id = R.color.gray_light)),
             )
         },
         textStyle = AppTheme.typography.body2,
@@ -45,20 +44,20 @@ fun AppSearchField(
             disabledLabelColor = Color.Transparent,
             cursorColor = colorResource(id = R.color.blue_normal),
             focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent
+            unfocusedIndicatorColor = Color.Transparent,
         ),
-        singleLine = true
+        singleLine = true,
     )
 }
 
 @Preview
 @Composable
-fun AppSearchFieldPreview() {
+private fun AppSearchFieldPreview() {
     AppTheme {
         Surface {
             AppSearchField(
                 value = "",
-                onValueChange = {}
+                onValueChange = {},
             )
         }
     }

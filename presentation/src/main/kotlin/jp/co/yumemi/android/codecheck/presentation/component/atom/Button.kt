@@ -1,4 +1,3 @@
-@file:Suppress("FunctionNaming", "UnusedPrivateMember")
 package jp.co.yumemi.android.codecheck.presentation.component.atom
 
 import androidx.compose.foundation.layout.PaddingValues
@@ -17,7 +16,7 @@ fun AppButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    enabled: Boolean = true
+    enabled: Boolean = true,
 ) {
     Button(
         onClick = onClick,
@@ -26,12 +25,12 @@ fun AppButton(
         shape = RoundedCornerShape(AppTheme.dimens.cornerRadiusMedium),
         contentPadding = PaddingValues(
             horizontal = AppTheme.dimens.paddingButton,
-            vertical = AppTheme.dimens.spacingS
-        )
+            vertical = AppTheme.dimens.spacingS,
+        ),
     ) {
         Text(
             text = text,
-            style = AppTheme.typography.button
+            style = AppTheme.typography.button,
         )
     }
 }

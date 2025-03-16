@@ -1,4 +1,5 @@
-@file:Suppress("TooManyFunctions", "UnusedPrivateMember", "FunctionNaming")
+@file:Suppress("TooManyFunctions")
+
 package jp.co.yumemi.android.codecheck.presentation.component.atom
 
 import androidx.compose.foundation.layout.Column
@@ -17,13 +18,13 @@ import jp.co.yumemi.android.codecheck.presentation.AppTheme
 fun Headline1(
     text: String,
     modifier: Modifier = Modifier,
-    textAlign: TextAlign? = null
+    textAlign: TextAlign? = null,
 ) {
     Text(
         text = text,
         style = AppTheme.typography.headline1,
         modifier = modifier,
-        textAlign = textAlign
+        textAlign = textAlign,
     )
 }
 
@@ -31,13 +32,13 @@ fun Headline1(
 fun Headline2(
     text: String,
     modifier: Modifier = Modifier,
-    textAlign: TextAlign? = null
+    textAlign: TextAlign? = null,
 ) {
     Text(
         text = text,
         style = AppTheme.typography.headline2,
         modifier = modifier,
-        textAlign = textAlign
+        textAlign = textAlign,
     )
 }
 
@@ -45,13 +46,13 @@ fun Headline2(
 fun Headline3(
     text: String,
     modifier: Modifier = Modifier,
-    textAlign: TextAlign? = null
+    textAlign: TextAlign? = null,
 ) {
     Text(
         text = text,
         style = AppTheme.typography.headline3,
         modifier = modifier,
-        textAlign = textAlign
+        textAlign = textAlign,
     )
 }
 
@@ -59,13 +60,13 @@ fun Headline3(
 fun Subtitle1(
     text: String,
     modifier: Modifier = Modifier,
-    textAlign: TextAlign? = null
+    textAlign: TextAlign? = null,
 ) {
     Text(
         text = text,
         style = AppTheme.typography.subtitle1,
         modifier = modifier,
-        textAlign = textAlign
+        textAlign = textAlign,
     )
 }
 
@@ -81,7 +82,7 @@ fun Subtitle2(
         style = AppTheme.typography.subtitle2,
         color = color ?: AppTheme.typography.subtitle2.color,
         modifier = modifier,
-        textAlign = textAlign
+        textAlign = textAlign,
     )
 }
 
@@ -89,13 +90,13 @@ fun Subtitle2(
 fun Body1(
     text: String,
     modifier: Modifier = Modifier,
-    textAlign: TextAlign? = null
+    textAlign: TextAlign? = null,
 ) {
     Text(
         text = text,
         style = AppTheme.typography.body1,
         modifier = modifier,
-        textAlign = textAlign
+        textAlign = textAlign,
     )
 }
 
@@ -103,13 +104,13 @@ fun Body1(
 fun Body2(
     text: String,
     modifier: Modifier = Modifier,
-    textAlign: TextAlign? = null
+    textAlign: TextAlign? = null,
 ) {
     Text(
         text = text,
         style = AppTheme.typography.body2,
         modifier = modifier,
-        textAlign = textAlign
+        textAlign = textAlign,
     )
 }
 
@@ -117,13 +118,13 @@ fun Body2(
 fun Caption(
     text: String,
     modifier: Modifier = Modifier,
-    textAlign: TextAlign? = null
+    textAlign: TextAlign? = null,
 ) {
     Text(
         text = text,
         style = AppTheme.typography.caption,
         modifier = modifier,
-        textAlign = textAlign
+        textAlign = textAlign,
     )
 }
 

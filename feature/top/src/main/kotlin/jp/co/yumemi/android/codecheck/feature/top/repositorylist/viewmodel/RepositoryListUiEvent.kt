@@ -7,7 +7,7 @@ sealed interface RepositoryListUiEvent : UiEvent {
     data class OnSearchClick(val inputString: CharSequence) : RepositoryListUiEvent
     data object OnClickGoHistory : RepositoryListUiEvent
     data class OnClickSearchedRepository(
-        val searchedRepository: SearchedRepository
+        val searchedRepository: SearchedRepository,
     ) : RepositoryListUiEvent
 
     data object FinishNavigateToSearchHistory : RepositoryListUiEvent

@@ -62,7 +62,7 @@ androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling
 androidx-compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose" }
 androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "compose" }
 androidx-compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
-androidx-compose-material = { module = "androidx.compose.material:material", version = "1.7.8"}
+androidx-compose-material = { module = "androidx.compose.material:material", version = "1.7.8" }
 
 # Google
 material = { module = "com.google.android.material:material", version = "1.12.0" }
@@ -101,6 +101,10 @@ turbine = { module = "app.cash.turbine:turbine", version = "1.2.0" }
 
 # Hamcrest
 hamcrest = { module = "org.hamcrest:hamcrest", version = "3.0" }
+
+# Detket
+detekt-formatting-rules = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
+detekt-compose-rules = { module = "io.nlopez.compose.rules:detekt", version = "0.3.21" }
 
 [plugins]
 agp_application = { id = "com.android.application", version.ref = "agp" }

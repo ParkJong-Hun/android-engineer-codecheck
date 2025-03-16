@@ -9,7 +9,7 @@ data class GithubSearchResponse(
     val totalCount: Int,
     @SerialName("incomplete_results")
     val incompleteResults: Boolean,
-    val items: List<GithubRepositoryItem>
+    val items: List<GithubRepositoryItem>,
 )
 
 @Serializable
@@ -27,7 +27,7 @@ data class GithubRepositoryItem(
     @SerialName("forks_count")
     val forksCount: Long,
     @SerialName("open_issues_count")
-    val openIssuesCount: Long
+    val openIssuesCount: Long,
 )
 
 @Serializable
@@ -35,5 +35,5 @@ data class GithubOwner(
     val id: Long,
     val login: String,
     @SerialName("avatar_url")
-    val avatarUrl: String
+    val avatarUrl: String,
 )

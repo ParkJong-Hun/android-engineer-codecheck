@@ -1,5 +1,3 @@
-@file:Suppress("FunctionNaming", "MaxLineLength")
-
 package jp.co.yumemi.android.codecheck.presentation
 
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -42,34 +40,80 @@ fun getColors(darkTheme: Boolean): Colors {
 }
 
 class AppDimensions {
-    val spacingXS: Dp @Composable @ReadOnlyComposable get() = dimensionResource(id = R.dimen.spacing_xs)
-    val spacingS: Dp @Composable @ReadOnlyComposable get() = dimensionResource(id = R.dimen.spacing_s)
-    val spacingM: Dp @Composable @ReadOnlyComposable get() = dimensionResource(id = R.dimen.spacing_m)
-    val spacingL: Dp @Composable @ReadOnlyComposable get() = dimensionResource(id = R.dimen.spacing_l)
-    val spacingXL: Dp @Composable @ReadOnlyComposable get() = dimensionResource(id = R.dimen.spacing_xl)
-    val spacingXXL: Dp @Composable @ReadOnlyComposable get() = dimensionResource(id = R.dimen.spacing_xxl)
+    val spacingXS: Dp
+        @Composable @ReadOnlyComposable
+        get() = dimensionResource(id = R.dimen.spacing_xs)
+    val spacingS: Dp
+        @Composable @ReadOnlyComposable
+        get() = dimensionResource(id = R.dimen.spacing_s)
+    val spacingM: Dp
+        @Composable @ReadOnlyComposable
+        get() = dimensionResource(id = R.dimen.spacing_m)
+    val spacingL: Dp
+        @Composable @ReadOnlyComposable
+        get() = dimensionResource(id = R.dimen.spacing_l)
+    val spacingXL: Dp
+        @Composable @ReadOnlyComposable
+        get() = dimensionResource(id = R.dimen.spacing_xl)
+    val spacingXXL: Dp
+        @Composable @ReadOnlyComposable
+        get() = dimensionResource(id = R.dimen.spacing_xxl)
 
-    val paddingButton: Dp @Composable @ReadOnlyComposable get() = dimensionResource(id = R.dimen.padding_button)
-    val paddingCard: Dp @Composable @ReadOnlyComposable get() = dimensionResource(id = R.dimen.padding_card)
-    val paddingInput: Dp @Composable @ReadOnlyComposable get() = dimensionResource(id = R.dimen.padding_input)
+    val paddingButton: Dp
+        @Composable @ReadOnlyComposable
+        get() = dimensionResource(id = R.dimen.padding_button)
+    val paddingCard: Dp
+        @Composable @ReadOnlyComposable
+        get() = dimensionResource(id = R.dimen.padding_card)
+    val paddingInput: Dp
+        @Composable @ReadOnlyComposable
+        get() = dimensionResource(id = R.dimen.padding_input)
 
-    val marginBetweenItems: Dp @Composable @ReadOnlyComposable get() = dimensionResource(id = R.dimen.margin_between_items)
-    val marginScreenHorizontal: Dp @Composable @ReadOnlyComposable get() = dimensionResource(id = R.dimen.margin_screen_horizontal)
-    val marginScreenVertical: Dp @Composable @ReadOnlyComposable get() = dimensionResource(id = R.dimen.margin_screen_vertical)
+    val marginBetweenItems: Dp
+        @Composable @ReadOnlyComposable
+        get() = dimensionResource(id = R.dimen.margin_between_items)
+    val marginScreenHorizontal: Dp
+        @Composable @ReadOnlyComposable
+        get() = dimensionResource(id = R.dimen.margin_screen_horizontal)
+    val marginScreenVertical: Dp
+        @Composable @ReadOnlyComposable
+        get() = dimensionResource(id = R.dimen.margin_screen_vertical)
 
-    val buttonHeight: Dp @Composable @ReadOnlyComposable get() = dimensionResource(id = R.dimen.button_height)
-    val inputHeight: Dp @Composable @ReadOnlyComposable get() = dimensionResource(id = R.dimen.input_height)
-    val iconSizeSmall: Dp @Composable @ReadOnlyComposable get() = dimensionResource(id = R.dimen.icon_size_small)
-    val iconSizeMedium: Dp @Composable @ReadOnlyComposable get() = dimensionResource(id = R.dimen.icon_size_medium)
-    val iconSizeLarge: Dp @Composable @ReadOnlyComposable get() = dimensionResource(id = R.dimen.icon_size_large)
+    val buttonHeight: Dp
+        @Composable @ReadOnlyComposable
+        get() = dimensionResource(id = R.dimen.button_height)
+    val inputHeight: Dp
+        @Composable @ReadOnlyComposable
+        get() = dimensionResource(id = R.dimen.input_height)
+    val iconSizeSmall: Dp
+        @Composable @ReadOnlyComposable
+        get() = dimensionResource(id = R.dimen.icon_size_small)
+    val iconSizeMedium: Dp
+        @Composable @ReadOnlyComposable
+        get() = dimensionResource(id = R.dimen.icon_size_medium)
+    val iconSizeLarge: Dp
+        @Composable @ReadOnlyComposable
+        get() = dimensionResource(id = R.dimen.icon_size_large)
 
-    val cornerRadiusSmall: Dp @Composable @ReadOnlyComposable get() = dimensionResource(id = R.dimen.corner_radius_small)
-    val cornerRadiusMedium: Dp @Composable @ReadOnlyComposable get() = dimensionResource(id = R.dimen.corner_radius_medium)
-    val cornerRadiusLarge: Dp @Composable @ReadOnlyComposable get() = dimensionResource(id = R.dimen.corner_radius_large)
+    val cornerRadiusSmall: Dp
+        @Composable @ReadOnlyComposable
+        get() = dimensionResource(id = R.dimen.corner_radius_small)
+    val cornerRadiusMedium: Dp
+        @Composable @ReadOnlyComposable
+        get() = dimensionResource(id = R.dimen.corner_radius_medium)
+    val cornerRadiusLarge: Dp
+        @Composable @ReadOnlyComposable
+        get() = dimensionResource(id = R.dimen.corner_radius_large)
 
-    val elevationSmall: Dp @Composable @ReadOnlyComposable get() = dimensionResource(id = R.dimen.elevation_small)
-    val elevationMedium: Dp @Composable @ReadOnlyComposable get() = dimensionResource(id = R.dimen.elevation_medium)
-    val elevationLarge: Dp @Composable @ReadOnlyComposable get() = dimensionResource(id = R.dimen.elevation_large)
+    val elevationSmall: Dp
+        @Composable @ReadOnlyComposable
+        get() = dimensionResource(id = R.dimen.elevation_small)
+    val elevationMedium: Dp
+        @Composable @ReadOnlyComposable
+        get() = dimensionResource(id = R.dimen.elevation_medium)
+    val elevationLarge: Dp
+        @Composable @ReadOnlyComposable
+        get() = dimensionResource(id = R.dimen.elevation_large)
 }
 
 class AppTypography(private val darkTheme: Boolean = false) {
@@ -79,8 +123,8 @@ class AppTypography(private val darkTheme: Boolean = false) {
         get() = TextStyle(
             fontSize = textSizeResource(id = R.dimen.text_size_display),
             fontWeight = FontWeight.Bold,
-            color = colorResource(id = if(!darkTheme) R.color.black_normal else R.color.white_normal),
-            letterSpacing = (-0.02).sp
+            color = colorResource(id = if (!darkTheme) R.color.black_normal else R.color.white_normal),
+            letterSpacing = (-0.02).sp,
         )
 
     val headline2: TextStyle
@@ -89,8 +133,8 @@ class AppTypography(private val darkTheme: Boolean = false) {
         get() = TextStyle(
             fontSize = textSizeResource(id = R.dimen.text_size_xxxl),
             fontWeight = FontWeight.Bold,
-            color = colorResource(id = if(!darkTheme) R.color.black_normal else R.color.white_normal),
-            letterSpacing = (-0.01).sp
+            color = colorResource(id = if (!darkTheme) R.color.black_normal else R.color.white_normal),
+            letterSpacing = (-0.01).sp,
         )
 
     val headline3: TextStyle
@@ -98,7 +142,7 @@ class AppTypography(private val darkTheme: Boolean = false) {
         @ReadOnlyComposable
         get() = TextStyle(
             fontSize = textSizeResource(id = R.dimen.text_size_xxl),
-            color = colorResource(id = if(!darkTheme) R.color.black_normal else R.color.white_normal),
+            color = colorResource(id = if (!darkTheme) R.color.black_normal else R.color.white_normal),
             fontWeight = FontWeight.Bold,
         )
 
@@ -107,7 +151,7 @@ class AppTypography(private val darkTheme: Boolean = false) {
         @ReadOnlyComposable
         get() = TextStyle(
             fontSize = textSizeResource(id = R.dimen.text_size_l),
-            color = colorResource(id = if(!darkTheme) R.color.black_light else R.color.white_dark),
+            color = colorResource(id = if (!darkTheme) R.color.black_light else R.color.white_dark),
             fontWeight = FontWeight.Bold,
         )
 
@@ -116,7 +160,7 @@ class AppTypography(private val darkTheme: Boolean = false) {
         @ReadOnlyComposable
         get() = TextStyle(
             fontSize = textSizeResource(id = R.dimen.text_size_m),
-            color = colorResource(id = if(!darkTheme) R.color.black_light else R.color.white_dark),
+            color = colorResource(id = if (!darkTheme) R.color.black_light else R.color.white_dark),
             fontWeight = FontWeight.Bold,
         )
 
@@ -155,13 +199,16 @@ class AppTypography(private val darkTheme: Boolean = false) {
         )
 }
 
+@Suppress("CompositionLocalAllowlist")
 val LocalAppDimensions = staticCompositionLocalOf { AppDimensions() }
+
+@Suppress("CompositionLocalAllowlist")
 val LocalAppTypography = staticCompositionLocalOf { AppTypography() }
 
 @Composable
 fun AppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     val colors = getColors(darkTheme)
     val dimensions = AppDimensions()
@@ -169,11 +216,11 @@ fun AppTheme(
 
     CompositionLocalProvider(
         LocalAppDimensions provides dimensions,
-        LocalAppTypography provides typography
+        LocalAppTypography provides typography,
     ) {
         MaterialTheme(
             colors = colors,
-            content = content
+            content = content,
         )
     }
 }

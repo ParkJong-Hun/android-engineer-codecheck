@@ -1,5 +1,3 @@
-@file:Suppress("LongParameterList", "MaxLineLength")
-
 package jp.co.yumemi.android.codecheck.domain.middleware
 
 import io.mockk.coEvery
@@ -18,7 +16,8 @@ import org.junit.Test
 class SearchRepositoryMiddlewareTest {
 
     private lateinit var githubRepository: GithubRepository
-    private lateinit var middleware: jp.co.yumemi.android.codecheck.domain.middleware.core.Middleware<SearchRepositoryState, SearchRepositoryIntent>
+    private lateinit var middleware:
+        jp.co.yumemi.android.codecheck.domain.middleware.core.Middleware<SearchRepositoryState, SearchRepositoryIntent>
 
     private val testDispatcher = StandardTestDispatcher()
 
@@ -73,7 +72,7 @@ class SearchRepositoryMiddlewareTest {
             stargazersCount: Long = 1000L,
             watchersCount: Long = 100L,
             forksCount: Long = 200L,
-            openIssuesCount: Long = 50L
+            openIssuesCount: Long = 50L,
         ): SearchedRepository {
             return SearchedRepository(
                 name = name,
@@ -82,7 +81,7 @@ class SearchRepositoryMiddlewareTest {
                 stargazersCount = stargazersCount,
                 watchersCount = watchersCount,
                 forksCount = forksCount,
-                openIssuesCount = openIssuesCount
+                openIssuesCount = openIssuesCount,
             )
         }
     }

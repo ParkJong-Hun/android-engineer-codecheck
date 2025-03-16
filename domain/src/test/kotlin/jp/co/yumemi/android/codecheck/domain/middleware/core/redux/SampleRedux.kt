@@ -2,8 +2,6 @@ package jp.co.yumemi.android.codecheck.domain.middleware.core.redux
 
 import jp.co.yumemi.android.codecheck.domain.middleware.core.BusinessIntent
 import jp.co.yumemi.android.codecheck.domain.middleware.core.BusinessState
-import jp.co.yumemi.android.codecheck.domain.middleware.core.redux.Reducer
-import jp.co.yumemi.android.codecheck.domain.middleware.core.redux.SideEffectHandler
 
 internal data class SampleState(val count: Int = 0) : BusinessState
 
@@ -27,11 +25,12 @@ internal class SampleSideEffectHandler : SideEffectHandler<SampleState, SampleIn
     override suspend fun handle(
         state: SampleState,
         intent: SampleIntent,
-        conveyIntention: (SampleIntent) -> Unit
+        conveyIntention: (SampleIntent) -> Unit,
     ) {
         when (intent) {
             is SampleIntent.AddValue,
-            is SampleIntent.Increment -> {
+            is SampleIntent.Increment,
+            -> {
                 if (state.count == 5) {
                     conveyIntention(SampleIntent.AddValue(10))
                 }

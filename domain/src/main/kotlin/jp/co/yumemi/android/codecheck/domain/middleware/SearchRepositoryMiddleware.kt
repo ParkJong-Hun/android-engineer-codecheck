@@ -27,7 +27,7 @@ sealed class SearchRepositoryIntent : BusinessIntent {
 internal class SearchRepositoryReducer : Reducer<SearchRepositoryState, SearchRepositoryIntent> {
     override fun reduce(
         currentState: SearchRepositoryState,
-        intent: SearchRepositoryIntent
+        intent: SearchRepositoryIntent,
     ): SearchRepositoryState {
         return when (intent) {
             is SearchRepositoryIntent.Search -> {
@@ -51,7 +51,7 @@ internal class SearchRepositorySideEffectHandler(
     override suspend fun handle(
         state: SearchRepositoryState,
         intent: SearchRepositoryIntent,
-        conveyIntention: (SearchRepositoryIntent) -> Unit
+        conveyIntention: (SearchRepositoryIntent) -> Unit,
     ) {
         when (intent) {
             is SearchRepositoryIntent.Search -> {
@@ -78,11 +78,11 @@ internal class SearchRepositorySideEffectHandler(
 internal class SearchRepositoryStore(
     initialState: SearchRepositoryState,
     reducer: Reducer<SearchRepositoryState, SearchRepositoryIntent>,
-    sideEffectHandlers: List<SideEffectHandler<SearchRepositoryState, SearchRepositoryIntent>> = emptyList()
+    sideEffectHandlers: List<SideEffectHandler<SearchRepositoryState, SearchRepositoryIntent>> = emptyList(),
 ) : Store<SearchRepositoryState, SearchRepositoryIntent>(
     initialState,
     reducer,
-    sideEffectHandlers
+    sideEffectHandlers,
 )
 
 fun searchRepositoryMiddleware(
@@ -91,5 +91,5 @@ fun searchRepositoryMiddleware(
 ): Middleware<SearchRepositoryState, SearchRepositoryIntent> = SearchRepositoryStore(
     initialState,
     SearchRepositoryReducer(),
-    listOf(SearchRepositorySideEffectHandler(githubRepository))
+    listOf(SearchRepositorySideEffectHandler(githubRepository)),
 )

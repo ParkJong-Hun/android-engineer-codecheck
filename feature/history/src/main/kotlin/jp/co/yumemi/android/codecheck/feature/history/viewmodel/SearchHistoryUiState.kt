@@ -12,7 +12,6 @@ sealed interface SearchHistoryUiState : UiState {
     data object Empty : SearchHistoryUiState
 }
 
-@Suppress("MagicNumber")
 fun History.getFormattedDetails(): String {
     return buildString {
         if (openedSearchedRepository.language.isNotEmpty()) {

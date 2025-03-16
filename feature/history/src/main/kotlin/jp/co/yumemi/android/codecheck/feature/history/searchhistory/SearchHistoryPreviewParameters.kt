@@ -6,7 +6,6 @@ import jp.co.yumemi.android.codecheck.domain.entity.SearchedRepository
 import jp.co.yumemi.android.codecheck.feature.history.viewmodel.SearchHistoryUiState
 import java.time.LocalDateTime
 
-@Suppress("MagicNumber")
 private val mockOpenedDateTime = LocalDateTime.of(2025, 3, 11, 22, 8, 32, 0)
 
 private val mockHistories = listOf(
@@ -20,8 +19,8 @@ private val mockHistories = listOf(
             stargazersCount = 12500,
             watchersCount = 450,
             forksCount = 1800,
-            openIssuesCount = 120
-        )
+            openIssuesCount = 120,
+        ),
     ),
     History(
         id = "2",
@@ -33,8 +32,8 @@ private val mockHistories = listOf(
             stargazersCount = 9800,
             watchersCount = 320,
             forksCount = 850,
-            openIssuesCount = 75
-        )
+            openIssuesCount = 75,
+        ),
     ),
     History(
         id = "3",
@@ -46,11 +45,10 @@ private val mockHistories = listOf(
             stargazersCount = 6200,
             watchersCount = 210,
             forksCount = 520,
-            openIssuesCount = 45
-        )
-    )
+            openIssuesCount = 45,
+        ),
+    ),
 )
-
 
 internal class SearchHistoryUiStateProvider : PreviewParameterProvider<SearchHistoryUiState> {
     override val values: Sequence<SearchHistoryUiState>
@@ -58,7 +56,7 @@ internal class SearchHistoryUiStateProvider : PreviewParameterProvider<SearchHis
             return sequenceOf(
                 SearchHistoryUiState.Empty,
                 SearchHistoryUiState.Idle(histories = listOf(mockHistories.first())),
-                SearchHistoryUiState.Idle(histories = mockHistories)
+                SearchHistoryUiState.Idle(histories = mockHistories),
             )
         }
 }

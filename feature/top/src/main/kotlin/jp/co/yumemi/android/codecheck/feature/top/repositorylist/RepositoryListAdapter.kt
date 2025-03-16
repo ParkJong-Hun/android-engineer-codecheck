@@ -1,4 +1,3 @@
-@file:Suppress("MagicNumber")
 package jp.co.yumemi.android.codecheck.feature.top.repositorylist
 
 import android.view.LayoutInflater
@@ -14,10 +13,10 @@ import java.text.DecimalFormat
 class RepositoryListAdapter(
     private val itemClickListener: OnItemClickListener,
 ) : ListAdapter<SearchedRepository, RepositoryListAdapter.ViewHolder>(
-    RepositoryDiffCallback()
+    RepositoryDiffCallback(),
 ) {
     class ViewHolder(
-        private val binding: LayoutSearchedRepositoryBinding
+        private val binding: LayoutSearchedRepositoryBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: SearchedRepository, clickListener: OnItemClickListener) {
             binding.repositoryNameView.text = item.name
@@ -57,7 +56,9 @@ class RepositoryListAdapter(
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = LayoutSearchedRepositoryBinding.inflate(
-                    layoutInflater, parent, false
+                    layoutInflater,
+                    parent,
+                    false,
                 )
                 return ViewHolder(binding)
             }
@@ -80,14 +81,14 @@ class RepositoryListAdapter(
     private class RepositoryDiffCallback : DiffUtil.ItemCallback<SearchedRepository>() {
         override fun areItemsTheSame(
             oldItem: SearchedRepository,
-            newItem: SearchedRepository
+            newItem: SearchedRepository,
         ): Boolean {
             return oldItem.name == newItem.name
         }
 
         override fun areContentsTheSame(
             oldItem: SearchedRepository,
-            newItem: SearchedRepository
+            newItem: SearchedRepository,
         ): Boolean {
             return oldItem == newItem
         }

@@ -39,7 +39,7 @@ class SearchHistoryViewModel @Inject constructor(
                         if (uiState.value is SearchHistoryUiState.Idle) {
                             _uiState.update {
                                 (it as SearchHistoryUiState.Idle).copy(
-                                    onClickedHistory = uiEvent.history to true
+                                    onClickedHistory = uiEvent.history to true,
                                 )
                             }
                         }
