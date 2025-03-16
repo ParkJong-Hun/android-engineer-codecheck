@@ -8,7 +8,7 @@
         <item name="colorSecondary">@color/blue_light</item>
         <item name="colorSecondaryVariant">@color/blue_normal</item>
         <item name="colorOnSecondary">@color/black_light</item>
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">@color/white_dark</item>
 
         <item name="textAppearanceHeadline1">@style/TextAppearance.App.Headline1</item>
         <item name="textAppearanceHeadline2">@style/TextAppearance.App.Headline2</item>
@@ -19,9 +19,6 @@
         <item name="textAppearanceSubtitle2">@style/TextAppearance.App.Subtitle2</item>
         <item name="textAppearanceCaption">@style/TextAppearance.App.Caption</item>
         <item name="textAppearanceButton">@style/TextAppearance.App.Button</item>
-
-        <item name="android:padding">@dimen/spacing_m</item>
-        <item name="android:layout_margin">@dimen/spacing_s</item>
 
         <item name="buttonStyle">@style/Widget.App.Button</item>
         <item name="materialCardViewStyle">@style/Widget.App.CardView</item>

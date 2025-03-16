@@ -21,9 +21,6 @@
         <item name="textAppearanceCaption">@style/TextAppearance.App.Caption.Dark</item>
         <item name="textAppearanceButton">@style/TextAppearance.App.Button.Dark</item>
 
-        <item name="android:padding">@dimen/spacing_m</item>
-        <item name="android:layout_margin">@dimen/spacing_s</item>
-
         <item name="buttonStyle">@style/Widget.App.Button.Dark</item>
         <item name="materialCardViewStyle">@style/Widget.App.CardView.Dark</item>
     </style>
