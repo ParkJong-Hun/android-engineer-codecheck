@@ -3,7 +3,7 @@
 
     <style name="Widget.AndroidEngineerCodeCheck.Toolbar" parent="Widget.MaterialComponents.Toolbar">
         <item name="android:theme">?attr/actionBarTheme</item>
-        <item name="android:background">@color/white_dark</item>
+        <item name="android:background">@color/black_light</item>
         <item name="titleTextAppearance">
             @style/TextAppearance.AndroidEngineerCodeCheck.Toolbar.Title
         </item>
