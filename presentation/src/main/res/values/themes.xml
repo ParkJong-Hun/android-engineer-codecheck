@@ -55,8 +55,8 @@
     </style>
 
     <style name="Widget.App.CardView" parent="Widget.MaterialComponents.CardView">
-        <item name="cardElevation">2dp</item>
-        <item name="cardCornerRadius">8dp</item>
+        <item name="cardElevation">@dimen/elevation_medium</item>
+        <item name="cardCornerRadius">@dimen/corner_radius_medium</item>
         <item name="contentPadding">@dimen/padding_card</item>
         <item name="android:layout_margin">@dimen/spacing_s</item>
     </style>
@@ -66,6 +66,36 @@
         <item name="boxStrokeWidth">1dp</item>
         <item name="android:minHeight">@dimen/input_height</item>
         <item name="hintTextColor">@color/gray_light</item>
+        <item name="android:textColorHint">@color/gray_light</item>
+    </style>
+
+    <style name="Widget.App.CardView.SearchBar">
+        <item name="cardCornerRadius">@dimen/corner_radius_large</item>
+        <item name="cardElevation">@dimen/elevation_medium</item>
+        <item name="contentPadding">0dp</item>
+        <item name="android:layout_margin">0dp</item>
+    </style>
+
+    <style name="Widget.App.CardView.ListItem">
+        <item name="cardCornerRadius">@dimen/corner_radius_medium</item>
+        <item name="cardElevation">@dimen/elevation_small</item>
+        <item name="contentPadding">@dimen/padding_card</item>
+        <item name="android:layout_marginHorizontal">@dimen/spacing_s</item>
+        <item name="android:layout_marginVertical">@dimen/spacing_xs</item>
+    </style>
+
+    <style name="Widget.App.TextInputLayout.SearchBar" parent="TextInputLayoutNoBorder">
+        <item name="endIconTint">@color/gray_light</item>
+        <item name="startIconTint">@color/gray_light</item>
+        <item name="hintTextColor">@color/gray_light</item>
+        <item name="android:textColorHint">@color/gray_light</item>
+    </style>
+
+    <style name="Widget.App.EditText.Search" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:padding">@dimen/padding_input</item>
+        <item name="android:textSize">@dimen/text_size_m</item>
+        <item name="android:textColor">@color/gray_dark</item>
         <item name="android:textColorHint">@color/gray_light</item>
     </style>
 </resources>

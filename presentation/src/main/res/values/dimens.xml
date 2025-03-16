@@ -25,4 +25,10 @@
     <dimen name="text_size_xxl">24sp</dimen>
     <dimen name="text_size_xxxl">28sp</dimen>
     <dimen name="text_size_display">34sp</dimen>
+    <dimen name="corner_radius_small">4dp</dimen>
+    <dimen name="corner_radius_medium">8dp</dimen>
+    <dimen name="corner_radius_large">12dp</dimen>
+    <dimen name="elevation_small">2dp</dimen>
+    <dimen name="elevation_medium">4dp</dimen>
+    <dimen name="elevation_large">8dp</dimen>
 </resources>
