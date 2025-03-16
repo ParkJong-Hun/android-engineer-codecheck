@@ -6,7 +6,6 @@ package jp.co.yumemi.android.codecheck.feature.history.searchhistory
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -40,8 +39,7 @@ fun SearchHistoryScreen(
         ) {
             Box(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(horizontal = AppTheme.dimens.marginScreenHorizontal),
+                    .fillMaxSize(),
                 contentAlignment = Alignment.Center,
             ) {
                 when (uiState) {
@@ -69,7 +67,6 @@ fun HistoryList(
 ) {
     LazyColumn(
         modifier = modifier.fillMaxSize(),
-        contentPadding = PaddingValues(vertical = AppTheme.dimens.spacingM),
         verticalArrangement = Arrangement.spacedBy(AppTheme.dimens.spacingS)
     ) {
         items(
@@ -105,7 +102,6 @@ fun HistoryItem(
             if (!history.openedSearchedRepository.language.isNullOrEmpty() ||
                 history.openedSearchedRepository.stargazersCount > 0
             ) {
-
                 Caption(
                     text = buildString {
                         if (!history.openedSearchedRepository.language.isNullOrEmpty()) {

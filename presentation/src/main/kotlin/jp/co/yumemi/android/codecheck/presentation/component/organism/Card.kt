@@ -7,6 +7,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -61,7 +62,9 @@ fun AppSearchCard(
 private fun AppListItemCardPreview() {
     AppTheme {
         Surface {
-            AppListItemCard(onClick = {}) {}
+            AppListItemCard(onClick = {}) {
+                Text("Sample")
+            }
         }
     }
 }
@@ -71,7 +74,9 @@ private fun AppListItemCardPreview() {
 private fun AppSearchCardPreview() {
     AppTheme {
         Surface {
-            AppSearchCard {}
+            AppSearchCard {
+                Text("Sample")
+            }
         }
     }
 }
@@ -82,8 +87,12 @@ private fun AllCardStylesPreview() {
     AppTheme {
         Surface {
             Column(modifier = Modifier.padding(16.dp)) {
-                AppListItemCard(onClick = {}) {}
-                AppSearchCard {}
+                AppListItemCard(onClick = {}) {
+                    Text("Sample")
+                }
+                AppSearchCard {
+                    Text("Sample")
+                }
             }
         }
     }

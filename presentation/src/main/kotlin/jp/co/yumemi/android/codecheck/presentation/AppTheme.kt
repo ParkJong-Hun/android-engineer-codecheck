@@ -42,7 +42,7 @@ fun getColorScheme(darkTheme: Boolean): ColorScheme {
             onSecondary = colorResource(id = R.color.black_light),
             secondaryContainer = colorResource(id = R.color.blue_normal),
             background = colorResource(id = R.color.white_normal),
-            surface = colorResource(id = R.color.white_dark),
+            surface = colorResource(id = R.color.white_normal),
             onBackground = colorResource(id = R.color.black_normal),
             onSurface = colorResource(id = R.color.black_light)
         )
