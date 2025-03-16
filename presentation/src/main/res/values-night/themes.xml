@@ -1,16 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base application theme. -->
+
     <style name="Theme.AndroidEngineerCodeCheck" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/gray_normal</item>
+        <item name="colorPrimaryVariant">@color/gray_dark</item>
+        <item name="colorOnPrimary">@color/black_normal</item>
+        <item name="colorSecondary">@color/blue_light</item>
+        <item name="colorSecondaryVariant">@color/blue_normal</item>
+        <item name="colorOnSecondary">@color/white_normal</item>
+        <item name="android:statusBarColor">@color/black_light</item>
+        <item name="android:windowLightStatusBar">false</item>
+
+        <item name="textAppearanceHeadline1">@style/TextAppearance.App.Headline1.Dark</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.App.Headline2.Dark</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.App.Headline3.Dark</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.App.Body1.Dark</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.App.Body2.Dark</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.App.Subtitle1.Dark</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.App.Subtitle2.Dark</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.App.Caption.Dark</item>
+        <item name="textAppearanceButton">@style/TextAppearance.App.Button.Dark</item>
+
+        <item name="android:padding">@dimen/spacing_m</item>
+        <item name="android:layout_margin">@dimen/spacing_s</item>
+
+        <item name="buttonStyle">@style/Widget.App.Button.Dark</item>
+        <item name="materialCardViewStyle">@style/Widget.App.CardView.Dark</item>
+    </style>
+
+    <style name="TextInputLayoutNoBorder" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="errorIconDrawable">@null</item>
+        <item name="errorIconTint">@null</item>
+        <item name="hintEnabled">false</item>
+        <item name="boxBackgroundMode">none</item>
+    </style>
+
+    <style name="Widget.App.ActionBar" parent="Widget.MaterialComponents.ActionBar.Primary">
+        <item name="background">@color/black_light</item>
+    </style>
+
+    <style name="TextAppearance.App.ActionBar.Title" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textColor">@color/gray_normal</item>
+        <item name="android:textSize">@dimen/text_size_l</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Widget.App.Button.Dark" parent="Widget.MaterialComponents.Button">
+        <item name="android:textAppearance">@style/TextAppearance.App.Button.Dark</item>
+        <item name="android:paddingStart">@dimen/padding_button</item>
+        <item name="android:paddingEnd">@dimen/padding_button</item>
+        <item name="android:paddingTop">@dimen/spacing_s</item>
+        <item name="android:paddingBottom">@dimen/spacing_s</item>
+        <item name="android:minHeight">@dimen/button_height</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="backgroundTint">@color/blue_normal</item>
+    </style>
+
+    <style name="Widget.App.CardView.Dark" parent="Widget.MaterialComponents.CardView">
+        <item name="cardElevation">2dp</item>
+        <item name="cardCornerRadius">8dp</item>
+        <item name="contentPadding">@dimen/padding_card</item>
+        <item name="android:layout_margin">@dimen/spacing_s</item>
+        <item name="cardBackgroundColor">@color/black_light</item>
+    </style>
+
+    <style name="Widget.App.TextInputLayout.Dark" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/blue_light</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="android:minHeight">@dimen/input_height</item>
+        <item name="hintTextColor">@color/gray_light</item>
+        <item name="android:textColorHint">@color/gray_light</item>
+        <item name="boxBackgroundColor">@color/black_light</item>
     </style>
 </resources>
