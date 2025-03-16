@@ -2,10 +2,11 @@ package jp.co.yumemi.android.codecheck.presentation.component.atom
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -71,11 +72,13 @@ fun Subtitle1(
 fun Subtitle2(
     text: String,
     modifier: Modifier = Modifier,
-    textAlign: TextAlign? = null
+    textAlign: TextAlign? = null,
+    color: Color? = null,
 ) {
     Text(
         text = text,
         style = AppTheme.typography.subtitle2,
+        color = color ?: AppTheme.typography.subtitle2.color,
         modifier = modifier,
         textAlign = textAlign
     )

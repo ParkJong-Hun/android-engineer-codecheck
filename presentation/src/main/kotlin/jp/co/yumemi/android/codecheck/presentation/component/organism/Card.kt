@@ -4,11 +4,10 @@ import android.view.SoundEffectConstants
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.material.Card
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalView
@@ -16,6 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import jp.co.yumemi.android.codecheck.presentation.AppTheme
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun AppListItemCard(
     modifier: Modifier = Modifier,
@@ -28,13 +28,8 @@ fun AppListItemCard(
             horizontal = AppTheme.dimens.spacingS,
             vertical = AppTheme.dimens.spacingXS
         ),
+        elevation = AppTheme.dimens.elevationSmall,
         shape = RoundedCornerShape(AppTheme.dimens.cornerRadiusMedium),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface
-        ),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = AppTheme.dimens.elevationSmall
-        ),
         onClick = {
             view.playSoundEffect(SoundEffectConstants.CLICK)
             onClick()
@@ -52,12 +47,7 @@ fun AppSearchCard(
     Card(
         modifier = modifier,
         shape = RoundedCornerShape(AppTheme.dimens.cornerRadiusLarge),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface
-        ),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = AppTheme.dimens.elevationMedium
-        )
+        elevation = AppTheme.dimens.elevationMedium,
     ) {
         content()
     }
