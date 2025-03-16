@@ -1,16 +1,16 @@
+@file:Suppress("FunctionNaming", "MaxLineLength")
+
 package jp.co.yumemi.android.codecheck.presentation
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.ColorScheme
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.lightColorScheme
+import androidx.compose.material.Colors
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.darkColors
+import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.staticCompositionLocalOf
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.TextStyle
@@ -19,32 +19,24 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun getColorScheme(darkTheme: Boolean): ColorScheme {
-    return if (darkTheme) {
-        darkColorScheme(
+fun getColors(darkTheme: Boolean): Colors {
+    return if (!darkTheme) {
+        lightColors(
             primary = colorResource(id = R.color.gray_normal),
-            onPrimary = colorResource(id = R.color.black_normal),
-            primaryContainer = colorResource(id = R.color.gray_dark),
+            primaryVariant = colorResource(id = R.color.gray_dark),
+            onPrimary = colorResource(id = R.color.white_normal),
             secondary = colorResource(id = R.color.blue_light),
+            secondaryVariant = colorResource(id = R.color.blue_normal),
             onSecondary = colorResource(id = R.color.white_normal),
-            secondaryContainer = colorResource(id = R.color.blue_normal),
-            background = colorResource(id = R.color.black_light),
-            surface = colorResource(id = R.color.black_light),
-            onBackground = colorResource(id = R.color.white_normal),
-            onSurface = colorResource(id = R.color.white_dark)
         )
     } else {
-        lightColorScheme(
+        darkColors(
             primary = colorResource(id = R.color.gray_normal),
-            onPrimary = colorResource(id = R.color.white_normal),
-            primaryContainer = colorResource(id = R.color.gray_dark),
+            primaryVariant = colorResource(id = R.color.gray_dark),
+            onPrimary = colorResource(id = R.color.white_dark),
             secondary = colorResource(id = R.color.blue_light),
-            onSecondary = colorResource(id = R.color.black_light),
-            secondaryContainer = colorResource(id = R.color.blue_normal),
-            background = colorResource(id = R.color.white_normal),
-            surface = colorResource(id = R.color.white_dark),
-            onBackground = colorResource(id = R.color.black_normal),
-            onSurface = colorResource(id = R.color.black_light)
+            secondaryVariant = colorResource(id = R.color.blue_normal),
+            onSecondary = colorResource(id = R.color.white_normal),
         )
     }
 }
@@ -87,7 +79,7 @@ class AppTypography(private val darkTheme: Boolean = false) {
         get() = TextStyle(
             fontSize = textSizeResource(id = R.dimen.text_size_display),
             fontWeight = FontWeight.Bold,
-            color = colorResource(id = if (darkTheme) R.color.white_normal else R.color.black_normal),
+            color = colorResource(id = if(!darkTheme) R.color.black_normal else R.color.white_normal),
             letterSpacing = (-0.02).sp
         )
 
@@ -97,7 +89,7 @@ class AppTypography(private val darkTheme: Boolean = false) {
         get() = TextStyle(
             fontSize = textSizeResource(id = R.dimen.text_size_xxxl),
             fontWeight = FontWeight.Bold,
-            color = colorResource(id = if (darkTheme) R.color.white_normal else R.color.black_normal),
+            color = colorResource(id = if(!darkTheme) R.color.black_normal else R.color.white_normal),
             letterSpacing = (-0.01).sp
         )
 
@@ -106,8 +98,8 @@ class AppTypography(private val darkTheme: Boolean = false) {
         @ReadOnlyComposable
         get() = TextStyle(
             fontSize = textSizeResource(id = R.dimen.text_size_xxl),
+            color = colorResource(id = if(!darkTheme) R.color.black_normal else R.color.white_normal),
             fontWeight = FontWeight.Bold,
-            color = colorResource(id = if (darkTheme) R.color.white_normal else R.color.black_normal)
         )
 
     val subtitle1: TextStyle
@@ -115,8 +107,8 @@ class AppTypography(private val darkTheme: Boolean = false) {
         @ReadOnlyComposable
         get() = TextStyle(
             fontSize = textSizeResource(id = R.dimen.text_size_l),
+            color = colorResource(id = if(!darkTheme) R.color.black_light else R.color.white_dark),
             fontWeight = FontWeight.Bold,
-            color = colorResource(id = if (darkTheme) R.color.white_dark else R.color.black_light)
         )
 
     val subtitle2: TextStyle
@@ -124,8 +116,8 @@ class AppTypography(private val darkTheme: Boolean = false) {
         @ReadOnlyComposable
         get() = TextStyle(
             fontSize = textSizeResource(id = R.dimen.text_size_m),
+            color = colorResource(id = if(!darkTheme) R.color.black_light else R.color.white_dark),
             fontWeight = FontWeight.Bold,
-            color = colorResource(id = if (darkTheme) R.color.white_dark else R.color.black_light)
         )
 
     val body1: TextStyle
@@ -133,7 +125,7 @@ class AppTypography(private val darkTheme: Boolean = false) {
         @ReadOnlyComposable
         get() = TextStyle(
             fontSize = textSizeResource(id = R.dimen.text_size_m),
-            color = colorResource(id = R.color.gray_normal)
+            color = colorResource(id = R.color.gray_normal),
         )
 
     val body2: TextStyle
@@ -141,7 +133,7 @@ class AppTypography(private val darkTheme: Boolean = false) {
         @ReadOnlyComposable
         get() = TextStyle(
             fontSize = textSizeResource(id = R.dimen.text_size_s),
-            color = colorResource(id = R.color.gray_normal)
+            color = colorResource(id = R.color.gray_normal),
         )
 
     val caption: TextStyle
@@ -149,7 +141,7 @@ class AppTypography(private val darkTheme: Boolean = false) {
         @ReadOnlyComposable
         get() = TextStyle(
             fontSize = textSizeResource(id = R.dimen.text_size_xs),
-            color = colorResource(id = R.color.gray_light)
+            color = colorResource(id = R.color.gray_light),
         )
 
     val button: TextStyle
@@ -158,8 +150,8 @@ class AppTypography(private val darkTheme: Boolean = false) {
         get() = TextStyle(
             fontSize = textSizeResource(id = R.dimen.text_size_s),
             fontWeight = FontWeight.Bold,
+            color = colorResource(id = R.color.white_normal),
             letterSpacing = 0.01.sp,
-            color = if (darkTheme) colorResource(id = R.color.white_normal) else Color.Unspecified
         )
 }
 
@@ -171,7 +163,7 @@ fun AppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val colorScheme = getColorScheme(darkTheme)
+    val colors = getColors(darkTheme)
     val dimensions = AppDimensions()
     val typography = AppTypography(darkTheme)
 
@@ -180,7 +172,7 @@ fun AppTheme(
         LocalAppTypography provides typography
     ) {
         MaterialTheme(
-            colorScheme = colorScheme,
+            colors = colors,
             content = content
         )
     }
@@ -200,17 +192,5 @@ object AppTheme {
     val colors
         @Composable
         @ReadOnlyComposable
-        get() = MaterialTheme.colorScheme
-}
-
-object ResourceUtils {
-    private var resourceMap = mutableMapOf<Int, Int>()
-
-    @Composable
-    fun getColor(colorRes: Int): Int {
-        return resourceMap.getOrPut(colorRes) {
-            val context = LocalContext.current
-            context.getColor(colorRes)
-        }
-    }
+        get() = MaterialTheme.colors
 }

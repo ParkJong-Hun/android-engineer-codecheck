@@ -3,29 +3,31 @@
 
 package jp.co.yumemi.android.codecheck.feature.history.searchhistory
 
-import androidx.compose.foundation.clickable
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import jp.co.yumemi.android.codecheck.domain.entity.History
+import jp.co.yumemi.android.codecheck.feature.history.R
 import jp.co.yumemi.android.codecheck.feature.history.viewmodel.SearchHistoryUiState
+import jp.co.yumemi.android.codecheck.feature.history.viewmodel.getFormattedDetails
+import jp.co.yumemi.android.codecheck.presentation.AppTheme
+import jp.co.yumemi.android.codecheck.presentation.component.atom.Body1
+import jp.co.yumemi.android.codecheck.presentation.component.atom.Caption
+import jp.co.yumemi.android.codecheck.presentation.component.atom.Subtitle2
+import jp.co.yumemi.android.codecheck.presentation.component.organism.AppListItemCard
 
 @Composable
 fun SearchHistoryScreen(
@@ -33,15 +35,14 @@ fun SearchHistoryScreen(
     onClickHistory: (History) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    MaterialTheme {
+    AppTheme {
         Surface(
             modifier = modifier,
-            color = MaterialTheme.colorScheme.background
+            color = AppTheme.colors.background
         ) {
             Box(
-                modifier = modifier
-                    .fillMaxSize()
-                    .padding(16.dp),
+                modifier = Modifier
+                    .fillMaxSize(),
                 contentAlignment = Alignment.Center,
             ) {
                 when (uiState) {
@@ -53,7 +54,7 @@ fun SearchHistoryScreen(
                     }
 
                     is SearchHistoryUiState.Empty -> {
-                        Text("it's empty")
+                        Body1(text = stringResource(R.string.no_results_found))
                     }
                 }
             }
@@ -69,8 +70,7 @@ fun HistoryList(
 ) {
     LazyColumn(
         modifier = modifier.fillMaxSize(),
-        contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(AppTheme.dimens.spacingS)
     ) {
         items(
             items = histories,
@@ -90,26 +90,26 @@ fun HistoryItem(
     onClickHistory: (History) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-//    AndroidView(
-//        factory = {
-//            val view = LayoutInflater.from(it)
-//                .inflate(R.layout.layout_searched_repository, null, false)
-//            view
-//        },
-//        update = {
-//          it.findViewById<TextView>(R.id.repositoryNameView).text = history.openedSearchedRepository.name
-//        }
-//    )
-    Column(
-        modifier = modifier.clickable { onClickHistory(history) },
+    AppListItemCard(
+        modifier = modifier,
+        onClick = { onClickHistory(history) }
     ) {
-        Text(
-            modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp),
-            text = history.openedSearchedRepository.name,
-            fontSize = 12.sp,
-            color = colorResource(jp.co.yumemi.android.codecheck.presentation.R.color.black)
-        )
-        HorizontalDivider()
+        Column(
+            modifier = Modifier.padding(AppTheme.dimens.paddingCard)
+        ) {
+            Subtitle2(
+                text = history.openedSearchedRepository.name,
+                color = colorResource(id = jp.co.yumemi.android.codecheck.presentation.R.color.black_light),
+                modifier = Modifier.padding(bottom = AppTheme.dimens.spacingXS)
+            )
+
+            if (history.openedSearchedRepository.language.isNotEmpty() ||
+                history.openedSearchedRepository.stargazersCount > 0
+            ) {
+                // FIXME: パーフォマンスのためにUI側でやらなくても良い設計に修正する必要がある。
+                Caption(text = history.getFormattedDetails())
+            }
+        }
     }
 }
 
@@ -118,10 +118,10 @@ fun HistoryItem(
 fun SearchHistoryScreenPreview(
     @PreviewParameter(SearchHistoryUiStateProvider::class) uiState: SearchHistoryUiState
 ) {
-    MaterialTheme {
+    AppTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
+            color = AppTheme.colors.background
         ) {
             SearchHistoryScreen(
                 uiState = uiState,
@@ -132,12 +132,13 @@ fun SearchHistoryScreenPreview(
     }
 }
 
-@Preview
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Composable
 fun HistoryItemPreview(
     @PreviewParameter(HistoryProvider::class) history: History
 ) {
-    MaterialTheme {
+    AppTheme {
         Surface {
             HistoryItem(
                 history = history,

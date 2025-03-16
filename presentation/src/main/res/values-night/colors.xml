@@ -7,8 +7,8 @@
     <color name="blue_light">#4A80FF</color>
     <color name="blue_normal">#2D68E5</color>
 
-    <color name="black_light">#1F1F1F</color>
-    <color name="black_normal">#000000</color>
-    <color name="white_normal">#FFFFFF</color>
-    <color name="white_dark">#1E1E1E</color>
+    <color name="black_light">#7A7A7A</color>
+    <color name="black_normal">#FFFFFF</color>
+    <color name="white_normal">#000000</color>
+    <color name="white_dark">#1B1B1B</color>
 </resources>

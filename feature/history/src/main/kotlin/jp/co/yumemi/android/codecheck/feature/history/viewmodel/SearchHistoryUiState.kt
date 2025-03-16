@@ -11,3 +11,24 @@ sealed interface SearchHistoryUiState : UiState {
 
     data object Empty : SearchHistoryUiState
 }
+
+@Suppress("MagicNumber")
+fun History.getFormattedDetails(): String {
+    return buildString {
+        if (openedSearchedRepository.language.isNotEmpty()) {
+            append(openedSearchedRepository.language)
+        }
+
+        if (openedSearchedRepository.stargazersCount > 0) {
+            if (this.isNotEmpty()) append(" • ")
+            append("★ ")
+            if (openedSearchedRepository.stargazersCount < 1000) {
+                append(openedSearchedRepository.stargazersCount)
+            } else {
+                val formatted =
+                    "%.1f".format(openedSearchedRepository.stargazersCount / 1000.0)
+                append("${formatted}k")
+            }
+        }
+    }
+}
