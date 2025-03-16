@@ -3,9 +3,9 @@
 targetSdk = "35"
 compileSdk = "35"
 minSdk = "26"
-versionCode = "2"
+versionCode = "3"
 versionMajorName = "0"
-versionMinorName = "1"
+versionMinorName = "2"
 versionPatchName = "0"
 
 # Library, Plugin Version
@@ -42,13 +42,17 @@ androidx-appcompat = { module = "androidx.appcompat:appcompat", version = "1.7.0
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version = "2.2.1" }
 androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version = "1.4.0" }
 androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCore" }
+androidx-espresso-contrib = { module = "androidx.test.espresso:espresso-contrib", version.ref = "espressoCore" }
 androidx-junit-ktx = { module = "androidx.test.ext:junit-ktx", version = "1.2.1" }
 androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
 androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle" }
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation" }
 androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation" }
+androidx-navigation-testing = { module = "androidx.navigation:navigation-testing", version.ref = "navigation" }
 androidx-test = { module = "androidx.test:core", version.ref = "test" }
+androidx-test-runner = { module = "androidx.test:runner", version.ref = "test" }
+androidx-test-rules = { module = "androidx.test:rules", version.ref = "test" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity" }
 androidx-fragment-compose = { module = "androidx.fragment:fragment-compose", version.ref = "fragment" }
 androidx-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
@@ -58,7 +62,7 @@ androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling
 androidx-compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose" }
 androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "compose" }
 androidx-compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
-androidx-compose-material3 = { module = "androidx.compose.material3:material3", version = "1.3.1" }
+androidx-compose-material = { module = "androidx.compose.material:material", version = "1.7.8" }
 
 # Google
 material = { module = "com.google.android.material:material", version = "1.12.0" }
@@ -94,6 +98,13 @@ hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", vers
 
 # Turbine
 turbine = { module = "app.cash.turbine:turbine", version = "1.2.0" }
+
+# Hamcrest
+hamcrest = { module = "org.hamcrest:hamcrest", version = "3.0" }
+
+# Detket
+detekt-formatting-rules = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
+detekt-compose-rules = { module = "io.nlopez.compose.rules:detekt", version = "0.3.21" }
 
 [plugins]
 agp_application = { id = "com.android.application", version.ref = "agp" }

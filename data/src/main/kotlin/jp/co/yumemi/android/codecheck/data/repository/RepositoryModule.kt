@@ -4,8 +4,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import jp.co.yumemi.android.codecheck.data.datasource.GithubApiDataSource
 import jp.co.yumemi.android.codecheck.data.IoDispatcher
+import jp.co.yumemi.android.codecheck.data.datasource.GithubApiDataSource
 import jp.co.yumemi.android.codecheck.domain.repository.GithubRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Singleton
@@ -17,7 +17,7 @@ object RepositoryModule {
     @Provides
     fun provideGithubRepository(
         githubApiDataSource: GithubApiDataSource,
-        @IoDispatcher ioDispatcher: CoroutineDispatcher
+        @IoDispatcher ioDispatcher: CoroutineDispatcher,
     ): GithubRepository {
         return GithubRepositoryImpl(githubApiDataSource, ioDispatcher)
     }

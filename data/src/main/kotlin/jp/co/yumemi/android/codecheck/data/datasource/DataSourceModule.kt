@@ -16,7 +16,7 @@ object DataSourceModule {
     @Singleton
     fun provideGithubApiDataSource(
         httpClient: HttpClient,
-        @IoDispatcher ioDispatcher: CoroutineDispatcher
+        @IoDispatcher ioDispatcher: CoroutineDispatcher,
     ): GithubApiDataSource {
         return GithubApiDataSource(httpClient, ioDispatcher)
     }

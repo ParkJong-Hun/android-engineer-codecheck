@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 internal open class Store<S : BusinessState, I : BusinessIntent>(
     initialState: S,
     private val reducer: Reducer<S, I>,
-    private val sideEffectHandlers: List<SideEffectHandler<S, I>> = emptyList()
+    private val sideEffectHandlers: List<SideEffectHandler<S, I>> = emptyList(),
 ) : Middleware<S, I> {
     private val coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 

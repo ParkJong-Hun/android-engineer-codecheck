@@ -19,7 +19,7 @@ class ReduxTest {
         sampleStore = Store(
             SampleState(),
             SampleReducer(),
-            listOf(SampleSideEffectHandler())
+            listOf(SampleSideEffectHandler()),
         )
     }
 

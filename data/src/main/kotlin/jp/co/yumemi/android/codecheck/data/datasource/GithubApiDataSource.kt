@@ -15,7 +15,7 @@ import javax.inject.Singleton
 @Singleton
 class GithubApiDataSource @Inject constructor(
     private val httpClient: HttpClient,
-    @IoDispatcher private val ioDispatcher: CoroutineDispatcher
+    @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
 ) {
     suspend fun searchRepositories(query: String): GithubSearchResponse {
         return withContext(ioDispatcher) {
