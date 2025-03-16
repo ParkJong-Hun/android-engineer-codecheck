@@ -1,5 +1,6 @@
 package jp.co.yumemi.android.codecheck.presentation.component.organism
 
+import android.view.SoundEffectConstants
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -10,6 +11,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import jp.co.yumemi.android.codecheck.presentation.AppTheme
@@ -20,6 +22,7 @@ fun AppListItemCard(
     onClick: () -> Unit,
     content: @Composable () -> Unit
 ) {
+    val view = LocalView.current
     Card(
         modifier = modifier.padding(
             horizontal = AppTheme.dimens.spacingS,
@@ -32,7 +35,10 @@ fun AppListItemCard(
         elevation = CardDefaults.cardElevation(
             defaultElevation = AppTheme.dimens.elevationSmall
         ),
-        onClick = onClick
+        onClick = {
+            view.playSoundEffect(SoundEffectConstants.CLICK)
+            onClick()
+        }
     ) {
         content()
     }

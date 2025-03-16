@@ -21,9 +21,6 @@ class RepositoryListAdapter(
         fun bind(item: SearchedRepository, clickListener: OnItemClickListener) {
             binding.repositoryNameView.text = item.name
 
-            binding.repositoryDescriptionView.text =
-                binding.root.context.getString(R.string.repository_description)
-
             if (item.language.isNotEmpty()) {
                 binding.languageIndicator.text = item.language
                 binding.languageIndicator.visibility = android.view.View.VISIBLE

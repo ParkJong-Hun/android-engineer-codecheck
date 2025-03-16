@@ -18,26 +18,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.App.Subtitle2"
-            app:layout_constraintBottom_toTopOf="@id/repositoryDescriptionView"
+            app:layout_constraintBottom_toTopOf="@id/statsLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="JetBrains/kotlin" />
-
-        <TextView
-            android:id="@+id/repositoryDescriptionView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_xs"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:text="@string/repository_description"
-            android:textAppearance="@style/TextAppearance.App.Body2"
-            app:layout_constraintBottom_toTopOf="@id/statsLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/repositoryNameView"
-            tools:text="The Kotlin Programming Language" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/statsLayout"
@@ -45,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_s"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/repositoryDescriptionView">
+            app:layout_constraintTop_toBottomOf="@id/repositoryNameView">
 
             <TextView
                 android:id="@+id/languageIndicator"

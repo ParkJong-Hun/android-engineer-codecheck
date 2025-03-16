@@ -23,14 +23,14 @@ fun getColorScheme(darkTheme: Boolean): ColorScheme {
     return if (darkTheme) {
         darkColorScheme(
             primary = colorResource(id = R.color.gray_normal),
-            onPrimary = colorResource(id = R.color.black_normal),
-            primaryContainer = colorResource(id = R.color.gray_dark),
-            secondary = colorResource(id = R.color.blue_light),
+            onPrimary = colorResource(id = R.color.white_dark),
+            primaryContainer = colorResource(id = R.color.gray_normal),
+            secondary = colorResource(id = R.color.blue_light_for_dark),
             onSecondary = colorResource(id = R.color.white_normal),
             secondaryContainer = colorResource(id = R.color.blue_normal),
-            background = colorResource(id = R.color.black_light),
-            surface = colorResource(id = R.color.black_light),
-            onBackground = colorResource(id = R.color.white_normal),
+            background = colorResource(id = R.color.gray_normal),
+            surface = colorResource(id = R.color.gray_normal),
+            onBackground = colorResource(id = R.color.white_dark),
             onSurface = colorResource(id = R.color.white_dark)
         )
     } else {
