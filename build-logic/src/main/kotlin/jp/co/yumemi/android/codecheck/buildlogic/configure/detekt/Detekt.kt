@@ -13,7 +13,7 @@ fun Project.configureDetekt() {
 
     (extensions.getByName("detekt") as? DetektExtension)?.apply {
         buildUponDefaultConfig = true
-        config.setFrom("$projectDir/detekt.yml")
+        config.setFrom("$rootDir/detekt.yml")
     }
 
     tasks.withType<Detekt>().configureEach {
