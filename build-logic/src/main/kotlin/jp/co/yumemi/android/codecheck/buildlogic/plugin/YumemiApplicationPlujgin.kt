@@ -7,6 +7,7 @@ import jp.co.yumemi.android.codecheck.buildlogic.configure.agp.configureAgpDefau
 import jp.co.yumemi.android.codecheck.buildlogic.configure.agp.configureAgpJvmCompatibility
 import jp.co.yumemi.android.codecheck.buildlogic.configure.detekt.configureDetekt
 import jp.co.yumemi.android.codecheck.buildlogic.configure.hilt.configureHilt
+import jp.co.yumemi.android.codecheck.buildlogic.extension.detektPlugins
 import jp.co.yumemi.android.codecheck.buildlogic.extension.implementation
 import jp.co.yumemi.android.codecheck.buildlogic.extension.library
 import jp.co.yumemi.android.codecheck.buildlogic.extension.libs
@@ -33,6 +34,8 @@ class YumemiApplicationPlujgin : Plugin<Project> {
             configureHilt()
             dependencies {
                 implementation(libs.library("hilt-android-testing"))
+                detektPlugins(libs.library("detekt-compose-rules"))
+                detektPlugins(libs.library("detekt-formatting-rules"))
             }
         }
     }
