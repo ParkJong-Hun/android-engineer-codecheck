@@ -2,3 +2,32 @@ config:
   validation: true
   warningsAsErrors: false
   excludes: ''
+
+formatting:
+  TrailingCommaOnCallSite:
+    active: true
+  TrailingCommaOnDeclarationSite:
+    active: true
+
+complexity:
+  LongParameterList:
+    active: false
+  LongMethod:
+    active: false
+
+style:
+  MaxLineLength:
+    active: false
+  UnusedPrivateMember:
+    active: false
+  MagicNumber:
+    active: false
+  ForbiddenComment:
+    active: false
+
+naming:
+  FunctionNaming:
+    active: true
+    functionPattern: '^([a-z$][a-zA-Z$0-9]*)|(`.*`)$'
+    excludeClassPattern: '$^'
+    ignoreAnnotated: [ "Composable", "Preview" ]
