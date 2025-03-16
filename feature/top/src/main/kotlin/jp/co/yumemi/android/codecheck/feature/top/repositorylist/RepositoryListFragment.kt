@@ -7,7 +7,6 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import jp.co.yumemi.android.codecheck.feature.top.R
@@ -45,8 +44,6 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
 
     private fun setupRecyclerView() {
         val linearLayoutManager = LinearLayoutManager(requireContext())
-        val dividerItemDecoration =
-            DividerItemDecoration(requireContext(), linearLayoutManager.orientation)
 
         repositoryListAdapter = RepositoryListAdapter { searchedRepositoryItemInfo ->
             viewModel.uiEvent.tryEmit(
@@ -56,7 +53,6 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
 
         binding.recyclerView.run {
             layoutManager = linearLayoutManager
-            addItemDecoration(dividerItemDecoration)
             adapter = repositoryListAdapter
         }
     }

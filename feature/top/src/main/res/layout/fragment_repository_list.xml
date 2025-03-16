@@ -10,11 +10,8 @@
         android:id="@+id/searchBar"
         style="@style/Widget.App.CardView.SearchBar"
         android:layout_width="0dp"
-        android:layout_height="@dimen/input_height"
-        android:layout_marginTop="@dimen/spacing_m"
-        android:layout_marginEnd="@dimen/spacing_m"
-        app:layout_constraintBottom_toTopOf="@id/recyclerView"
-        app:layout_constraintEnd_toStartOf="@id/goHistoryButton"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -22,8 +19,9 @@
             android:id="@+id/searchInputLayout"
             style="@style/Widget.App.TextInputLayout.SearchBar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:importantForAutofill="no"
+            android:padding="@dimen/padding_input"
             app:endIconMode="clear_text"
             app:startIconDrawable="@android:drawable/ic_menu_search">
 
@@ -45,10 +43,10 @@
         style="@style/Widget.App.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/margin_between_items"
         android:text="@string/go_history"
-        app:layout_constraintBottom_toBottomOf="@id/searchBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/searchBar" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchBar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -59,7 +57,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchBar" />
+        app:layout_constraintTop_toBottomOf="@id/goHistoryButton" />
 
     <ProgressBar
         android:id="@+id/progressBar"
